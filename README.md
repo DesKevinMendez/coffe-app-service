@@ -10,7 +10,7 @@ This configuration is only for run db, server and app; for running the frontend 
 
 ## Tecnologies
 - PHP 7.4 or PHP 8.0
-- Node 14.x
+- Node > 14.x
 
 ## Project setup
 
@@ -23,7 +23,7 @@ cp .env.example .env
 ### Update env variables
 
 ```shell
-DB_DATABASE=<caffe>
+DB_DATABASE=<coffe>
 DB_USERNAME=<username>
 DB_PASSWORD=<password>
 ```
