@@ -1,64 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## NOTE
 
-## About Laravel
+This configuration is only for run db, server and app; for running the frontend from docker, you need extra configuration; this will be implemented in the future.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Docker 19.x o 20.x
+- Docker Compose 1.25.x
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologies
+- PHP 7.4
+- Node 14.x
 
-## Learning Laravel
+## Project setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Setup .env variables
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```shell
+cp .env.example .env
+```
 
-## Laravel Sponsors
+### Update env variables
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```shell
+DB_DATABASE=<caffe>
+DB_USERNAME=<username>
+DB_PASSWORD=<password>
+```
 
-### Premium Partners
+### Replace DB_HOST in case that you run db in docker
+```shell
+DB_HOST=coffedb
+```
+## or
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```shell
+DB_HOST=0.0.0.0
+```
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Build database
+```shell
+docker-compose build
+```
 
-## Code of Conduct
+### Generate key
+```
+docker-compose exec app php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Clean default config
+```
+docker-compose exec app php artisan config:cache
+```
 
-## Security Vulnerabilities
+### Create user with password in the db
+```
+docker-compose exec coffedb bash
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+NOTE: The password for root user in db is **DB_PASSWORD_ROOT** in your .env file
 
-## License
+### Login with user and password
+```
+mysql -u root -p
+```
+### Create database for test
+```
+create database coffe;
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Please replace 'laraveluser' for **DB_USERNAME** and 'your_laravel_db_password' for **DB_PASSWORD** defined in your .env
+```
+GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'your_laravel_db_password';
+```
+
+```
+FLUSH PRIVILEGES;
+```
+
+### Run migrations
+```
+docker-compose exec app php artisan migrate
+```
+### Run seeders
+```
+docker-compose exec app php artisan db:seed &&
+docker-compose exec app php artisan db:seed --class DevelopmentSeeder
+```
+
+### Run laravel app
+```
+docker-composer up -d
+```
+## Extra commands
+
+### Start db
+
+```shell
+docker-compose start
+```
+
+### Stop db
+
+```shell
+docker-compose stop
+```
+
+### Run tinker
+```shell
+docker-compose exec app php artisan tinker
+```
+
+### Last pass
+
+Configuration the local host into /etc/host -> this work only in mac and linux, for window you need added virtual host in another way.
+
+```shell
+sudo nano /etc/hosts or sudo vim /etc/hosts
+```
+
+Into host you need add the domain as APP_DOMAIN into your .env file.
+In our case coffe.test
+```shell
+127.0.0.1   coffe.test
+```
+
