@@ -9,7 +9,7 @@ This configuration is only for run db, server and app; for running the frontend 
 - Docker Compose 1.25.x
 
 ## Tecnologies
-- PHP 7.4
+- PHP 7.4 or PHP 8.0
 - Node 14.x
 
 ## Project setup
