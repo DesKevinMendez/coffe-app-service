@@ -1,15 +1,16 @@
-<script setup lang="ts">
-import { reactive } from "vue";
+<script setup>
+import { RouterView } from "vue-router";
+import { useMainStore } from "@/stores/main.js";
 
-interface tUser {
-    name: string;
-}
+const mainStore = useMainStore();
 
-const user = reactive<tUser>({
-    name: "Kevin Méndez",
+mainStore.setUser({
+    name: "John Doe",
+    email: "john@example.com",
+    avatar: "https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93",
 });
 </script>
 
 <template>
-    <h1 class="text-3xl font-bold underline">{{ user.name }}</h1>
+    <RouterView />
 </template>
