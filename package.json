@@ -6,6 +6,8 @@
     },
     "devDependencies": {
         "axios": "^0.21",
+        "commitizen": "^4.2.5",
+        "git-cz": "^4.9.0",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
     },
