@@ -1,9 +1,9 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import SectionFormScreen from '@/components/SectionFormScreen.vue'
-import CardBox from '@/components/CardBox.vue'
-import BaseButton from '@/components/BaseButton.vue'
-import BaseLevel from '@/components/BaseLevel.vue'
+import SectionFormScreen from '@/components/template/SectionFormScreen.vue'
+import CardBox from '@/components/template/CardBox.vue'
+import BaseButton from '@/components/template/BaseButton.vue'
+import BaseLevel from '@/components/template/BaseLevel.vue'
 import LayoutGuest from '@/layouts/LayoutGuest.vue'
 </script>
 
