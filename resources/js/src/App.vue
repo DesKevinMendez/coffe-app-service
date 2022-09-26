@@ -1,17 +1,6 @@
 <script setup>
-// import { RouterView } from "vue-router";
-// import { useMainStore } from "@/stores/main.js";
-
-// const mainStore = useMainStore();
-
-// mainStore.setUser({
-//     name: "John Doe",
-//     email: "john@example.com",
-//     avatar: "https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93",
-// });
 </script>
 
 <template>
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <!-- <RouterView /> -->
 </template>
