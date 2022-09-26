@@ -12,6 +12,6 @@
 </script>
 
 <template>
-    <h1>Vue app</h1>
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
     <!-- <RouterView /> -->
 </template>
