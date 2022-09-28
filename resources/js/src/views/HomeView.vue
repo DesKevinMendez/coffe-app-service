@@ -83,19 +83,6 @@ const productBarItems = computed(() => mainStore.products)
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton
-        :icon="mdiChartTimelineVariant"
-        title="Overview"
-        main
-      >
-        <BaseButton
-          href="https://justboil.me/tailwind-admin-templates/vue-dashboard/"
-          label="Buy dashboard"
-          color="contrast"
-          rounded-full
-          small
-        />
-      </SectionTitleLineWithButton>
       <div class="grid grid-cols-12 gap-6 mb-6 -mx-6 md:mx-0">
         <div class="col-span-12 sm:col-span-6 xl:col-span-3">
           <CardBoxWidget
@@ -155,11 +142,6 @@ const productBarItems = computed(() => mainStore.products)
         </div>
       </div>
 
-      <SectionTitleLineWithButton
-        :icon="mdiChartTimelineVariant"
-        title="Finance"
-      />
-
       <div class="grid grid-cols-1 xl:grid-cols-4 xl:gap-6 mb-6">
         <div class="xl:flex xl:flex-col xl:col-span-3 mb-6 xl:mb-0">
           <CardBoxTransaction
@@ -173,47 +155,6 @@ const productBarItems = computed(() => mainStore.products)
             :account="transaction.account"
           />
         </div>
-        <CardBox
-          title="Overview"
-          :icon="mdiFinance"
-          :header-icon="mdiCog"
-          footer
-        >
-          <CardBoxAmountItem
-            title="Unpaid balance"
-            value="$120,489.67"
-            :icon="mdiBriefcaseVariant"
-            icon-type="info"
-            divider
-          />
-          <CardBoxAmountItem
-            title="Pending transactions"
-            value="$756.49"
-            :icon="mdiCalendarToday"
-            icon-type="warning"
-            divider
-          />
-          <CardBoxAmountItem
-            title="Pending withdrawals"
-            value="$50,124.28"
-            :icon="mdiCameraSwitch"
-            icon-type="danger"
-          />
-          <template #footer>
-            <BaseButtons>
-              <BaseButton
-                color="info"
-                :icon="mdiPlusCircle"
-                label="Payout"
-              />
-              <BaseButton
-                color="info"
-                :icon="mdiBroadcast"
-                outline
-              />
-            </BaseButtons>
-          </template>
-        </CardBox>
       </div>
 
       <SectionTitleLineWithButton
@@ -258,37 +199,6 @@ const productBarItems = computed(() => mainStore.products)
             />
           </div>
         </div>
-      </CardBox>
-
-      <SectionTitleLineWithButton
-        :icon="mdiChartPie"
-        title="Products"
-      />
-
-      <CardBoxProduct
-        v-for="product in productBarItems"
-        :key="product.id"
-        :product="product"
-      />
-
-      <SectionTitleLineWithButton
-        :icon="mdiAccountMultiple"
-        title="Clients"
-      />
-
-      <NotificationBar
-        color="info"
-        :icon="mdiMonitorCellphone"
-      >
-        <b>Responsive table.</b> Collapses on mobile
-      </NotificationBar>
-
-      <CardBox
-        :icon="mdiMonitorCellphone"
-        title="Responsive table"
-        has-table
-      >
-        <TableSampleClients :per-page="10" />
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>

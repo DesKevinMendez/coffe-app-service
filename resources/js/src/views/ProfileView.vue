@@ -46,19 +46,6 @@ const submitPass = () => {
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <SectionTitleLineWithButton
-        :icon="mdiAccount"
-        title="Profile"
-        main
-      >
-        <BaseButton
-          href="https://justboil.me/tailwind-admin-templates/vue-dashboard/"
-          label="Buy dashboard"
-          color="contrast"
-          rounded-full
-          small
-        />
-      </SectionTitleLineWithButton>
       <UserCard class="mb-6" />
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <CardBox

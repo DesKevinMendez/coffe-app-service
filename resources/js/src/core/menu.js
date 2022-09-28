@@ -1,18 +1,9 @@
 import {
   mdiAccountCircle,
   mdiDesktopMac,
-  mdiHelpCircle,
   mdiLock,
-  mdiSquareEditOutline,
-  mdiTable,
   mdiMenuOpen,
-  mdiTelevisionGuide,
-  mdiBarcode,
-  mdiThemeLightDark,
-  mdiPalette,
   mdiCardAccountDetailsOutline, 
-  mdiOpenInNew,
-  mdiFormDropdown
 } from '@mdi/js'
 
 export default [
@@ -22,19 +13,9 @@ export default [
     label: 'Dashboard'
   },
   {
-    label: 'Dark mode',
-    icon: mdiThemeLightDark,
-    darkModeToggle: true
-  },
-  {
     to: '/profile',
     label: 'Profile',
     icon: mdiAccountCircle,
-  },
-  {
-    to: '/login',
-    label: 'Login',
-    icon: mdiLock
   },
   {
     // Key should be unique for each submenus object

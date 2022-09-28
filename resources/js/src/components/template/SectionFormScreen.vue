@@ -8,7 +8,7 @@ import {
   sectionBgError,
   sectionBgErrorDark,
 } from '@/core/colors'
-import JustboilLogo from '@/components/template/JustboilLogo.vue'
+import KevinLogo from '@/components/template/KevinLogo.vue'
 import BaseButtons from '@/components/template/BaseButtons.vue'
 import BaseButton from '@/components/template/BaseButton.vue'
 
@@ -93,7 +93,7 @@ const routes = {
       </div>
       <div class="hidden md:block text-white">
         <RouterLink to="/">
-          <JustboilLogo class="w-auto h-12 mx-auto" />
+          <KevinLogo class="w-auto h-12 mx-auto" />
         </RouterLink>
       </div>
     </div>
@@ -120,7 +120,7 @@ const routes = {
       </div>
       <div class="text-white">
         <RouterLink to="/">
-          <JustboilLogo class="w-auto h-8 mx-auto" />
+          <KevinLogo class="w-auto h-8 mx-auto" />
         </RouterLink>
       </div>
     </div>
