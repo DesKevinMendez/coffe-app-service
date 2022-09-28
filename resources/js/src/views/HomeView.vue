@@ -7,15 +7,6 @@ import {
   mdiCartOutline,
   mdiChartTimelineVariant,
   mdiFinance,
-  mdiMonitorCellphone,
-  mdiReload,
-  mdiBell,
-  mdiCog,
-  mdiPlusCircle,
-  mdiBroadcast,
-  mdiBriefcaseVariant,
-  mdiCalendarToday,
-  mdiCameraSwitch,
   mdiChartPie,
 } from '@mdi/js'
 import * as chartConfig from '@/components/template/Charts/chart.config.js'
@@ -24,15 +15,9 @@ import SectionMain from '@/components/template/SectionMain.vue'
 import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue'
 import CardBoxWidget from '@/components/template/CardBoxWidget.vue'
 import CardBox from '@/components/template/CardBox.vue'
-import TableSampleClients from '@/components/template/TableSampleClients.vue'
-import NotificationBar from '@/components/template/NotificationBar.vue'
 import CardBoxClient from '@/components/template/CardBoxClient.vue'
 import CardBoxTransaction from '@/components/template/CardBoxTransaction.vue'
-import CardBoxProduct from '@/components/template/CardBoxProduct.vue'
 import CardBoxAmountItem from '@/components/template/CardBoxAmountItem.vue'
-import BaseButtons from '@/components/template/BaseButtons.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
-import UserCard from '@/components/template/UserCard.vue'
 import LayoutAuthenticated from '@/layouts/LayoutAuthenticated.vue'
 
 const mainStore = useMainStore()
@@ -77,7 +62,6 @@ const clientBarItems = computed(() => mainStore.clients.slice(0, 3))
 
 const transactionBarItems = computed(() => mainStore.history)
 
-const productBarItems = computed(() => mainStore.products)
 </script>
 
 <template>
@@ -91,7 +75,7 @@ const productBarItems = computed(() => mainStore.products)
             color="text-emerald-500"
             :icon="mdiAccountMultiple"
             :number="512"
-            label="Clients"
+            label="Ordenes hoy"
           />
         </div>
         <div class="col-span-12 sm:col-span-6 xl:col-span-3">
@@ -102,34 +86,12 @@ const productBarItems = computed(() => mainStore.products)
             :icon="mdiCartOutline"
             :number="7770"
             prefix="$"
-            label="Sales"
-          />
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3">
-          <CardBoxWidget
-            trend="Overflow"
-            trend-type="alert"
-            color="text-red-500"
-            :icon="mdiChartTimelineVariant"
-            :number="256"
-            suffix="%"
-            label="Performance"
-          />
-        </div>
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3">
-          <CardBoxWidget
-            trend="Last 24 hours"
-            trend-type="info"
-            color="text-yellow-500"
-            :icon="mdiBell"
-            :number="24"
-            label="Alerts"
+            label="Ventas hoy"
           />
         </div>
       </div>
 
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
-        <UserCard />
         <div class="flex flex-col">
           <CardBoxClient
             v-for="client in clientBarItems"
