@@ -1,11 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
 import { useMainStore } from '@/stores/main.js'
 import { useLayoutStore } from '@/stores/layout.js'
 import {
   mdiAccountMultiple,
   mdiCartOutline,
-  mdiChartTimelineVariant,
   mdiFinance,
   mdiChartPie,
 } from '@mdi/js'

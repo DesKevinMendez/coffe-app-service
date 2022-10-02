@@ -3,6 +3,7 @@ import Home from "../views/HomeView.vue";
 import Login from "../views/LoginView.vue";
 import Profile from "../views/ProfileView.vue";
 import ErrorView from "../views/ErrorView.vue";
+import OrderView from "../views/OrderView.vue";
 
 const routes = [
     {
@@ -22,6 +23,15 @@ const routes = [
         path: "/login",
         name: "login",
         component: Login,
+        // component: () => import("../views/LoginView.vue"),
+    },
+    {
+        meta: {
+            title: "Ordenes",
+        },
+        path: "/orders",
+        name: "orders",
+        component: OrderView,
         // component: () => import("../views/LoginView.vue"),
     },
     {

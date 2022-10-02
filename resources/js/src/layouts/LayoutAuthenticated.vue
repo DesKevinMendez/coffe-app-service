@@ -61,7 +61,7 @@ window.addEventListener('keydown', e => {
   <div :class="{ 'dark': styleStore.darkMode, 'overflow-hidden lg:overflow-visible': layoutStore.isAsideMobileExpanded }">
     <div
       :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded, '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" 
-      class="text-base bg-gray-50 dark:bg-slate-800 dark:text-gray-100 pt-14 lg:pl-22 w-screen transition-position lg:w-auto"
+      class="text-base bg-gray-50 dark:bg-slate-800 dark:text-gray-100 pt-14 lg:pl-22 w-screen transition-position lg:w-auto min-h-screen relative"
     >
       <NavBar :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded, '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" />
       <AsideMenu

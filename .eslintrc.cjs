@@ -12,5 +12,9 @@ module.exports = {
         "@vue/typescript/recommended",
         "prettier",
     ],
+    rules: {
+        "vue/no-multiple-template-root": "off",
+        "vue/script-setup-uses-vars": "off"
+    },
     plugins: ["@typescript-eslint", "prettier"],
 };
