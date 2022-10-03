@@ -14,6 +14,7 @@ module.exports = {
   ],
   rules: {
     indent: ['error', 2],
+    'vue/html-indent': 2,
     'max-len': ['error', { code: 120, }],
     // quotes: ['error', 'single'],
     'vue/no-multiple-template-root': 'off',

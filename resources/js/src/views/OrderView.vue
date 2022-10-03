@@ -1,26 +1,26 @@
 <template>
-    <LayoutAuthenticated>
-        <SectionMain>
-            <SectionTitleLineWithButton
-                :icon="mdiStoreClock"
-                title="Ordenes"
-                main
-            >
-                <FormControl
-                    v-model="search"
-                    :icon-left="mdiStoreSearch"
-                    placeholder="Buscar"
-                />
-            </SectionTitleLineWithButton>
-            <CardBox
-                :icon="mdiCoffeeMaker"
-                title="Listado del día de hoy"
-                has-table
-            >
-                <CoffeTable :fields="columns" :items="orders" />
-            </CardBox>
-        </SectionMain>
-    </LayoutAuthenticated>
+  <LayoutAuthenticated>
+    <SectionMain>
+      <SectionTitleLineWithButton
+        :icon="mdiStoreClock"
+        title="Ordenes"
+        main
+      >
+        <FormControl
+          v-model="search"
+          :icon-left="mdiStoreSearch"
+          placeholder="Buscar"
+        />
+      </SectionTitleLineWithButton>
+      <CardBox
+        :icon="mdiCoffeeMaker"
+        title="Listado del día de hoy"
+        has-table
+      >
+        <CoffeTable :fields="columns" :items="orders" />
+      </CardBox>
+    </SectionMain>
+  </LayoutAuthenticated>
 </template>
 <script setup lang="ts">
 import { useMainStore } from "@/stores/main.js";

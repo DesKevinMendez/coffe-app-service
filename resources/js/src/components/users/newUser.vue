@@ -1,36 +1,36 @@
 <template>
-    <div>
-        <CardBoxModal
-            v-model="showModal"
-            title="Agregar nuevo usuario"
-            button-label="Agregar"
-            :text-link-icon="mdiLifebuoy"
-            has-cancel
-        >
-            <FormField label="Nombre" vertical>
-                <FormControl
-                    v-model="user.name"
-                    :icon-left="mdiAccount"
-                    placeholder="Nombre completo"
-                />
-            </FormField>
-            <FormField label="Correo" vertical>
-                <FormControl
-                    v-model="user.email"
-                    :icon-left="mdiEmail"
-                    type="email"
-                    placeholder="Email"
-                />
-            </FormField>
-            <FormField label="Rol" vertical>
-                <FormControl
-                    v-model="user.role"
-                    type="list"
-                    :options="listBoxOptions"
-                />
-            </FormField>
-        </CardBoxModal>
-    </div>
+  <div>
+    <CardBoxModal
+      v-model="showModal"
+      title="Agregar nuevo usuario"
+      button-label="Agregar"
+      :text-link-icon="mdiLifebuoy"
+      has-cancel
+    >
+      <FormField label="Nombre" vertical>
+        <FormControl
+          v-model="user.name"
+          :icon-left="mdiAccount"
+          placeholder="Nombre completo"
+        />
+      </FormField>
+      <FormField label="Correo" vertical>
+        <FormControl
+          v-model="user.email"
+          :icon-left="mdiEmail"
+          type="email"
+          placeholder="Email"
+        />
+      </FormField>
+      <FormField label="Rol" vertical>
+        <FormControl
+          v-model="user.role"
+          type="list"
+          :options="listBoxOptions"
+        />
+      </FormField>
+    </CardBoxModal>
+  </div>
 </template>
 
 <script setup lang="ts">
