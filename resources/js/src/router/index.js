@@ -1,10 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "../views/HomeView.vue";
-import Login from "../views/LoginView.vue";
-import Profile from "../views/ProfileView.vue";
-import ErrorView from "../views/ErrorView.vue";
-import OrderView from "../views/OrderView.vue";
-import UsersView from "../views/UsersView.vue";
+import { defineAsyncComponent } from "vue";
 
 const routes = [
   {
@@ -15,7 +10,7 @@ const routes = [
     },
     path: "/",
     name: "dashboard",
-    component: Home,
+    component: defineAsyncComponent(() => import("../views/HomeView.vue")),
   },
   {
     meta: {
@@ -23,7 +18,7 @@ const routes = [
     },
     path: "/login",
     name: "login",
-    component: Login,
+    component: defineAsyncComponent(() => import("../views/LoginView.vue")),
     // component: () => import("../views/LoginView.vue"),
   },
   {
@@ -32,7 +27,7 @@ const routes = [
     },
     path: "/orders",
     name: "orders",
-    component: OrderView,
+    component: defineAsyncComponent(() => import("../views/OrderView.vue")),
     // component: () => import("../views/LoginView.vue"),
   },
   {
@@ -41,7 +36,7 @@ const routes = [
     },
     path: "/users",
     name: "users",
-    component: UsersView,
+    component: defineAsyncComponent(() => import("../views/UsersView.vue")),
     // component: () => import("../views/LoginView.vue"),
   },
   {
@@ -50,18 +45,18 @@ const routes = [
     },
     path: "/profile",
     name: "profile",
-    component: Profile,
+    component: defineAsyncComponent(() => import("../views/ProfileView.vue")),
     // component: () => import("../views/ProfileView.vue"),
   },
   {
     meta: {
-      title: 'Error',
+      title: "Error",
     },
-    path: '/error',
-    name: 'error',
-    component: ErrorView
+    path: "/error",
+    name: "error",
+    component: defineAsyncComponent(() => import("../views/ErrorView.vue")),
     // component: () => import('@/views/ErrorView.vue')
-  }
+  },
 ];
 
 const router = createRouter({
