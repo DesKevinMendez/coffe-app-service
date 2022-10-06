@@ -10,7 +10,9 @@ const routes = [
     },
     path: "/",
     name: "dashboard",
-    component: defineAsyncComponent(() => import("../views/HomeView.vue")),
+    component: defineAsyncComponent({
+      loader: () => import("../views/HomeView.vue"),
+    }),
   },
   {
     meta: {
@@ -18,8 +20,9 @@ const routes = [
     },
     path: "/login",
     name: "login",
-    component: defineAsyncComponent(() => import("../views/LoginView.vue")),
-    // component: () => import("../views/LoginView.vue"),
+    component: defineAsyncComponent({
+      loader: () => import("../views/LoginView.vue"),
+    }),
   },
   {
     meta: {
@@ -27,8 +30,19 @@ const routes = [
     },
     path: "/orders",
     name: "orders",
-    component: defineAsyncComponent(() => import("../views/OrderView.vue")),
-    // component: () => import("../views/LoginView.vue"),
+    component: defineAsyncComponent({
+      loader: () => import("../views/OrderView.vue"),
+    }),
+  },
+  {
+    meta: {
+      title: "Ventas",
+    },
+    path: "/sales",
+    name: "sales",
+    component: defineAsyncComponent({
+      loader: () => import("../views/SalesView.vue"),
+    }),
   },
   {
     meta: {
@@ -36,8 +50,9 @@ const routes = [
     },
     path: "/users",
     name: "users",
-    component: defineAsyncComponent(() => import("../views/UsersView.vue")),
-    // component: () => import("../views/LoginView.vue"),
+    component: defineAsyncComponent({
+      loader: () => import("../views/UsersView.vue"),
+    }),
   },
   {
     meta: {
@@ -45,7 +60,9 @@ const routes = [
     },
     path: "/profile",
     name: "profile",
-    component: defineAsyncComponent(() => import("../views/ProfileView.vue")),
+    component: defineAsyncComponent(() =>
+      import("../views/ProfileView.vue")
+    ),
     // component: () => import("../views/ProfileView.vue"),
   },
   {

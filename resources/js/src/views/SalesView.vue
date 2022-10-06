@@ -3,7 +3,7 @@
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiStoreClock"
-        title="Ordenes"
+        title="Ventas"
         main
       >
         <FormControl
@@ -16,8 +16,46 @@
         :icon="mdiCoffeeMaker"
         title="Listado del día de hoy"
         has-table
+        header
         smaller-padding
       >
+        <template #header>
+          <div class="flex justify-end">
+            <BaseButton
+              type="button"
+              color="info"
+              :icon="mdiFilter"
+            >
+            </BaseButton>
+          </div>
+          <section>
+            <div class="grid grid-cols-12 gap-6">
+              <div class="col-span-4">
+                <FormField label="Mesero" vertical>
+                  <FormControl
+                    placeholder="Nombre"
+                  />
+                </FormField>
+              </div>
+              <div class="col-span-4">
+                <FormField label="Orden" vertical>
+                  <FormControl
+                    type="number"
+                    placeholder="Número de orden"
+                  />
+                </FormField>
+              </div>
+              <div class="col-span-4">
+                <FormField
+                  label="Fecha"
+                  vertical
+                >
+                  <DatePicker></DatePicker>
+                </FormField>
+              </div>
+            </div>
+          </section>
+        </template>
         <CoffeTable :fields="columns" :items="orders" />
       </CardBox>
     </SectionMain>
@@ -25,7 +63,7 @@
 </template>
 <script setup lang="ts">
 import { useMainStore } from "@/stores/main.js";
-import { mdiCoffeeMaker, mdiStoreClock, mdiStoreSearch } from "@mdi/js";
+import { mdiCoffeeMaker, mdiStoreClock, mdiStoreSearch, mdiFilter } from "@mdi/js";
 import SectionMain from "@/components/template/SectionMain.vue";
 import CardBox from "@/components/template/CardBox.vue";
 import CoffeTable from "@/components/Reusable/CoffeTable.vue";
@@ -34,7 +72,9 @@ import TableSampleClients from "@/components/template/TableSampleClients.vue";
 import SectionTitleLineWithButton from "@/components/template/SectionTitleLineWithButton.vue";
 import BaseButton from "@/components/template/BaseButton.vue";
 import { ref } from "vue";
+import FormField from "@/components/template/FormField.vue";
 import FormControl from "@/components/template/FormControl.vue";
+import DatePicker from "@/components/Reusable/datePicker.vue";
 
 const mainStore = useMainStore();
 const search = ref("");
