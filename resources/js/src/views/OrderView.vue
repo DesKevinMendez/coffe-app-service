@@ -1,27 +1,25 @@
 <template>
-  <LayoutAuthenticated>
-    <SectionMain>
-      <SectionTitleLineWithButton
-        :icon="mdiStoreClock"
-        title="Ordenes"
-        main
-      >
-        <FormControl
-          v-model="search"
-          :icon-left="mdiStoreSearch"
-          placeholder="Buscar"
-        />
-      </SectionTitleLineWithButton>
-      <CardBox
-        :icon="mdiCoffeeMaker"
-        title="Listado del día de hoy"
-        has-table
-        smaller-padding
-      >
-        <CoffeTable :fields="columns" :items="orders" />
-      </CardBox>
-    </SectionMain>
-  </LayoutAuthenticated>
+  <SectionMain>
+    <SectionTitleLineWithButton
+      :icon="mdiStoreClock"
+      title="Ordenes"
+      main
+    >
+      <FormControl
+        v-model="search"
+        :icon-left="mdiStoreSearch"
+        placeholder="Buscar"
+      />
+    </SectionTitleLineWithButton>
+    <CardBox
+      :icon="mdiCoffeeMaker"
+      title="Listado del día de hoy"
+      has-table
+      smaller-padding
+    >
+      <CoffeTable :fields="columns" :items="orders" />
+    </CardBox>
+  </SectionMain>
 </template>
 <script setup lang="ts">
 import { useMainStore } from "@/stores/main.js";
@@ -29,10 +27,7 @@ import { mdiCoffeeMaker, mdiStoreClock, mdiStoreSearch } from "@mdi/js";
 import SectionMain from "@/components/template/SectionMain.vue";
 import CardBox from "@/components/template/CardBox.vue";
 import CoffeTable from "@/components/Reusable/CoffeTable.vue";
-import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
-import TableSampleClients from "@/components/template/TableSampleClients.vue";
 import SectionTitleLineWithButton from "@/components/template/SectionTitleLineWithButton.vue";
-import BaseButton from "@/components/template/BaseButton.vue";
 import { ref } from "vue";
 import FormControl from "@/components/template/FormControl.vue";
 
