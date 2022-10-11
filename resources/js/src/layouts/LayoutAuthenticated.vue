@@ -128,7 +128,9 @@ window.addEventListener("keydown", (e) => {
       </AsideMenu>
       <AsideRight />
 
-      <RouterView />
+      <div class="lg:pb-10">
+        <RouterView />
+      </div>
 
       <FooterBar />
       <OverlayLayer

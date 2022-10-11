@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
         },
         path: "/sales",
         name: "sales",
-        component: () => import("@/views/SalesView.vue"),
+        component: () => import("@/views/ProductsView.vue"),
       },
       {
         meta: {
@@ -46,7 +46,14 @@ const routes: RouteRecordRaw[] = [
         path: "/profile",
         name: "profile",
         component: () => import("@/views/ProfileView.vue"),
-        // component: () => import("@/views/ProfileView.vue"),
+      },
+      {
+        name: "permanents",
+        meta: {
+          title: "Permanentes",
+        },
+        path: "/products",
+        component: () => import("@/views/ProductsView.vue"),
       },
     ],
   },

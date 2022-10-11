@@ -1,10 +1,6 @@
 <template>
   <SectionMain>
-    <SectionTitleLineWithButton
-      :icon="mdiStoreClock"
-      title="Ventas"
-      main
-    >
+    <SectionTitleLineWithButton :icon="mdiStoreClock" title="Productos" main>
       <FormControl
         v-model="search"
         :icon-left="mdiStoreSearch"
@@ -32,21 +28,12 @@
           <section v-show="filter">
             <div class="grid grid-cols-12 gap-6">
               <div class="col-span-4">
-                <FormField label="Mesero" vertical>
-                  <FormControl placeholder="Nombre" />
-                </FormField>
-              </div>
-              <div class="col-span-4">
-                <FormField label="Orden" vertical>
+                <FormField label="Tipo" vertical>
                   <FormControl
-                    type="number"
-                    placeholder="Número de orden"
+                    v-model="filters.type"
+                    type="list"
+                    :options="listBoxOptions"
                   />
-                </FormField>
-              </div>
-              <div class="col-span-4">
-                <FormField label="Fecha" vertical>
-                  <DatePicker/>
                 </FormField>
               </div>
             </div>
@@ -74,31 +61,32 @@ import { ref } from "vue";
 import FormField from "@/components/template/FormField.vue";
 import FormControl from "@/components/template/FormControl.vue";
 import Collapse from "@/components/Reusable/Collapse.vue";
-import DatePicker from "@/components/Reusable/datePicker.vue";
 
 const mainStore = useMainStore();
 const search = ref("");
 const filter = ref(false);
+const filters = ref({ type: "" });
 mainStore.pushMessage("Welcome back. This is demo");
+
+const listBoxOptions = [
+  { id: 1, label: "Permanentes", unavailable: false },
+  { id: 2, label: "Por día", unavailable: false },
+];
 
 const showFilter = () => {
   filter.value = !filter.value;
 };
 const columns = [
   {
-    label: "Mesero/a",
+    label: "Producto",
     key: "user",
   },
   {
-    label: "Orden",
+    label: "Precio",
     key: "orderCount",
   },
   {
-    label: "Total orden",
-    key: "total",
-  },
-  {
-    label: "Hora",
+    label: "Tipo",
     key: "created_at",
   },
 ];
