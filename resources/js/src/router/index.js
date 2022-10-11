@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import { defineAsyncComponent } from "vue";
+import LoadingC from '@/components/Reusable/LoadingC.vue'
 
 const routes = [
   {
@@ -12,6 +13,7 @@ const routes = [
     name: "dashboard",
     component: defineAsyncComponent({
       loader: () => import("../views/HomeView.vue"),
+      loadingComponent: LoadingC
     }),
   },
   {
@@ -60,9 +62,9 @@ const routes = [
     },
     path: "/profile",
     name: "profile",
-    component: defineAsyncComponent(() =>
-      import("../views/ProfileView.vue")
-    ),
+    component: defineAsyncComponent({
+      loader: () => import("../views/ProfileView.vue"),
+    }),
     // component: () => import("../views/ProfileView.vue"),
   },
   {
@@ -71,7 +73,9 @@ const routes = [
     },
     path: "/error",
     name: "error",
-    component: defineAsyncComponent(() => import("../views/ErrorView.vue")),
+    component: defineAsyncComponent({
+      loader: () => import("../views/ErrorView.vue"),
+    }),
     // component: () => import('@/views/ErrorView.vue')
   },
 ];

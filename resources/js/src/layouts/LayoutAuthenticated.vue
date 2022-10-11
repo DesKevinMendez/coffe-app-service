@@ -58,15 +58,22 @@ window.addEventListener('keydown', e => {
 </script>
 
 <template>
-  <div :class="{ 'dark': styleStore.darkMode, 'overflow-hidden lg:overflow-visible': layoutStore.isAsideMobileExpanded }">
+  <div
+    :class="{ 'dark': styleStore.darkMode,
+              'overflow-hidden lg:overflow-visible': layoutStore.isAsideMobileExpanded }">
     <div
-      :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded, '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" 
-      class="text-base bg-gray-50 dark:bg-slate-800 dark:text-gray-100 pt-14 lg:pl-22 w-screen transition-position lg:w-auto min-h-screen relative"
+      :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded,
+                '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" 
+      class="text-base bg-gray-50 dark:bg-slate-800
+      dark:text-gray-100 pt-14 lg:pl-22 w-screen transition-position lg:w-auto min-h-screen relative"
     >
-      <NavBar :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded, '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" />
+      <NavBar
+        :class="{ 'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded,
+                  '-ml-60 lg:ml-0': layoutStore.isAsideRightActive }" />
       <AsideMenu
         :menu="menu"
-        :class="{ '-left-64 lg:left-0': !isAsideMobileExpanded, 'left-0': isAsideMobileExpanded, 'lg:w-22':isAsideCompact }"
+        :class="{ '-left-64 lg:left-0': !isAsideMobileExpanded,
+                  'left-0': isAsideMobileExpanded, 'lg:w-22':isAsideCompact }"
         :compact="isAsideCompact"
         :z-index="secondaryMenuItem ? 'z-40 md:z-50' : 'z-50'"
         @menu-click="menuClick"
