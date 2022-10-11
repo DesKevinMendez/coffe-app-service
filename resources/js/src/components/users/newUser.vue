@@ -38,7 +38,7 @@ import CardBoxModal from "@/components/template/CardBoxModal.vue";
 import { computed, reactive } from "vue-demi";
 import FormControl from "@/components/template/FormControl.vue";
 import FormField from "../template/FormField.vue";
-import { mdiEmail, mdiAccount } from "@mdi/js";
+import { mdiEmail, mdiAccount, mdiLifebuoy } from "@mdi/js";
 
 const emit = defineEmits(["update:modelValue"]);
 
