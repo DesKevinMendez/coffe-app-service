@@ -15,7 +15,7 @@ const props = defineProps({
     required: true
   },
   modelValue: {
-    type: Object,
+    type: [Object, String],
     default: null
   },
   buttonClass: {

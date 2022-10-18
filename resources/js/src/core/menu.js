@@ -1,39 +1,37 @@
 import {
-  mdiAccountCircle,
+  mdiCart,
   mdiDesktopMac,
-  mdiLock,
-  mdiMenuOpen,
-  mdiCardAccountDetailsOutline, 
-} from '@mdi/js'
+  mdiCoffeeMaker,
+  mdiBadminton,
+  mdiBucketOutline,
+  mdiBaguette,
+  mdiAccountMultiple
+} from "@mdi/js";
 
 export default [
   {
-    to: '/',
+    to: "/",
     icon: mdiDesktopMac,
-    label: 'Dashboard'
+    label: "Inicio",
   },
   {
-    to: '/profile',
-    label: 'Profile',
-    icon: mdiAccountCircle,
+    to: "/orders",
+    label: "Ordenes",
+    icon: mdiCart,
   },
   {
-    // Key should be unique for each submenus object
-    // It is required for open/close logic
-    key: 'submenus-1',
-    label: 'Sub',
-    icon: mdiMenuOpen,
-    menuSecondary: [
-      {
-        to: '/profile',
-        label: 'Permanentes',
-        icon: mdiCardAccountDetailsOutline 
-      },
-      {
-        to: '/profile',
-        label: 'Temporales',
-        icon: mdiCardAccountDetailsOutline 
-      },
-    ]
+    to: "/sales",
+    label: "Ventas",
+    icon: mdiBucketOutline,
   },
-]
+  {
+    to: "/products",
+    label: "Productos",
+    icon: mdiCoffeeMaker,
+  },
+  {
+    to: "/users",
+    label: "Usuarios",
+    icon: mdiAccountMultiple,
+  },
+];
