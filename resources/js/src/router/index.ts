@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
         },
         path: "/sales",
         name: "sales",
-        component: () => import("@/views/ProductsView.vue"),
+        component: () => import("@/views/SalesView.vue"),
       },
       {
         meta: {
