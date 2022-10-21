@@ -7,10 +7,7 @@
         form
         @submit="submit"
       >
-        <FormField
-          label="Login"
-          :error="hasError"
-        >
+        <FormField label="Login" :error="hasError">
           <FormControl
             v-model="form.email"
             :error="hasError"
@@ -22,10 +19,7 @@
           />
         </FormField>
 
-        <FormField
-          label="Password"
-          :error="hasError"
-        >
+        <FormField label="Password" :error="hasError">
           <FormControl
             v-model="form.password"
             :error="hasError"
@@ -89,7 +83,7 @@ const form = reactive({
   email: "lolita.schneider@example.com",
   password: "password",
   remember: ["remember"],
-  device_name: 'samsung'
+  device_name: "samsung",
 });
 
 const hasError = ref(false);
@@ -97,10 +91,8 @@ const hasError = ref(false);
 const cardClassAddon = computed(() => (hasError.value ? "animate-shake" : ""));
 
 const submit = async () => {
-  await request.get(
-    "http://localhost:80/sanctum/csrf-cookie"
-  );
-  const { data } = await request.post("http://localhost:80/api/login", {
+  await request.get("sanctum/csrf-cookie");
+  const { data } = await request.post("api/login", {
     ...form,
   });
   console.log(data.value);
