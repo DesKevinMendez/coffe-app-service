@@ -315,6 +315,16 @@
     "@typescript-eslint/types" "5.38.0"
     eslint-visitor-keys "^3.3.0"
 
+"@vee-validate/i18n@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@vee-validate/i18n/-/i18n-4.7.0.tgz#2b68479a7d16e8d2785a63542feb982c5440bd5d"
+  integrity sha512-NwoqzTprINUGwt9QmF4QUS+tPbHH16wSrYHKl3Q6h1rJcGaPoQPc2dvR3Pp5n/QMU1Ey8vNPcj2QrCoEjuD67w==
+
+"@vee-validate/rules@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@vee-validate/rules/-/rules-4.7.0.tgz#538545c8fbf6f060a55f745627e52b6ad680b591"
+  integrity sha512-DdJY7DJEvIr1i3rBSbd3Vc0c+sKt4/pT/IIHQmQ7tSviqjNTHOnUalbqa5t+4z5OOz8L71ic0lqJHlgaPRgMGQ==
+
 "@vitejs/plugin-vue@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-3.1.0.tgz"
@@ -2512,6 +2522,13 @@ v8-compile-cache-lib@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
+
+vee-validate@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.7.0.tgz#442c0a9b8dad28790ea10b37b6855f25f3e4f5a8"
+  integrity sha512-7HW2RE8mWaT57Jn+JU7jwczFqtlc1rIAwSbp8kD1L2sO0plhT9YeDNKW5iaI9baosc4h+iyb6itMlXtqAAqAfw==
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
 
 vite-plugin-full-reload@^1.0.1:
   version "1.0.4"

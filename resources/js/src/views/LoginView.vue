@@ -1,22 +1,22 @@
 <template>
   <LayoutGuest>
     <SectionFormScreen v-slot="{ cardClass, cardRounded }" bg="login" promo>
-      <CardBox
+      <CardForm
         :class="[cardClass, cardClassAddon]"
         :rounded="cardRounded"
         form
-        @submit.prevent="submit"
+        @submit="submit"
       >
         <FormField
           label="Login"
           :error="hasError"
-          help="Please enter your login"
         >
           <FormControl
             v-model="form.email"
             :error="hasError"
             :icon-right="mdiAccount"
             name="login"
+            rules="required|email"
             placeholder="user@example.com"
             autocomplete="username"
           />
@@ -25,7 +25,6 @@
         <FormField
           label="Password"
           :error="hasError"
-          help="Click icon to show/hide"
         >
           <FormControl
             v-model="form.password"
@@ -36,6 +35,7 @@
             type="password"
             name="password"
             placeholder="Password"
+            rules="required"
             autocomplete="current-password"
             @right-icon-click="passShowHideClicked = true"
           />
@@ -64,7 +64,7 @@
             </BaseButtons>
           </BaseLevel>
         </template>
-      </CardBox>
+      </CardForm>
     </SectionFormScreen>
   </LayoutGuest>
 </template>
@@ -73,7 +73,7 @@ import { reactive, ref, computed } from "vue";
 import { RouterLink } from "vue-router";
 import { mdiAccount } from "@mdi/js";
 import SectionFormScreen from "@/components/template/SectionFormScreen.vue";
-import CardBox from "@/components/template/CardBox.vue";
+import CardForm from "@/components/template/CardForm.vue";
 import FormCheckRadioPicker from "@/components/template/FormCheckRadioPicker.vue";
 import FormField from "@/components/template/FormField.vue";
 import FormControl from "@/components/template/FormControl.vue";
@@ -86,8 +86,8 @@ import useRequest from "@/composables/useRequest";
 const request = useRequest();
 
 const form = reactive({
-  email: "johndoe",
-  password: "secret",
+  email: "lolita.schneider@example.com",
+  password: "password",
   remember: ["remember"],
   device_name: 'samsung'
 });
