@@ -1,3 +1,4 @@
+import { useStorage } from '@vueuse/core';
 import { defineStore } from 'pinia'
 
 export interface State {
@@ -5,12 +6,11 @@ export interface State {
   token: string | null;
 }
 
-const initialState: State = {
-  isAuthenticated: false,
-  token: null
-}
 export const useAuth = defineStore('auth', {
-  state: (): State => ({ ...initialState }),
+  state: () => ({
+    isAuthenticated: useStorage('isAuthenticated', false),
+    token: useStorage('token', null)
+  }),
   getters: {
     isAuth: (state) => state.isAuthenticated,
     getToken: (state) => state.token
