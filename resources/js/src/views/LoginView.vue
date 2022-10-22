@@ -81,7 +81,7 @@ import { useAuth } from "@/stores/auth";
 const request = useRequest();
 
 const form = reactive({
-  email: "huel.santina@example.net",
+  email: "kevin@coffeapp.com",
   password: "password",
   remember: ["remember"],
   device_name: "samsung",
