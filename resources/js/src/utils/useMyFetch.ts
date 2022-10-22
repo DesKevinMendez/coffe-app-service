@@ -7,7 +7,8 @@ const options: CreateFetchOptions = {
     async beforeFetch({ options }) {
       options.headers = {
         ...options.headers,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       }
       return {
         options,

@@ -64,7 +64,7 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref, computed } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { mdiAccount } from "@mdi/js";
 import SectionFormScreen from "@/components/template/SectionFormScreen.vue";
 import CardForm from "@/components/template/CardForm.vue";
@@ -76,11 +76,12 @@ import BaseLevel from "@/components/template/BaseLevel.vue";
 import BaseButtons from "@/components/template/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
 import useRequest from "@/composables/useRequest";
+import { useAuth } from "@/stores/auth";
 
 const request = useRequest();
 
 const form = reactive({
-  email: "lolita.schneider@example.com",
+  email: "huel.santina@example.net",
   password: "password",
   remember: ["remember"],
   device_name: "samsung",
@@ -90,13 +91,17 @@ const hasError = ref(false);
 
 const cardClassAddon = computed(() => (hasError.value ? "animate-shake" : ""));
 
+const uRou = useRouter();
+const auth = useAuth();
+
 const submit = async () => {
   await request.get("sanctum/csrf-cookie");
-  const { data } = await request.post("api/login", {
+  const { data } = await request.post<{ token: string }>("api/login", {
     ...form,
   });
-  console.log(data.value);
-  // hasError.value = true
+
+  auth.setLogin(data.value.token);
+  uRou.push({ name: "home" });
 };
 
 const passShowHideClicked = ref(true);

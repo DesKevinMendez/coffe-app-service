@@ -1,10 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import LayoutAuthenticatedVue from "@/layouts/LayoutAuthenticated.vue";
+import { ifAuthenticated, ifNotAuthenticated } from "./middleware/auth";
 
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
     component: LayoutAuthenticatedVue,
+    beforeEnter: ifAuthenticated,
     children: [
       {
         meta: {
@@ -61,6 +63,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: "Login",
     },
+    beforeEnter: ifNotAuthenticated,
     path: "/login",
     name: "login",
     component: () => import("@/views/LoginView.vue"),
@@ -72,7 +75,6 @@ const routes: RouteRecordRaw[] = [
     path: "/error",
     name: "error",
     component: () => import("@/views/ErrorView.vue"),
-    // component: () => import('@/views/ErrorView.vue')
   },
 ];
 
