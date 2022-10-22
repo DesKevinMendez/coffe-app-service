@@ -5,6 +5,7 @@
         v-model="search"
         :icon-left="mdiStoreSearch"
         placeholder="Buscar"
+        name="buscar"
       />
     </SectionTitleLineWithButton>
     <CardBox

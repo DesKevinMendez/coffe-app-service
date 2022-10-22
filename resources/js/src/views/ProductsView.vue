@@ -5,6 +5,7 @@
         v-model="search"
         :icon-left="mdiStoreSearch"
         placeholder="Buscar"
+        name="buscar"
       />
     </SectionTitleLineWithButton>
     <CardBox
@@ -33,6 +34,7 @@
                     v-model="filters.type"
                     type="list"
                     :options="listBoxOptions"
+                    name="tipo"
                   />
                 </FormField>
               </div>

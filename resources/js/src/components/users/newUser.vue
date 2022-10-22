@@ -12,6 +12,7 @@
           v-model="user.name"
           :icon-left="mdiAccount"
           placeholder="Nombre completo"
+          name="nombre"
         />
       </FormField>
       <FormField label="Correo" vertical>
@@ -19,6 +20,7 @@
           v-model="user.email"
           :icon-left="mdiEmail"
           type="email"
+          name="email"
           placeholder="Email"
         />
       </FormField>
@@ -26,6 +28,7 @@
         <FormControl
           v-model="user.role"
           type="list"
+          name="rol"
           :options="listBoxOptions"
         />
       </FormField>

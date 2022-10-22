@@ -8,5 +8,6 @@ import FormControl from '@/components/template/FormControl.vue'
     placeholder="Search (ctrl+k)"
     ctrl-k-focus
     borderless
+    name="search"
   />
 </template>

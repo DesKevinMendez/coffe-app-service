@@ -3,7 +3,7 @@ import { mdiPlusCircle, mdiChevronUp, mdiChevronDown } from "@mdi/js";
 import { computed, ref, useSlots } from "vue";
 import BaseIcon from "@/components/template/BaseIcon.vue";
 import BaseButton from "@/components/template/BaseButton.vue";
-
+import { Form } from "vee-validate";
 const props = defineProps({
   title: {
     type: String,
@@ -54,7 +54,7 @@ const submit = (e) => {
   emit("submit", e);
 };
 
-const is = computed(() => (props.form ? "form" : "div"));
+const is = computed(() => (props.form ? "Form" : "div"));
 
 const componentClass = computed(() => {
   const base = [
@@ -115,7 +115,7 @@ const computedHeaderIcon = computed(() => {
 </script>
 
 <template>
-  <component
+  <Form
     :is="is"
     :class="componentClass"
     class="bg-white"
@@ -197,5 +197,5 @@ const computedHeaderIcon = computed(() => {
     >
       <slot name="footer" />
     </div>
-  </component>
+  </Form>
 </template>
