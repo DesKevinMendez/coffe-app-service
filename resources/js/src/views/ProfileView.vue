@@ -1,44 +1,51 @@
 <script setup>
-import { ref, reactive } from 'vue'
-import { useMainStore } from '@/stores/main.js'
-import { mdiAccount, mdiAccountCircle, mdiLock, mdiMail, mdiFormTextboxPassword, mdiLifebuoy } from '@mdi/js'
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js'
-import SectionMain from '@/components/template/SectionMain.vue'
-import CardBox from '@/components/template/CardBox.vue'
-import BaseDivider from '@/components/template/BaseDivider.vue'
-import FormField from '@/components/template/FormField.vue'
-import FormControl from '@/components/template/FormControl.vue'
-import UserCard from '@/components/template/UserCard.vue'
-import BaseButtons from '@/components/template/BaseButtons.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
-import BaseLevel from '@/components/template/BaseLevel.vue'
-import ButtonTextLink from '@/components/template/ButtonTextLink.vue'
-import ButtonMenu from '@/components/template/ButtonMenu.vue'
-import SectionBottomOtherPages from '@/components/template/SectionBottomOtherPages.vue'
+import { ref, reactive } from 'vue';
+import { useMainStore } from '@/stores/main.js';
+import {
+  mdiAccount,
+  mdiAccountCircle,
+  mdiLock,
+  mdiMail,
+  mdiFormTextboxPassword,
+  mdiLifebuoy,
+} from '@mdi/js';
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
+import SectionMain from '@/components/template/SectionMain.vue';
+import CardBox from '@/components/template/CardBox.vue';
+import BaseDivider from '@/components/template/BaseDivider.vue';
+import FormField from '@/components/template/FormField.vue';
+import FormControl from '@/components/template/FormControl.vue';
+import UserCard from '@/components/template/UserCard.vue';
+import BaseButtons from '@/components/template/BaseButtons.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
+import BaseLevel from '@/components/template/BaseLevel.vue';
+import ButtonTextLink from '@/components/template/ButtonTextLink.vue';
+import ButtonMenu from '@/components/template/ButtonMenu.vue';
+import SectionBottomOtherPages from '@/components/template/SectionBottomOtherPages.vue';
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
 const profileForm = reactive({
   name: mainStore.userName,
-  email: mainStore.userEmail
-})
+  email: mainStore.userEmail,
+});
 
-const passShowHideClicked = ref(false)
+const passShowHideClicked = ref(false);
 
 const passwordForm = reactive({
   password_current: 'my-secret-password',
   password: '',
-  password_confirmation: ''
-})
+  password_confirmation: '',
+});
 
 const submitProfile = () => {
-  mainStore.setUser(profileForm)
-  mainStore.pushMessage('Updated. Demo only')
-}
+  mainStore.setUser(profileForm);
+  mainStore.pushMessage('Updated. Demo only');
+};
 
 const submitPass = () => {
-  mainStore.pushMessage('Updated. Demo only')
-}
+  mainStore.pushMessage('Updated. Demo only');
+};
 </script>
 
 <template>
@@ -51,10 +58,7 @@ const submitPass = () => {
         form
         @submit.prevent="submitProfile"
       >
-        <FormField
-          label="Name"
-          help="Required. Your name"
-        >
+        <FormField label="Name" help="Required. Your name">
           <FormControl
             v-model="profileForm.name"
             :icon-left="mdiAccount"
@@ -63,10 +67,7 @@ const submitPass = () => {
             required
           />
         </FormField>
-        <FormField
-          label="E-mail"
-          help="Required. Your e-mail"
-        >
+        <FormField label="E-mail" help="Required. Your e-mail">
           <FormControl
             v-model="profileForm.email"
             :icon-left="mdiMail"
@@ -80,11 +81,7 @@ const submitPass = () => {
         <template #footer>
           <BaseLevel>
             <BaseButtons>
-              <BaseButton
-                type="submit"
-                label="Update"
-                color="info"
-              />
+              <BaseButton type="submit" label="Update" color="info" />
               <ButtonMenu
                 :options="buttonMenuOptions"
                 label="Options"
@@ -93,10 +90,7 @@ const submitPass = () => {
                 left
               />
             </BaseButtons>
-            <ButtonTextLink
-              label="Need help?"
-              :icon="mdiLifebuoy"
-            />
+            <ButtonTextLink label="Need help?" :icon="mdiLifebuoy" />
           </BaseLevel>
         </template>
       </CardBox>
@@ -146,11 +140,7 @@ const submitPass = () => {
           />
         </FormField>
         <template #footer>
-          <BaseButton
-            type="submit"
-            label="Change"
-            color="info"
-          />
+          <BaseButton type="submit" label="Change" color="info" />
         </template>
       </CardBox>
     </div>

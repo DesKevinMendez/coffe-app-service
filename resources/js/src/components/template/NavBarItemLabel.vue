@@ -1,31 +1,28 @@
 <script setup>
-import BaseIcon from '@/components/template/BaseIcon.vue'
+import BaseIcon from '@/components/template/BaseIcon.vue';
 
 defineProps({
   icon: {
     type: String,
-    required: true
+    required: true,
   },
   label: {
     type: String,
-    required: true
+    required: true,
   },
   isDesktopIconOnly: Boolean,
   updateMark: {
     type: String,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 </script>
 
 <template>
-  <BaseIcon
-    :path="icon"
-    class="transition-colors"
-    :update-mark="updateMark"
-  />
+  <BaseIcon :path="icon" class="transition-colors" :update-mark="updateMark" />
   <span
     class="px-2 transition-colors"
-    :class="{'lg:hidden':isDesktopIconOnly}"
-  >{{ label }}</span>
+    :class="{ 'lg:hidden': isDesktopIconOnly }"
+    >{{ label }}</span
+  >
 </template>

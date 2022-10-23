@@ -1,20 +1,20 @@
 <script setup>
-import { controlTextColor, getButtonColor } from "@/core/colors.js";
-import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import { useMainStore } from "@/stores/main.js";
+import { controlTextColor, getButtonColor } from '@/core/colors.js';
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+import { useMainStore } from '@/stores/main.js';
 import {
   mdiUnfoldMoreHorizontal,
   mdiAlertCircle,
   mdiCheckCircle,
   mdiAsterisk,
   mdiLockOff,
-} from "@mdi/js";
-import FormControlIcon from "@/components/template/FormControlIcon.vue";
-import FormFieldHelp from "@/components/template/FormFieldHelp.vue";
-import FormControlListbox from "@/components/template/FormControlListbox.vue";
-import BaseIcon from "@/components/template/BaseIcon.vue";
-import TipTag from "@/components/template/TipTag.vue";
-import { Field, ErrorMessage } from "vee-validate";
+} from '@mdi/js';
+import FormControlIcon from '@/components/template/FormControlIcon.vue';
+import FormFieldHelp from '@/components/template/FormFieldHelp.vue';
+import FormControlListbox from '@/components/template/FormControlListbox.vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import TipTag from '@/components/template/TipTag.vue';
+import { Field, ErrorMessage } from 'vee-validate';
 
 const props = defineProps({
   firstAddon: Boolean,
@@ -23,7 +23,7 @@ const props = defineProps({
   expanded: Boolean,
   inputW: {
     type: String,
-    default: "w-full",
+    default: 'w-full',
   },
   help: {
     type: String,
@@ -68,11 +68,11 @@ const props = defineProps({
   },
   type: {
     type: String,
-    default: "text",
+    default: 'text',
   },
   modelValue: {
     type: [String, Number, Boolean, Array, Object],
-    default: "",
+    default: '',
   },
   buttonLabel: {
     type: String,
@@ -84,7 +84,7 @@ const props = defineProps({
   },
   buttonColor: {
     type: String,
-    default: "white",
+    default: 'white',
   },
   buttonOutline: Boolean,
   borderless: Boolean,
@@ -96,29 +96,29 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  rules: { type: [String, Object], required: false, default: "" },
+  rules: { type: [String, Object], required: false, default: '' },
   ctrlKFocus: Boolean,
 });
 
-const emit = defineEmits(["update:modelValue", "right-icon-click"]);
+const emit = defineEmits(['update:modelValue', 'right-icon-click']);
 
 const computedValue = computed({
   get: () => props.modelValue,
   set: (value) => {
-    emit("update:modelValue", value);
+    emit('update:modelValue', value);
   },
 });
 
 const borderColor = computed(() => {
   if (props.error) {
-    return "border-red-600";
+    return 'border-red-600';
   }
 
   if (props.success) {
-    return "border-emerald-600";
+    return 'border-emerald-600';
   }
 
-  return "border-gray-700";
+  return 'border-gray-700';
 });
 
 const textColor = computed(() => {
@@ -127,54 +127,51 @@ const textColor = computed(() => {
 
 const placeholderColor = computed(() => {
   if (props.error) {
-    return "placeholder-red-600";
+    return 'placeholder-red-600';
   }
 
   if (props.success) {
-    return "placeholder-emerald-600";
+    return 'placeholder-emerald-600';
   }
 
   return null;
 });
 
 const wrapperBorder = computed(
-  () => ["textarea"].indexOf(computedType.value) < 0
+  () => ['textarea'].indexOf(computedType.value) < 0
 );
 
-const upperWrapperClass = computed(() => (props.expanded ? "grow shrink" : ""));
+const upperWrapperClass = computed(() => (props.expanded ? 'grow shrink' : ''));
 
 const wrapperClass = computed(() => {
   const base = [];
 
-  if (computedType.value === "button") {
+  if (computedType.value === 'button') {
     base.push(getButtonColor(props.buttonColor, props.buttonOutline, true));
   } else {
     base.push(borderColor.value);
 
     if (wrapperBorder.value) {
-      base.push(
-        "dark:bg-slate-800",
-        props.borderless ? "bg-gray-50" : ""
-      );
+      base.push('dark:bg-slate-800', props.borderless ? 'bg-gray-50' : '');
     }
   }
 
   if (!props.borderless && wrapperBorder.value) {
-    base.push("border-t border-b");
+    base.push('border-t border-b');
 
     if (!props.firstAddon && !props.lastAddon && !props.middleAddon) {
-      base.push("rounded border-l border-r");
+      base.push('rounded border-l border-r');
     } else if (props.firstAddon) {
-      base.push("rounded-l border-l");
+      base.push('rounded-l border-l');
 
-      if (computedType.value !== "button") {
-        base.push("pr-1");
+      if (computedType.value !== 'button') {
+        base.push('pr-1');
       }
     } else if (props.lastAddon) {
-      base.push("rounded-r border-r");
+      base.push('rounded-r border-r');
 
-      if (computedType.value !== "button") {
-        base.push("pl-1");
+      if (computedType.value !== 'button') {
+        base.push('pl-1');
       }
     }
   }
@@ -184,19 +181,19 @@ const wrapperClass = computed(() => {
 
 const inputElClass = computed(() => {
   const base = [
-    "px-3 py-2 max-w-full focus:ring focus:outline-none dark:placeholder-gray-400",
+    'px-3 py-2 max-w-full focus:ring focus:outline-none dark:placeholder-gray-400',
     props.inputW,
-    computedType.value === "textarea" ? "h-24" : "h-12",
-    props.borderless || wrapperBorder.value ? "border-0" : "border",
+    computedType.value === 'textarea' ? 'h-24' : 'h-12',
+    props.borderless || wrapperBorder.value ? 'border-0' : 'border',
   ];
 
-  if (computedType.value === "button") {
+  if (computedType.value === 'button') {
     base.push(getButtonColor(props.buttonColor, props.buttonOutline, true));
   } else {
     base.push(
       borderColor.value,
-      "dark:bg-slate-800",
-      props.borderless ? "bg-gray-50" : ""
+      'dark:bg-slate-800',
+      props.borderless ? 'bg-gray-50' : ''
     );
   }
 
@@ -209,35 +206,35 @@ const inputElClass = computed(() => {
   }
 
   if (!props.firstAddon && !props.lastAddon && !props.middleAddon) {
-    base.push("rounded");
+    base.push('rounded');
   } else if (props.firstAddon) {
-    base.push("rounded-l");
+    base.push('rounded-l');
   } else if (props.lastAddon) {
-    base.push("rounded-r");
+    base.push('rounded-r');
   }
 
   if (computedIconLeft.value) {
-    base.push("pl-10");
+    base.push('pl-10');
   }
 
   if (computedIconRight.value) {
-    base.push("pr-10");
+    base.push('pr-10');
   }
 
   return base;
 });
 
 const computedType = computed(() => {
-  if (props.options && props.type !== "list") {
-    return "select";
+  if (props.options && props.type !== 'list') {
+    return 'select';
   }
 
   if (props.buttonLabel || props.buttonIcon) {
-    return "button";
+    return 'button';
   }
 
-  if (props.type === "password" && passwordIsOpen.value) {
-    return "text";
+  if (props.type === 'password' && passwordIsOpen.value) {
+    return 'text';
   }
 
   return props.type;
@@ -258,11 +255,11 @@ const computedIconRight = computed(() => {
     return props.iconRight;
   }
 
-  if (props.type === "password") {
+  if (props.type === 'password') {
     return passwordIsOpen.value ? mdiLockOff : mdiAsterisk;
   }
 
-  if (props.type === "list") {
+  if (props.type === 'list') {
     return mdiUnfoldMoreHorizontal;
   }
 
@@ -270,17 +267,17 @@ const computedIconRight = computed(() => {
 });
 
 const controlIconH = computed(() =>
-  props.type === "textarea" ? "h-full" : "h-12"
+  props.type === 'textarea' ? 'h-full' : 'h-12'
 );
 
 const passwordIsOpen = ref(false);
 
-const rightIconClickable = computed(() => props.type === "password");
+const rightIconClickable = computed(() => props.type === 'password');
 
 const openPasswordToggle = (e) => {
   if (rightIconClickable.value) {
     passwordIsOpen.value = !passwordIsOpen.value;
-    emit("right-icon-click", e);
+    emit('right-icon-click', e);
   }
 };
 
@@ -290,25 +287,25 @@ const inputEl = ref(null);
 
 if (props.ctrlKFocus) {
   const fieldFocusHook = (e) => {
-    if (e.ctrlKey && e.key === "k") {
+    if (e.ctrlKey && e.key === 'k') {
       e.preventDefault();
       inputEl.value.focus();
-    } else if (e.key === "Escape") {
+    } else if (e.key === 'Escape') {
       inputEl.value.blur();
     }
   };
 
   onMounted(() => {
     if (!mainStore.isFieldFocusRegistered) {
-      window.addEventListener("keydown", fieldFocusHook);
+      window.addEventListener('keydown', fieldFocusHook);
       mainStore.isFieldFocusRegistered = true;
     } else {
-      console.error("Duplicate field focus event");
+      console.error('Duplicate field focus event');
     }
   });
 
   onBeforeUnmount(() => {
-    window.removeEventListener("keydown", fieldFocusHook);
+    window.removeEventListener('keydown', fieldFocusHook);
     mainStore.isFieldFocusRegistered = false;
   });
 }
@@ -407,7 +404,7 @@ if (props.ctrlKFocus) {
       :success="success"
       class="mt-1"
     />
-    <ErrorMessage :name="name" class="vee-validate-errors"/>
+    <ErrorMessage :name="name" class="vee-validate-errors" />
   </div>
 </template>
 <style>

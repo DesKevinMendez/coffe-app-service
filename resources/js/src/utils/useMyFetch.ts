@@ -1,5 +1,5 @@
-import { createFetch, CreateFetchOptions } from "@vueuse/core"
-const baseUrl = import.meta.env.VITE_BASE_URL
+import { createFetch, CreateFetchOptions } from '@vueuse/core';
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const options: CreateFetchOptions = {
   baseUrl,
@@ -7,13 +7,13 @@ const options: CreateFetchOptions = {
     async beforeFetch({ options }) {
       options.headers = {
         ...options.headers,
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
+      };
       return {
         options,
-      }
-    }
+      };
+    },
   },
-}
-export const useFetch = createFetch({...options,})
+};
+export const useFetch = createFetch({ ...options });

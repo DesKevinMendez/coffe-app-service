@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import * as styles from '@/core/styles'
-import { darkModeKey, styleKey } from '@/core/config'
+import { defineStore } from 'pinia';
+import * as styles from '@/core/styles';
+import { darkModeKey, styleKey } from '@/core/config';
 
 export const useStyleStore = defineStore('style', {
   state: () => ({
@@ -24,34 +24,36 @@ export const useStyleStore = defineStore('style', {
     darkMode: false,
   }),
   actions: {
-    setStyle (payload) {
+    setStyle(payload) {
       if (!styles[payload]) {
-        return
+        return;
       }
 
-      this.style = payload
+      this.style = payload;
 
-      const style = styles[payload]
+      const style = styles[payload];
 
       if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(styleKey, payload)
+        localStorage.setItem(styleKey, payload);
       }
 
       for (const key in style) {
-        this[`${key}Style`] = style[key]
+        this[`${key}Style`] = style[key];
       }
     },
 
-    setDarkMode (payload = null) {
-      this.darkMode = payload !== null ? payload : !this.darkMode
+    setDarkMode(payload = null) {
+      this.darkMode = payload !== null ? payload : !this.darkMode;
 
       if (typeof document !== 'undefined') {
-        document.documentElement.classList[this.darkMode ? 'add' : 'remove']('dark-scrollbars')
+        document.documentElement.classList[this.darkMode ? 'add' : 'remove'](
+          'dark-scrollbars'
+        );
       }
 
       if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(darkModeKey, this.darkMode ? '1' : '0')
+        localStorage.setItem(darkModeKey, this.darkMode ? '1' : '0');
       }
     },
-  }
-})
+  },
+});

@@ -1,19 +1,27 @@
-import { useAuth } from "@/stores/auth";
-import { NavigationGuardNext, _RouteLocationBase, } from "vue-router";
+import { useAuth } from '@/stores/auth';
+import { NavigationGuardNext, _RouteLocationBase } from 'vue-router';
 
-export const ifAuthenticated = (to: _RouteLocationBase, from: _RouteLocationBase, next: NavigationGuardNext) => {
-  const auth = useAuth()
+export const ifAuthenticated = (
+  to: _RouteLocationBase,
+  from: _RouteLocationBase,
+  next: NavigationGuardNext
+) => {
+  const auth = useAuth();
   if (auth.isAuth) {
-    next()
+    next();
     return;
   }
-  next({ name: 'login', })
+  next({ name: 'login' });
 };
-export const ifNotAuthenticated = (to: _RouteLocationBase, from: _RouteLocationBase, next: NavigationGuardNext) => {
-  const auth = useAuth()
+export const ifNotAuthenticated = (
+  to: _RouteLocationBase,
+  from: _RouteLocationBase,
+  next: NavigationGuardNext
+) => {
+  const auth = useAuth();
   if (!auth.isAuth) {
-    next()
+    next();
     return;
   }
-  next({ name: 'home', })
+  next({ name: 'home' });
 };

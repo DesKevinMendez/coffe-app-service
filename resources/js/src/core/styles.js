@@ -11,8 +11,8 @@ export const basic = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-blue-500',
   navBarItemLabelActiveColor: 'text-blue-600',
-  overlay: 'from-gray-700 via-gray-900 to-gray-700'
-}
+  overlay: 'from-gray-700 via-gray-900 to-gray-700',
+};
 
 export const white = {
   aside: 'bg-white',
@@ -27,8 +27,8 @@ export const white = {
   navBarItemLabel: 'text-blue-600',
   navBarItemLabelHover: 'hover:text-black',
   navBarItemLabelActiveColor: 'text-black',
-  overlay: 'from-white via-gray-100 to-white'
-}
+  overlay: 'from-white via-gray-100 to-white',
+};
 
 export const slate = {
   aside: 'bg-slate-800',
@@ -42,8 +42,8 @@ export const slate = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-slate-500',
   navBarItemLabelActiveColor: 'text-slate-600',
-  overlay: 'from-slate-700 via-slate-900 to-slate-700'
-}
+  overlay: 'from-slate-700 via-slate-900 to-slate-700',
+};
 
 export const zinc = {
   aside: 'bg-zinc-800',
@@ -58,8 +58,8 @@ export const zinc = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-zinc-500',
   navBarItemLabelActiveColor: 'text-zinc-600',
-  overlay: 'from-zinc-700 via-zinc-900 to-zinc-700'
-}
+  overlay: 'from-zinc-700 via-zinc-900 to-zinc-700',
+};
 
 export const neutral = {
   aside: 'bg-neutral-800',
@@ -74,8 +74,8 @@ export const neutral = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-neutral-500',
   navBarItemLabelActiveColor: 'text-neutral-600',
-  overlay: 'from-neutral-700 via-neutral-900 to-neutral-700'
-}
+  overlay: 'from-neutral-700 via-neutral-900 to-neutral-700',
+};
 
 export const stone = {
   aside: 'bg-stone-800',
@@ -90,8 +90,8 @@ export const stone = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-stone-500',
   navBarItemLabelActiveColor: 'text-stone-600',
-  overlay: 'from-stone-700 via-stone-900 to-stone-700'
-}
+  overlay: 'from-stone-700 via-stone-900 to-stone-700',
+};
 
 export const emerald = {
   aside: 'bg-emerald-800 aside-scrollbars-[emerald]',
@@ -105,8 +105,8 @@ export const emerald = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-emerald-500',
   navBarItemLabelActiveColor: 'text-emerald-600',
-  overlay: 'from-emerald-50 via-emerald-200 to-emerald-50'
-}
+  overlay: 'from-emerald-50 via-emerald-200 to-emerald-50',
+};
 
 export const teal = {
   aside: 'bg-teal-800',
@@ -121,8 +121,8 @@ export const teal = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-teal-500',
   navBarItemLabelActiveColor: 'text-teal-600',
-  overlay: 'from-teal-50 via-teal-200 to-teal-50'
-}
+  overlay: 'from-teal-50 via-teal-200 to-teal-50',
+};
 
 export const cyan = {
   aside: 'bg-cyan-800',
@@ -137,8 +137,8 @@ export const cyan = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-cyan-500',
   navBarItemLabelActiveColor: 'text-cyan-600',
-  overlay: 'from-cyan-50 via-cyan-200 to-cyan-50'
-}
+  overlay: 'from-cyan-50 via-cyan-200 to-cyan-50',
+};
 
 export const sky = {
   aside: 'bg-sky-800',
@@ -153,8 +153,8 @@ export const sky = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-sky-500',
   navBarItemLabelActiveColor: 'text-sky-600',
-  overlay: 'from-sky-50 via-sky-200 to-sky-50'
-}
+  overlay: 'from-sky-50 via-sky-200 to-sky-50',
+};
 
 export const blue = {
   aside: 'bg-blue-800',
@@ -169,8 +169,8 @@ export const blue = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-blue-500',
   navBarItemLabelActiveColor: 'text-blue-600',
-  overlay: 'from-blue-50 via-blue-200 to-blue-50'
-}
+  overlay: 'from-blue-50 via-blue-200 to-blue-50',
+};
 
 export const indigo = {
   aside: 'bg-indigo-800',
@@ -185,8 +185,8 @@ export const indigo = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-indigo-500',
   navBarItemLabelActiveColor: 'text-indigo-600',
-  overlay: 'from-indigo-50 via-indigo-200 to-indigo-50'
-}
+  overlay: 'from-indigo-50 via-indigo-200 to-indigo-50',
+};
 
 export const violet = {
   aside: 'bg-violet-800',
@@ -201,8 +201,8 @@ export const violet = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-violet-500',
   navBarItemLabelActiveColor: 'text-violet-600',
-  overlay: 'from-violet-50 via-violet-200 to-violet-50'
-}
+  overlay: 'from-violet-50 via-violet-200 to-violet-50',
+};
 
 export const purple = {
   aside: 'bg-purple-800',
@@ -217,8 +217,8 @@ export const purple = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-purple-500',
   navBarItemLabelActiveColor: 'text-purple-600',
-  overlay: 'from-purple-50 via-purple-200 to-purple-50'
-}
+  overlay: 'from-purple-50 via-purple-200 to-purple-50',
+};
 
 export const fuchsia = {
   aside: 'bg-fuchsia-800',
@@ -233,8 +233,8 @@ export const fuchsia = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-fuchsia-500',
   navBarItemLabelActiveColor: 'text-fuchsia-600',
-  overlay: 'from-fuchsia-50 via-fuchsia-200 to-fuchsia-50'
-}
+  overlay: 'from-fuchsia-50 via-fuchsia-200 to-fuchsia-50',
+};
 
 export const pink = {
   aside: 'bg-pink-800',
@@ -249,8 +249,8 @@ export const pink = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-pink-500',
   navBarItemLabelActiveColor: 'text-pink-600',
-  overlay: 'from-pink-50 via-pink-200 to-pink-50'
-}
+  overlay: 'from-pink-50 via-pink-200 to-pink-50',
+};
 
 export const rose = {
   aside: 'bg-rose-800',
@@ -265,5 +265,5 @@ export const rose = {
   navBarItemLabel: 'text-black',
   navBarItemLabelHover: 'hover:text-rose-500',
   navBarItemLabelActiveColor: 'text-rose-600',
-  overlay: 'from-rose-50 via-rose-200 to-rose-50'
-}
+  overlay: 'from-rose-50 via-rose-200 to-rose-50',
+};

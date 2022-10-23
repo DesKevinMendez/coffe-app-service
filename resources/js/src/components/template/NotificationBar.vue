@@ -1,41 +1,40 @@
 <script setup>
-import { ref, computed, useSlots } from 'vue'
-import { useMainStore } from '@/stores/main.js'
-import { mdiClose } from '@mdi/js'
-import { colorsBgLight, colorsOutline } from '@/core/colors.js'
-import BaseLevel from '@/components/template/BaseLevel.vue'
-import BaseIcon from '@/components/template/BaseIcon.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
+import { ref, computed, useSlots } from 'vue';
+import { useMainStore } from '@/stores/main.js';
+import { mdiClose } from '@mdi/js';
+import { colorsBgLight, colorsOutline } from '@/core/colors.js';
+import BaseLevel from '@/components/template/BaseLevel.vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
 
 const props = defineProps({
   icon: {
     type: String,
-    default: null
+    default: null,
   },
   outline: Boolean,
   color: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-const componentClass = computed(() => props.outline
-  ? colorsOutline[props.color]
-  : colorsBgLight[props.color]
-)
+const componentClass = computed(() =>
+  props.outline ? colorsOutline[props.color] : colorsBgLight[props.color]
+);
 
-const isDismissed = ref(false)
+const isDismissed = ref(false);
 
 const dismiss = () => {
-  isDismissed.value = true
-  mainStore.pushMessage('Done! Notification Dismissed')
-}
+  isDismissed.value = true;
+  mainStore.pushMessage('Done! Notification Dismissed');
+};
 
-const slots = useSlots()
+const slots = useSlots();
 
-const hasRightSlot = computed(() => slots.right)
+const hasRightSlot = computed(() => slots.right);
 </script>
 
 <template>
@@ -56,10 +55,7 @@ const hasRightSlot = computed(() => slots.right)
         />
         <span class="text-center md:text-left"><slot /></span>
       </div>
-      <slot
-        v-if="hasRightSlot"
-        name="right"
-      />
+      <slot v-if="hasRightSlot" name="right" />
       <BaseButton
         v-else
         :icon="mdiClose"

@@ -47,32 +47,32 @@
   </SectionMain>
 </template>
 <script setup lang="ts">
-import { useMainStore } from "@/stores/main.js";
+import { useMainStore } from '@/stores/main.js';
 import {
   mdiCoffeeMaker,
   mdiStoreClock,
   mdiStoreSearch,
   mdiFilter,
-} from "@mdi/js";
-import SectionMain from "@/components/template/SectionMain.vue";
-import CardBox from "@/components/template/CardBox.vue";
-import CoffeTable from "@/components/Reusable/CoffeTable.vue";
-import SectionTitleLineWithButton from "@/components/template/SectionTitleLineWithButton.vue";
-import BaseButton from "@/components/template/BaseButton.vue";
-import { ref } from "vue";
-import FormField from "@/components/template/FormField.vue";
-import FormControl from "@/components/template/FormControl.vue";
-import Collapse from "@/components/Reusable/Collapse.vue";
+} from '@mdi/js';
+import SectionMain from '@/components/template/SectionMain.vue';
+import CardBox from '@/components/template/CardBox.vue';
+import CoffeTable from '@/components/Reusable/CoffeTable.vue';
+import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
+import { ref } from 'vue';
+import FormField from '@/components/template/FormField.vue';
+import FormControl from '@/components/template/FormControl.vue';
+import Collapse from '@/components/Reusable/Collapse.vue';
 
 const mainStore = useMainStore();
-const search = ref("");
+const search = ref('');
 const filter = ref(false);
-const filters = ref({ type: "" });
-mainStore.pushMessage("Welcome back. This is demo");
+const filters = ref({ type: '' });
+mainStore.pushMessage('Welcome back. This is demo');
 
 const listBoxOptions = [
-  { id: 1, label: "Permanentes", unavailable: false },
-  { id: 2, label: "Por día", unavailable: false },
+  { id: 1, label: 'Permanentes', unavailable: false },
+  { id: 2, label: 'Por día', unavailable: false },
 ];
 
 const showFilter = () => {
@@ -80,32 +80,32 @@ const showFilter = () => {
 };
 const columns = [
   {
-    label: "Producto",
-    key: "user",
+    label: 'Producto',
+    key: 'user',
   },
   {
-    label: "Precio",
-    key: "orderCount",
+    label: 'Precio',
+    key: 'orderCount',
   },
   {
-    label: "Tipo",
-    key: "created_at",
+    label: 'Tipo',
+    key: 'created_at',
   },
 ];
 const orders = [
   {
     id: 1,
     orderCount: 20,
-    user: "Kevin Méndez",
-    total: "$5.99",
-    created_at: "16:59",
+    user: 'Kevin Méndez',
+    total: '$5.99',
+    created_at: '16:59',
   },
   {
     id: 2,
     orderCount: 19,
-    user: "Kevin Méndez",
-    total: "$10.99",
-    created_at: "16:59",
+    user: 'Kevin Méndez',
+    total: '$10.99',
+    created_at: '16:59',
   },
 ];
 </script>

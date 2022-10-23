@@ -1,29 +1,31 @@
 <script setup>
-import { colorsBgLight } from '@/core/colors.js'
-import { mdiInformation } from '@mdi/js'
-import BaseIcon from '@/components/template/BaseIcon.vue'
+import { colorsBgLight } from '@/core/colors.js';
+import { mdiInformation } from '@mdi/js';
+import BaseIcon from '@/components/template/BaseIcon.vue';
 
 defineProps({
   text: {
     type: String,
-    required: true
+    required: true,
   },
   status: {
     type: String,
     required: true,
     validator(value) {
-      return ['success', 'info', 'warning', 'danger'].includes(value)
-    }
+      return ['success', 'info', 'warning', 'danger'].includes(value);
+    },
   },
   ago: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
 
 <template>
-  <div class="p-6 border-b border-gray-100 last:border-b-0 dark:border-slate-800">
+  <div
+    class="p-6 border-b border-gray-100 last:border-b-0 dark:border-slate-800"
+  >
     <div class="mb-3">
       {{ text }}
     </div>

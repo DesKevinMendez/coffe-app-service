@@ -1,79 +1,75 @@
 <script setup>
-import { computed } from 'vue'
-import { mdiCashMinus, mdiCashPlus, mdiReceipt, mdiCreditCardOutline } from '@mdi/js'
-import CardBox from '@/components/template/CardBox.vue'
-import BaseLevel from '@/components/template/BaseLevel.vue'
-import PillTag from '@/components/template/PillTag.vue'
-import IconRounded from '@/components/template/IconRounded.vue'
+import { computed } from 'vue';
+import {
+  mdiCashMinus,
+  mdiCashPlus,
+  mdiReceipt,
+  mdiCreditCardOutline,
+} from '@mdi/js';
+import CardBox from '@/components/template/CardBox.vue';
+import BaseLevel from '@/components/template/BaseLevel.vue';
+import PillTag from '@/components/template/PillTag.vue';
+import IconRounded from '@/components/template/IconRounded.vue';
 
 const props = defineProps({
   amount: {
     type: Number,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   business: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
-    required: true
+    required: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   account: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const icon = computed(() => {
   if (props.type === 'withdrawal') {
     return {
       icon: mdiCashMinus,
-      type: 'danger'
-    }
+      type: 'danger',
+    };
   } else if (props.type === 'deposit') {
     return {
       icon: mdiCashPlus,
-      type: 'success'
-    }
+      type: 'success',
+    };
   } else if (props.type === 'invoice') {
     return {
       icon: mdiReceipt,
-      type: 'warning'
-    }
+      type: 'warning',
+    };
   }
 
   return {
     icon: mdiCreditCardOutline,
-    type: 'info'
-  }
-})
+    type: 'info',
+  };
+});
 </script>
 
 <template>
-  <CardBox
-    class="mb-6 last:mb-0"
-    hoverable
-  >
+  <CardBox class="mb-6 last:mb-0" hoverable>
     <BaseLevel>
       <BaseLevel type="justify-start">
-        <IconRounded
-          :icon="icon.icon"
-          :type="icon.type"
-          class="md:mr-6"
-        />
+        <IconRounded :icon="icon.icon" :type="icon.type" class="md:mr-6" />
         <div class="text-center space-y-1 md:text-left md:mr-6">
-          <h4 class="text-xl">
-            ${{ amount }}
-          </h4>
+          <h4 class="text-xl">${{ amount }}</h4>
           <p class="text-gray-500 dark:text-gray-400">
             <b>{{ date }}</b> via {{ business }}
           </p>
@@ -82,15 +78,8 @@ const icon = computed(() => {
       <div class="text-center md:text-right space-y-1">
         <p>{{ name }}</p>
         <div>
-          <PillTag
-            type="info"
-            :text="account"
-            small
-          /> <PillTag
-            :type="icon.type"
-            :text="type"
-            small
-          />
+          <PillTag type="info" :text="account" small />
+          <PillTag :type="icon.type" :text="type" small />
         </div>
       </div>
     </BaseLevel>

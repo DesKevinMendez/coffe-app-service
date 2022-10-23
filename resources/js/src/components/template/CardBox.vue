@@ -1,8 +1,8 @@
 <script setup>
-import { mdiPlusCircle, mdiChevronUp, mdiChevronDown } from "@mdi/js";
-import { computed, ref, useSlots } from "vue";
-import BaseIcon from "@/components/template/BaseIcon.vue";
-import BaseButton from "@/components/template/BaseButton.vue";
+import { mdiPlusCircle, mdiChevronUp, mdiChevronDown } from '@mdi/js';
+import { computed, ref, useSlots } from 'vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
 
 const props = defineProps({
   title: {
@@ -30,52 +30,52 @@ const props = defineProps({
   collapsible: Boolean,
   collapsibleHeaderClass: {
     type: String,
-    default: "cursor-pointer",
+    default: 'cursor-pointer',
   },
   collapsedClass: {
     type: String,
-    default: "hidden",
+    default: 'hidden',
   },
   rounded: {
     type: String,
-    default: "rounded-xl",
+    default: 'rounded-xl',
   },
 });
 
-const emit = defineEmits(["header-icon-click", "submit"]);
+const emit = defineEmits(['header-icon-click', 'submit']);
 
 const slots = useSlots();
 
 const headerFooterBorder = `border-gray-50 dark:border-slate-800`;
 
-const headerBorder = "border-b";
+const headerBorder = 'border-b';
 
 const submit = (e) => {
-  emit("submit", e);
+  emit('submit', e);
 };
 
-const is = computed(() => (props.form ? "form" : "div"));
+const is = computed(() => (props.form ? 'form' : 'div'));
 
 const componentClass = computed(() => {
   const base = [
     props.rounded,
-    props.modal ? "dark:bg-slate-900" : "dark:bg-slate-900/70",
+    props.modal ? 'dark:bg-slate-900' : 'dark:bg-slate-900/70',
   ];
 
   if (props.flexRow) {
-    base.push("flex flex-row");
+    base.push('flex flex-row');
   } else if (props.flex || footer.value) {
-    base.push("flex flex-col");
+    base.push('flex flex-col');
   } else {
-    base.push("block");
+    base.push('block');
   }
 
   if (props.hasShadow) {
-    base.push("shadow-2xl");
+    base.push('shadow-2xl');
   }
 
   if (props.hoverable) {
-    base.push("hover:shadow-lg transition-shadow duration-500");
+    base.push('hover:shadow-lg transition-shadow duration-500');
   }
 
   return base;
@@ -92,7 +92,7 @@ const computedCollapsed = computed(() =>
 );
 
 const headerIconClick = (e) => {
-  emit("header-icon-click", e);
+  emit('header-icon-click', e);
 };
 
 const headerClick = () => {
@@ -115,12 +115,7 @@ const computedHeaderIcon = computed(() => {
 </script>
 
 <template>
-  <component
-    :is="is"
-    :class="componentClass"
-    class="bg-white"
-    @submit="submit"
-  >
+  <component :is="is" :class="componentClass" class="bg-white" @submit="submit">
     <header
       v-if="header"
       :class="[
@@ -189,10 +184,7 @@ const computedHeaderIcon = computed(() => {
     </div>
     <div
       v-if="footer"
-      :class="[
-        headerFooterBorder,
-        computedCollapsed ? collapsedClass : null,
-      ]"
+      :class="[headerFooterBorder, computedCollapsed ? collapsedClass : null]"
       class="p-6 border-t"
     >
       <slot name="footer" />

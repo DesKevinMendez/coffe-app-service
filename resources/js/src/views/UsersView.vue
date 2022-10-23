@@ -36,20 +36,20 @@
   </SectionMain>
 </template>
 <script setup lang="ts">
-import { useMainStore } from "@/stores/main.js";
-import { mdiAccountMultiple, mdiAccountSearch } from "@mdi/js";
-import SectionMain from "@/components/template/SectionMain.vue";
-import CardBox from "@/components/template/CardBox.vue";
-import CoffeTable from "@/components/Reusable/CoffeTable.vue";
-import SectionTitleLineWithButton from "@/components/template/SectionTitleLineWithButton.vue";
-import { ref } from "vue";
-import FormControl from "@/components/template/FormControl.vue";
-import BaseButton from "@/components/template/BaseButton.vue";
-import NewUser from "@/components/users/newUser.vue";
+import { useMainStore } from '@/stores/main.js';
+import { mdiAccountMultiple, mdiAccountSearch } from '@mdi/js';
+import SectionMain from '@/components/template/SectionMain.vue';
+import CardBox from '@/components/template/CardBox.vue';
+import CoffeTable from '@/components/Reusable/CoffeTable.vue';
+import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue';
+import { ref } from 'vue';
+import FormControl from '@/components/template/FormControl.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
+import NewUser from '@/components/users/newUser.vue';
 
 const mainStore = useMainStore();
-const search = ref("");
-mainStore.pushMessage("Welcome back. This is demo");
+const search = ref('');
+mainStore.pushMessage('Welcome back. This is demo');
 const showNewUserModal = ref(false);
 
 const newUser = () => {
@@ -58,36 +58,36 @@ const newUser = () => {
 
 const columns = [
   {
-    label: "Nombre",
-    key: "name",
+    label: 'Nombre',
+    key: 'name',
   },
   {
-    label: "Correo electrónico",
-    key: "email",
+    label: 'Correo electrónico',
+    key: 'email',
   },
   {
-    label: "Rol",
-    key: "role",
+    label: 'Rol',
+    key: 'role',
   },
   {
-    label: "Fecha de registro",
-    key: "created_at",
+    label: 'Fecha de registro',
+    key: 'created_at',
   },
 ];
 const orders = [
   {
     id: 1,
-    email: "kevin@mail.io",
-    name: "Kevin Méndez",
-    role: "Admin",
-    created_at: "16:59",
+    email: 'kevin@mail.io',
+    name: 'Kevin Méndez',
+    role: 'Admin',
+    created_at: '16:59',
   },
   {
     id: 2,
-    email: "kevin@mail.io",
-    name: "Kevin Méndez",
-    role: "Admin",
-    created_at: "16:59",
+    email: 'kevin@mail.io',
+    name: 'Kevin Méndez',
+    role: 'Admin',
+    created_at: '16:59',
   },
 ];
 </script>

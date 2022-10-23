@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item) in items" :key="item.id" >
+      <tr v-for="item in items" :key="item.id">
         <Component
           :is="cellElement(key)"
           v-for="(key, $index) in displayedFieldKeys"
@@ -32,19 +32,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from "vue";
+import { computed, PropType } from 'vue';
 
 interface TableField {
-    key: string;
-    label: string;
-    format?: (item: unknown) => string;
-    hidden?: boolean;
-    header?: boolean;
+  key: string;
+  label: string;
+  format?: (item: unknown) => string;
+  hidden?: boolean;
+  header?: boolean;
 }
 
 interface TableItem {
-    id: number | string;
-    [key: string]: unknown;
+  id: number | string;
+  [key: string]: unknown;
 }
 
 const props = defineProps({
@@ -56,13 +56,14 @@ const displayedFields = computed(() => props.fields.filter((i) => !i.hidden));
 
 const displayedFieldKeys = computed(() => {
   return Object.entries(displayedFields.value).map(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ([_key, value]) => value.key
   );
 });
 
 const cellElement = (key: string) => {
   const field = props.fields.find((f) => f.key === key);
-  return field && field.header ? "th" : "td";
+  return field && field.header ? 'th' : 'td';
 };
 
 const format = (item: TableItem, key: string) => {
@@ -70,5 +71,5 @@ const format = (item: TableItem, key: string) => {
   return field && field.format ? field.format(item[key]) : item[key];
 };
 
-const dataLabel = computed(()=> props.fields.map((f) => f.label))
+const dataLabel = computed(() => props.fields.map((f) => f.label));
 </script>

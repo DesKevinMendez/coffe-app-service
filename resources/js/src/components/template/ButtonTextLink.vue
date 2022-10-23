@@ -1,29 +1,29 @@
 <script setup>
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import BaseIcon from '@/components/template/BaseIcon.vue'
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import BaseIcon from '@/components/template/BaseIcon.vue';
 
 const props = defineProps({
   to: {
     type: String,
-    default: null
+    default: null,
   },
   href: {
     type: String,
-    default: null
+    default: null,
   },
   icon: {
     type: String,
-    default: null
+    default: null,
   },
   label: {
     type: String,
-    default: null
+    default: null,
   },
-  small: Boolean
-})
+  small: Boolean,
+});
 
-const is = computed(() => props.to ? RouterLink : 'a')
+const is = computed(() => (props.to ? RouterLink : 'a'));
 </script>
 
 <template>
@@ -32,7 +32,7 @@ const is = computed(() => props.to ? RouterLink : 'a')
     :to="to"
     :href="href"
     class="inline-flex items-center cursor-pointer"
-    :class="{'text-sm':small}"
+    :class="{ 'text-sm': small }"
   >
     <BaseIcon
       v-if="icon"

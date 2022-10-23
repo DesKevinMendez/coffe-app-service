@@ -1,24 +1,24 @@
 <script setup>
-import { mdiCloudUpload } from '@mdi/js'
-import { computed, ref, watch } from 'vue'
-import BaseButton from '@/components/template/BaseButton.vue'
+import { mdiCloudUpload } from '@mdi/js';
+import { computed, ref, watch } from 'vue';
+import BaseButton from '@/components/template/BaseButton.vue';
 
 const props = defineProps({
   modelValue: {
     type: [Object, File, Array],
-    default: null
+    default: null,
   },
   label: {
     type: String,
-    default: 'Upload'
+    default: 'Upload',
   },
   icon: {
     type: String,
-    default: mdiCloudUpload
+    default: mdiCloudUpload,
   },
   accept: {
     type: String,
-    default: null
+    default: null,
   },
   addon: Boolean,
   roundedFull: Boolean,
@@ -26,32 +26,32 @@ const props = defineProps({
   outline: Boolean,
   color: {
     type: String,
-    default: 'info'
-  }
-})
+    default: 'info',
+  },
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
-const root = ref(null)
+const root = ref(null);
 
-const file = ref(props.modelValue)
+const file = ref(props.modelValue);
 
-const modelValueProp = computed(() => props.modelValue)
+const modelValueProp = computed(() => props.modelValue);
 
-watch(modelValueProp, value => {
-  file.value = value
+watch(modelValueProp, (value) => {
+  file.value = value;
 
   if (!value) {
-    root.value.input.value = null
+    root.value.input.value = null;
   }
-})
+});
 
-const upload = event => {
-  const value = event.target.files || event.dataTransfer.files
+const upload = (event) => {
+  const value = event.target.files || event.dataTransfer.files;
 
-  file.value = value[0]
+  file.value = value[0];
 
-  emit('update:modelValue', file.value)
+  emit('update:modelValue', file.value);
 
   // Use this as an example for handling file uploads
   // let formData = new FormData()
@@ -72,7 +72,7 @@ const upload = event => {
   //   .catch(err => {
   //
   //   })
-}
+};
 
 // const uploadPercent = ref(0)
 //
@@ -88,7 +88,7 @@ const upload = event => {
     <label class="inline-flex">
       <BaseButton
         as="a"
-        :class="{'w-12 h-12':roundedFull}"
+        :class="{ 'w-12 h-12': roundedFull }"
         :icon-size="roundedFull ? 24 : null"
         :rounded-full="roundedFull"
         :small="small || roundedFull"
@@ -104,14 +104,19 @@ const upload = event => {
         class="absolute top-0 left-0 w-full h-full opacity-0 outline-none cursor-pointer -z-1"
         :accept="accept"
         @input="upload"
-      >
+      />
     </label>
     <div v-if="addon && file">
-      <span
-        class="inline-flex px-4 py-2 justify-center bg-gray-100 dark:bg-slate-800 border-gray-200 dark:border-slate-700 border rounded-r"
-      >
+      <span class="form-file">
         {{ file.name }}
       </span>
     </div>
   </div>
 </template>
+
+<style type="scss">
+.form-filer {
+  @apply inline-flex px-4 py-2 justify-center bg-gray-100 dark:bg-slate-800
+  border-gray-200 dark:border-slate-700 border rounded-r;
+}
+</style>

@@ -1,11 +1,11 @@
 <script setup>
-import { useStyleStore } from '@/stores/style.js'
+import { useStyleStore } from '@/stores/style.js';
 
-const styleStore = useStyleStore()
+const styleStore = useStyleStore();
 </script>
 
 <template>
-  <div :class="{ 'dark': styleStore.darkMode }">
+  <div :class="{ dark: styleStore.darkMode }">
     <div class="text-base dark:text-gray-100">
       <slot />
     </div>

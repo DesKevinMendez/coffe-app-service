@@ -1,66 +1,69 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
-import { useMainStore } from '@/stores/main.js'
-import { useLayoutStore } from '@/stores/layout.js'
+import { ref, computed, watch, onMounted } from 'vue';
+import { useMainStore } from '@/stores/main.js';
+import { useLayoutStore } from '@/stores/layout.js';
 import {
   mdiAccountMultiple,
   mdiCartOutline,
   mdiFinance,
   mdiChartPie,
-  mdiReload
-} from '@mdi/js'
-import * as chartConfig from '@/components/template/Charts/chart.config.js'
-import LineChart from '@/components/template/Charts/LineChart.vue'
-import SectionMain from '@/components/template/SectionMain.vue'
-import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue'
-import CardBoxWidget from '@/components/template/CardBoxWidget.vue'
-import CardBox from '@/components/template/CardBox.vue'
-import CardBoxClient from '@/components/template/CardBoxClient.vue'
-import CardBoxTransaction from '@/components/template/CardBoxTransaction.vue'
-import CardBoxAmountItem from '@/components/template/CardBoxAmountItem.vue'
+  mdiReload,
+} from '@mdi/js';
+import * as chartConfig from '@/components/template/Charts/chart.config.js';
+import LineChart from '@/components/template/Charts/LineChart.vue';
+import SectionMain from '@/components/template/SectionMain.vue';
+import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue';
+import CardBoxWidget from '@/components/template/CardBoxWidget.vue';
+import CardBox from '@/components/template/CardBox.vue';
+import CardBoxClient from '@/components/template/CardBoxClient.vue';
+import CardBoxTransaction from '@/components/template/CardBoxTransaction.vue';
+import CardBoxAmountItem from '@/components/template/CardBoxAmountItem.vue';
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-mainStore.pushMessage('Welcome back. This is demo')
+mainStore.pushMessage('Welcome back. This is demo');
 
-const layoutStore = useLayoutStore()
+const layoutStore = useLayoutStore();
 
-const isLg = computed(() => layoutStore.isLg)
+const isLg = computed(() => layoutStore.isLg);
 
-const isMd = computed(() => layoutStore.isMd)
+const isMd = computed(() => layoutStore.isMd);
 
 watch([isLg, isMd], () => {
-  fillChartData()
-})
+  fillChartData();
+});
 
-const chartData = ref(null)
+const chartData = ref(null);
 
 const fillChartData = () => {
-  let points = 4
+  let points = 4;
 
   if (isLg.value) {
-    points = 9
+    points = 9;
   } else if (isMd.value) {
-    points = 6
+    points = 6;
   }
 
-  chartData.value = chartConfig.sampleChartData(points)
-}
+  chartData.value = chartConfig.sampleChartData(points);
+};
 
 onMounted(() => {
-  fillChartData()
-})
+  fillChartData();
+});
 
-const userSwitchVal = ref([])
+const userSwitchVal = ref([]);
 
-watch(userSwitchVal, value => {
-  mainStore.pushMessage(value && value.indexOf('one') > -1 ? 'Success! Now active' : 'Done! Now inactive')
-})
+watch(userSwitchVal, (value) => {
+  mainStore.pushMessage(
+    value && value.indexOf('one') > -1
+      ? 'Success! Now active'
+      : 'Done! Now inactive'
+  );
+});
 
-const clientBarItems = computed(() => mainStore.clients.slice(0, 3))
+const clientBarItems = computed(() => mainStore.clients.slice(0, 3));
 
-const transactionBarItems = computed(() => mainStore.history)
-
+const transactionBarItems = computed(() => mainStore.history);
 </script>
 
 <template>
@@ -105,7 +108,7 @@ const transactionBarItems = computed(() => mainStore.history)
     <div class="grid grid-cols-1 xl:grid-cols-4 xl:gap-6 mb-6">
       <div class="xl:flex xl:flex-col xl:col-span-3 mb-6 xl:mb-0">
         <CardBoxTransaction
-          v-for="(transaction,index) in transactionBarItems"
+          v-for="(transaction, index) in transactionBarItems"
           :key="index"
           :amount="transaction.amount"
           :date="transaction.date"
@@ -117,10 +120,7 @@ const transactionBarItems = computed(() => mainStore.history)
       </div>
     </div>
 
-    <SectionTitleLineWithButton
-      :icon="mdiChartPie"
-      title="Trends overview"
-    />
+    <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview" />
 
     <CardBox
       title="Performance"
@@ -130,10 +130,7 @@ const transactionBarItems = computed(() => mainStore.history)
       @header-icon-click="fillChartData"
     >
       <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <div
-          v-if="chartData"
-          class="md:col-span-3"
-        >
+        <div v-if="chartData" class="md:col-span-3">
           <line-chart :data="chartData" />
         </div>
         <div class="text-center md:text-right">

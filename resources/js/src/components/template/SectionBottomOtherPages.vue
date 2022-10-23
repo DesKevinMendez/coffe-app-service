@@ -1,42 +1,39 @@
 <script setup>
-import { useRouter, RouterLink } from 'vue-router'
-import SectionTitle from '@/components/template/SectionTitle.vue'
+import { useRouter, RouterLink } from 'vue-router';
+import SectionTitle from '@/components/template/SectionTitle.vue';
 
-const router = useRouter()
+const router = useRouter();
 
-const routes = router.getRoutes()
+const routes = router.getRoutes();
 
-const screens = []
+const screens = [];
 
 for (const routeIndex in routes) {
-  const path = routes[routeIndex].path
-  const title = routes[routeIndex].meta && routes[routeIndex].meta.title ? routes[routeIndex].meta.title : null
+  const path = routes[routeIndex].path;
+  const title =
+    routes[routeIndex].meta && routes[routeIndex].meta.title
+      ? routes[routeIndex].meta.title
+      : null;
 
   if (title) {
     screens.push({
       path,
-      title
-    })
+      title,
+    });
   }
 }
 </script>
 
 <template>
   <SectionTitle last>
-    Check other components and layouts:<br>
-    <template
-      v-for="(screen, index) in screens"
-      :key="screen.path"
-    >
-      <RouterLink
-        :to="screen.path"
-        class="text-blue-500"
-      >
-        {{ screen.title }}
-      </RouterLink>
-      <template v-if="index + 1 < screens.length">
-        ,
-      </template>
+    Check other components and layouts:<br />
+    <template>
+      <div v-for="(screen, index) in screens" :key="screen.path">
+        <RouterLink :to="screen.path" class="text-blue-500">
+          {{ screen.title }}
+        </RouterLink>
+        <template v-if="index + 1 < screens.length"> , </template>
+      </div>
     </template>
   </SectionTitle>
 </template>
