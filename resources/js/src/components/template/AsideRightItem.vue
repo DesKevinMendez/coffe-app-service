@@ -1,5 +1,5 @@
 <script setup>
-import { colorsBgLight } from '@/core/colors';
+import { colorsBgLight } from '@/core/colors.js';
 import { mdiInformation } from '@mdi/js';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 

@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { getButtonColor } from '@/core/colors';
+import { getButtonColor } from '@/core/colors.js';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 import TipTag from '@/components/template/TipTag.vue';
 import PillTag from '@/components/template/PillTag.vue';
