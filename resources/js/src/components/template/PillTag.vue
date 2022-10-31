@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { colorsBgLight, colorsOutline } from '@/core/colors.js';
+import { colorsBgLight, colorsOutline } from '@/core/colors';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 
 const props = defineProps({

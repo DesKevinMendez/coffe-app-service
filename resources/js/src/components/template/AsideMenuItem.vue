@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import { useLayoutStore } from '@/stores/layout';
 import { useStyleStore } from '@/stores/style';
 import { mdiMinus, mdiPlus, mdiChevronRight } from '@mdi/js';
-import { getButtonColor } from '@/core/colors.js';
+import { getButtonColor } from '@/core/colors';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 import AsideMenuList from '@/components/template/AsideMenuList.vue';
 

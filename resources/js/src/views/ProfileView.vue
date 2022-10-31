@@ -9,7 +9,7 @@ import {
   mdiFormTextboxPassword,
   mdiLifebuoy,
 } from '@mdi/js';
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions';
 import SectionMain from '@/components/template/SectionMain.vue';
 import CardBox from '@/components/template/CardBox.vue';
 import BaseDivider from '@/components/template/BaseDivider.vue';
