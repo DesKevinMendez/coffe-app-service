@@ -5,8 +5,7 @@
     "build": "vite build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write \"**/*.+(js|ts|json|vue)\"",
-    "git:add": "git add .",
-    "laravel:test": "docker-compose exec app php artisan test --parallel"
+    "git:add": "git add ."
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
@@ -60,7 +59,6 @@
   "pre-push": [
     "format",
     "lint",
-    "git:add",
-    "laravel:test"
+    "git:add"
   ]
 }
