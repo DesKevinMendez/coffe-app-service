@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
-import { useLayoutStore } from '@/stores/layout.js';
-import { useStyleStore } from '@/stores/style.js';
+import { useLayoutStore } from '@/stores/layout';
+import { useStyleStore } from '@/stores/style';
 import { mdiClose } from '@mdi/js';
 import menu from '@/core/menu.js';
 import BaseIcon from '@/components/template/BaseIcon.vue';

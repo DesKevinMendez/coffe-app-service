@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
-import { useMainStore } from '@/stores/main.js';
-import { useLayoutStore } from '@/stores/layout.js';
+import { useMainStore } from '@/stores/main';
+import { useLayoutStore } from '@/stores/layout';
 import {
   mdiAccountMultiple,
   mdiCartOutline,

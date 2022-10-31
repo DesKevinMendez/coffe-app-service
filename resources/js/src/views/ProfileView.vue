@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue';
-import { useMainStore } from '@/stores/main.js';
+import { useMainStore } from '@/stores/main';
 import {
   mdiAccount,
   mdiAccountCircle,
