@@ -3,9 +3,9 @@ import { createPinia } from 'pinia';
 
 import App from './../App.vue';
 import router from '../router';
-import { useMainStore } from '@/stores/main.js';
-import { useLayoutStore } from '@/stores/layout.js';
-import { useStyleStore } from '@/stores/style.js';
+import { useMainStore } from '@/stores/main';
+import { useLayoutStore } from '@/stores/layout';
+import { useStyleStore } from '@/stores/style';
 import { darkModeKey, styleKey } from '@/core/config.js';
 import './veeValidate';
 import './../../../css/app.css';

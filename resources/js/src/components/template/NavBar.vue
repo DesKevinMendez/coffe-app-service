@@ -1,8 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useMainStore } from '@/stores/main.js';
-import { useLayoutStore } from '@/stores/layout.js';
-import { useStyleStore } from '@/stores/style.js';
+import { useMainStore } from '@/stores/main';
+import { useLayoutStore } from '@/stores/layout';
+import { useStyleStore } from '@/stores/style';
 import {
   mdiForwardburger,
   mdiBackburger,
