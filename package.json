@@ -59,6 +59,7 @@
   "pre-push": [
     "format",
     "lint",
-    "git:add"
+    "git:add",
+    "docker-compose exec app php artisan test --parallel"
   ]
 }
