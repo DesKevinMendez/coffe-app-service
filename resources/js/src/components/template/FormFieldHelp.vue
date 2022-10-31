@@ -1,5 +1,5 @@
 <script setup>
-import { controlTextColor } from '@/core/colors.js';
+import { controlTextColor } from '@/core/colors';
 import { computed } from 'vue';
 
 const props = defineProps({

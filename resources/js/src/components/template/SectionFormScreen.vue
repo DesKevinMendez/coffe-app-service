@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
-import { useStyleStore } from '@/stores/style.js';
+import { useStyleStore } from '@/stores/style';
 import {
   sectionBgLogin,
   sectionBgLoginDark,

@@ -1,7 +1,7 @@
 <script setup>
-import { controlTextColor, getButtonColor } from '@/core/colors.js';
+import { controlTextColor, getButtonColor } from '@/core/colors';
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
-import { useMainStore } from '@/stores/main.js';
+import { useMainStore } from '@/stores/main';
 import {
   mdiUnfoldMoreHorizontal,
   mdiAlertCircle,

@@ -4,8 +4,8 @@ import {
   mdiChevronLeftCircleOutline,
 } from '@mdi/js';
 import { computed } from 'vue';
-import { useLayoutStore } from '@/stores/layout.js';
-import { useStyleStore } from '@/stores/style.js';
+import { useLayoutStore } from '@/stores/layout';
+import { useStyleStore } from '@/stores/style';
 import AsideMenuList from '@/components/template/AsideMenuList.vue';
 import AsideMenuItem from '@/components/template/AsideMenuItem.vue';
 
@@ -29,7 +29,7 @@ const layoutStore = useLayoutStore();
 const styleStore = useStyleStore();
 
 const expandCollapseItem = computed(() => ({
-  label: props.compact ? 'Exapand' : 'Collapse',
+  label: props.compact ? 'Abrir' : 'Ocultar',
   icon: props.compact
     ? mdiChevronRightCircleOutline
     : mdiChevronLeftCircleOutline,
