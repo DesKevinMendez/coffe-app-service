@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
       <BaseIcon :path="toggleDropdownIcon" class="hidden lg:inline-flex" />
     </a>
     <div
-      class="navbar-menu-content lg:dark:bg-slate-800dark:border-slate-700"
+      class="navbar-menu-content lg:dark:bg-slate-800 dark:border-slate-700"
       :class="{ 'lg:hidden': !isDropdownActive }"
     >
       <slot name="dropdown" />

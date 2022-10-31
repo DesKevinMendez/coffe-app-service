@@ -72,7 +72,7 @@ const logOut = () => {
 </script>
 
 <template>
-  <nav class="navbar-content">
+  <nav class="nav-bar-content">
     <div class="lg:px-6 xl:max-w-7xl xl:mx-auto flex lg:items-stretch">
       <div class="flex-1 items-stretch flex h-14">
         <NavBarItem type="flex lg:hidden" @click.prevent="menuToggleMobile">
@@ -95,13 +95,13 @@ const logOut = () => {
         </NavBarItem>
       </div>
       <div
-        class="navbar-menu-content"
+        class="menu-nav-bar-active"
         :class="{
           hidden: !isMenuNavBarActive,
           block: isMenuNavBarActive,
         }"
       >
-        <div class="navbar-sub-menu-content">
+        <div class="menu-nav-bar-active-children">
           <NavBarMenu>
             <UserAvatar class="w-6 h-6 mr-3 inline-flex" />
             <div>
@@ -136,18 +136,17 @@ const logOut = () => {
     </div>
   </nav>
 </template>
+
 <style lang="scss">
-.navbar-content {
-  @apply lg:pl-22 fixed top-0 inset-x-0 bg-gray-50 dark:bg-slate-800 h-14 z-30
-  w-screen transition-position lg:transition-none lg:w-auto;
+.nav-bar-content {
+  @apply lg:pl-22 fixed top-0 inset-x-0 bg-gray-50 dark:bg-slate-800 h-14 z-30 w-screen
+  transition-position lg:transition-none lg:w-auto;
 }
-.navbar-menu-content {
+.menu-nav-bar-active {
   @apply absolute w-screen top-14 left-0 bg-gray-50 shadow lg:w-auto lg:items-stretch
-  lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none
-  dark:bg-slate-800;
-  .navbar-sub-menu-content {
-    @apply max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex
-    lg:items-stretch lg:justify-end lg:ml-auto;
+  lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none dark:bg-slate-800;
+  .menu-nav-bar-active-children {
+    @apply max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto;
   }
 }
 </style>
