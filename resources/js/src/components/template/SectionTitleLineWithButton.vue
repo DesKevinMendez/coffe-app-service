@@ -1,5 +1,5 @@
-<script setup>
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
+<script setup lang="ts">
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions';
 import { mdiMenu } from '@mdi/js';
 import { useSlots, computed } from 'vue';
 import BaseIcon from '@/components/template/BaseIcon.vue';
