@@ -1,5 +1,5 @@
-<script setup>
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
+<script setup lang="ts">
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions';
 import { mdiCog } from '@mdi/js';
 import PillTagTrend from '@/components/template/PillTagTrend.vue';
 import BaseLevel from '@/components/template/BaseLevel.vue';
