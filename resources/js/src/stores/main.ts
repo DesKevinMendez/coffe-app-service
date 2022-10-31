@@ -51,6 +51,6 @@ export const useMainStore = defineStore('main', {
 
     shiftMessage() {
       this.messages.shift();
-    }
+    },
   },
 });
