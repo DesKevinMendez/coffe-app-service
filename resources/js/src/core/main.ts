@@ -3,7 +3,6 @@ import { createPinia } from 'pinia';
 
 import App from '../App.vue';
 import router from '../router';
-import { useMainStore } from '@/stores/main';
 import { useLayoutStore } from '@/stores/layout';
 import { useStyleStore } from '@/stores/style';
 import { darkModeKey, styleKey } from '@/core/config';
@@ -17,19 +16,12 @@ const pinia = createPinia();
 createApp(App).use(router).use(pinia).mount('#app');
 
 /* Init Pinia stores */
-const mainStore = useMainStore(pinia);
 const layoutStore = useLayoutStore(pinia);
 const styleStore = useStyleStore(pinia);
 
 /* Responsive layout control */
 layoutStore.responsiveLayoutControl();
 window.onresize = () => layoutStore.responsiveLayoutControl();
-
-/* Fetch sample data */
-mainStore.fetch('clients');
-mainStore.fetch('history');
-mainStore.fetch('products');
-mainStore.fetch('updates');
 
 /* App style */
 styleStore.setStyle(localStorage[styleKey] ?? 'white');
