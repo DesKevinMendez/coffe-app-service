@@ -20,7 +20,7 @@
   </SectionMain>
 </template>
 <script setup lang="ts">
-import { useMainStore } from '@/stores/main.js';
+import { useMainStore } from '@/stores/main';
 import { mdiCoffeeMaker, mdiStoreClock, mdiStoreSearch } from '@mdi/js';
 import SectionMain from '@/components/template/SectionMain.vue';
 import CardBox from '@/components/template/CardBox.vue';

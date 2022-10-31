@@ -1,5 +1,5 @@
 <script setup>
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions';
 import { mdiDotsVertical } from '@mdi/js';
 import CardBox from '@/components/template/CardBox.vue';
 import BaseLevel from '@/components/template/BaseLevel.vue';
