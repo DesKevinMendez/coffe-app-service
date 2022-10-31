@@ -26,10 +26,10 @@ const darkMode = computed(() => useStyleStore().darkMode);
 
 const colorClass = computed(() => {
   switch (props.bg) {
-    case 'login':
-      return darkMode.value ? sectionBgLoginDark : sectionBgLogin;
-    case 'error':
-      return darkMode.value ? sectionBgErrorDark : sectionBgError;
+  case 'login':
+    return darkMode.value ? sectionBgLoginDark : sectionBgLogin;
+  case 'error':
+    return darkMode.value ? sectionBgErrorDark : sectionBgError;
   }
 
   return '';
@@ -46,7 +46,7 @@ const routes = {
 </script>
 
 <template>
-  <section class="section-screen-content" :class="colorClass">
+  <section class="section-screen-content transition-background-image" :class="colorClass">
     <div v-if="promo" class="space-y-12 px-12">
       <div class="hidden lg:block">
         <BaseButtons type="justify-center" glue>
@@ -105,6 +105,6 @@ const routes = {
 <style lang="scss">
 .section-screen-content {
   @apply flex flex-col items-center md:flex-row md:justify-around
-  md:px-6 min-h-screen transition-background-image duration-1000;
+  md:px-6 min-h-screen duration-1000;
 }
 </style>
