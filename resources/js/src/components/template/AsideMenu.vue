@@ -4,8 +4,8 @@ import {
   mdiChevronLeftCircleOutline,
 } from '@mdi/js';
 import { computed } from 'vue';
-import { useLayoutStore } from '@/stores/layout';
-import { useStyleStore } from '@/stores/style';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
 import AsideMenuList from '@/components/template/AsideMenuList.vue';
 import AsideMenuItem from '@/components/template/AsideMenuItem.vue';
 

@@ -47,7 +47,7 @@
   </SectionMain>
 </template>
 <script setup lang="ts">
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import {
   mdiCoffeeMaker,
   mdiStoreClock,

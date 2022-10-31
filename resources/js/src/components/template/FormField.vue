@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { controlTextColor } from '@/core/colors';
+import { controlTextColor } from '@/core/colors.js';
 import { computed, useSlots } from 'vue';
 import FormFieldHelp from '@/components/template/FormFieldHelp.vue';
 

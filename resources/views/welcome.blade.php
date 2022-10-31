@@ -402,7 +402,7 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
-    @vite(['resources/js/app'])
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="antialiased">

@@ -4,13 +4,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write \"**/*.+(js|ts|json|vue)\"",
-    "git:add": "git add ."
+    "format": "prettier --write \"**/*.+(js|ts|json|vue)\""
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
-    "@types/lodash": "^4.14.186",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
     "@vitejs/plugin-vue": "^3.1.0",
@@ -27,7 +25,6 @@
     "postcss": "^8.4.16",
     "postcss-import": "^14.1.0",
     "pre-commit": "^1.2.2",
-    "pre-push": "^0.1.4",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
@@ -47,6 +44,7 @@
     "@vee-validate/rules": "^4.7.0",
     "@vuepic/vue-datepicker": "^3.5.0",
     "@vueuse/core": "^9.3.1",
+    "axios": "^0.27.2",
     "chart.js": "^3.8.0",
     "numeral": "^2.0.6",
     "pinia": "^2.0.14",
@@ -55,10 +53,8 @@
     "vue-loader": "^17.0.0",
     "vue-router": "^4.0.16"
   },
-  "pre-commit": [],
-  "pre-push": [
+  "pre-commit": [
     "format",
-    "lint",
-    "git:add"
+    "lint"
   ]
 }
