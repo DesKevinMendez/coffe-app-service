@@ -52,7 +52,6 @@ const upload = (event) => {
   file.value = value[0];
 
   emit('update:modelValue', file.value);
-
 };
 </script>
 
