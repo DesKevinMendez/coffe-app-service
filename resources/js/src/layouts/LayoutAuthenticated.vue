@@ -94,7 +94,7 @@ window.addEventListener('keydown', (e) => {
         @menu-click="menuClick"
       >
         <div class="flex-1 px-3 flex justify-center">
-          <b class="font-black">One</b>
+          <b class="font-black">Coffe</b>
         </div>
       </AsideMenu>
       <AsideMenu

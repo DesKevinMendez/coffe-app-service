@@ -29,7 +29,7 @@ const layoutStore = useLayoutStore();
 const styleStore = useStyleStore();
 
 const expandCollapseItem = computed(() => ({
-  label: props.compact ? 'Exapand' : 'Collapse',
+  label: props.compact ? 'Abrir' : 'Ocultar',
   icon: props.compact
     ? mdiChevronRightCircleOutline
     : mdiChevronLeftCircleOutline,
