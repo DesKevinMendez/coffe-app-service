@@ -82,7 +82,7 @@ defineProps({
       >
         <BaseIcon :path="mdiCheck" size="24" w="w-8" h="h-8" />
         <span class="text-lg ml-3"
-          ><b>{{ option.main }}</b> {{ option.sub }}</span
+        ><b>{{ option.main }}</b> {{ option.sub }}</span
         >
       </div>
     </div>

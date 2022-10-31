@@ -25,9 +25,9 @@ const mainStore = useMainStore();
 const avatar = computed(() =>
   props.username
     ? `https://avatars.dicebear.com/${props.api}/${props.username.replace(
-        /[^a-z0-9]+/i,
-        '-'
-      )}.svg`
+      /[^a-z0-9]+/i,
+      '-'
+    )}.svg`
     : mainStore.userAvatar
 );
 

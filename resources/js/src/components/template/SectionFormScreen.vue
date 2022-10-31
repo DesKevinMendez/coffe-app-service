@@ -46,7 +46,10 @@ const routes = {
 </script>
 
 <template>
-  <section class="section-screen-content transition-background-image" :class="colorClass">
+  <section
+    class="section-screen-content transition-background-image"
+    :class="colorClass"
+  >
     <div v-if="promo" class="space-y-12 px-12">
       <div class="hidden lg:block">
         <BaseButtons type="justify-center" glue>

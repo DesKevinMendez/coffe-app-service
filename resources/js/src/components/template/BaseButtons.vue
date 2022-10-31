@@ -52,22 +52,22 @@ export default defineComponent({
       { class: parentClass },
       hasSlot
         ? this.$slots.default().map((element) => {
-            if (
-              element &&
+          if (
+            element &&
               element.children &&
               typeof element.children === 'object'
-            ) {
-              return h(
-                element,
-                {},
-                element.children.map((child) => {
-                  return h(child, { class: [this.classAddon] });
-                })
-              );
-            }
+          ) {
+            return h(
+              element,
+              {},
+              element.children.map((child) => {
+                return h(child, { class: [this.classAddon] });
+              })
+            );
+          }
 
-            return h(element, { class: [this.classAddon] });
-          })
+          return h(element, { class: [this.classAddon] });
+        })
         : null
     );
   },

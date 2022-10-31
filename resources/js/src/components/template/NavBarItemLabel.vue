@@ -23,6 +23,6 @@ defineProps({
   <span
     class="px-2 transition-colors"
     :class="{ 'lg:hidden': isDesktopIconOnly }"
-    >{{ label }}</span
+  >{{ label }}</span
   >
 </template>

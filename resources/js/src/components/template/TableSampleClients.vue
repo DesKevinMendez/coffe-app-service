@@ -150,7 +150,7 @@ const checked = (isChecked, client) => {
           <small
             class="text-gray-500 dark:text-gray-400"
             :title="client.created"
-            >{{ client.created }}</small
+          >{{ client.created }}</small
           >
         </td>
         <td class="before:hidden lg:w-1 whitespace-nowrap">

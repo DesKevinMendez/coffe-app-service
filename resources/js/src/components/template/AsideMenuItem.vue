@@ -156,7 +156,7 @@ const updateMarkTr = computed(() => {
             ? asideMenuItemActiveStyle
             : asideMenuItemInactiveStyle,
         ]"
-        >{{ item.label }}</span
+      >{{ item.label }}</span
       >
       <BaseIcon
         v-if="hasSub"

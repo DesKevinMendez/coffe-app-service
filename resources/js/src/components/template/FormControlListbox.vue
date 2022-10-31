@@ -73,7 +73,8 @@ const computedValue = computed({
                   selected ? 'font-medium' : 'font-normal ml-9',
                   'block truncate',
                 ]"
-              >{{ option.label }}</span>
+              >{{ option.label }}</span
+              >
             </li>
           </ListboxOption>
         </ListboxOptions>
