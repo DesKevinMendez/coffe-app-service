@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import BaseLevel from '@/components/template/BaseLevel.vue';
 import UserAvatar from '@/components/template/UserAvatar.vue';
 import CardBox from '@/components/template/CardBox.vue';

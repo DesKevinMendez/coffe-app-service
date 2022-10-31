@@ -1,7 +1,7 @@
 <script setup>
 import { mdiCircleSlice8, mdiCheckboxBlankCircleOutline } from '@mdi/js';
 import { computed } from 'vue';
-import { useStyleStore } from '@/stores/style';
+import { useStyleStore } from '@/stores/style.js';
 import BaseButtons from '@/components/template/BaseButtons.vue';
 import BaseButton from '@/components/template/BaseButton.vue';
 

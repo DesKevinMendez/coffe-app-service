@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import SnackBarItem from '@/components/template/SnackBarItem.vue';
 
 defineProps({

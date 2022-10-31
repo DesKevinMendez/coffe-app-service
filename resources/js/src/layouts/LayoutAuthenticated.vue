@@ -1,9 +1,9 @@
 <script setup>
 import { computed } from 'vue';
-import { useLayoutStore } from '@/stores/layout';
-import { useStyleStore } from '@/stores/style';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
 import { mdiClose } from '@mdi/js';
-import menu from '@/core/menu';
+import menu from '@/core/menu.js';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 import NavBar from '@/components/template/NavBar.vue';
 import AsideMenu from '@/components/template/AsideMenu.vue';

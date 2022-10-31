@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, useSlots } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import { mdiClose } from '@mdi/js';
-import { colorsBgLight, colorsOutline } from '@/core/colors';
+import { colorsBgLight, colorsOutline } from '@/core/colors.js';
 import BaseLevel from '@/components/template/BaseLevel.vue';
 import BaseIcon from '@/components/template/BaseIcon.vue';
 import BaseButton from '@/components/template/BaseButton.vue';

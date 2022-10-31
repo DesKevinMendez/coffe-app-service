@@ -1,5 +1,5 @@
 <script setup>
-import { colorsBgLight } from '@/core/colors';
+import { colorsBgLight } from '@/core/colors.js';
 import { computed, ref } from 'vue';
 
 const props = defineProps({

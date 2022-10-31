@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import { mdiEye, mdiTrashCan, mdiLifebuoy } from '@mdi/js';
 import CardBoxModal from '@/components/template/CardBoxModal.vue';
 import TableCheckboxCell from '@/components/template/TableCheckboxCell.vue';
