@@ -1,16 +1,16 @@
 <script setup>
-import { computed } from "vue";
-import { useLayoutStore } from "@/stores/layout.js";
-import { useStyleStore } from "@/stores/style.js";
-import { mdiClose } from "@mdi/js";
-import menu from "@/core/menu.js";
-import BaseIcon from "@/components/template/BaseIcon.vue";
-import NavBar from "@/components/template/NavBar.vue";
-import AsideMenu from "@/components/template/AsideMenu.vue";
-import AsideRight from "@/components/template/AsideRight.vue";
-import FooterBar from "@/components/template/FooterBar.vue";
-import OverlayLayer from "@/components/template/OverlayLayer.vue";
-import SnackBar from "@/components/template/SnackBar.vue";
+import { computed } from 'vue';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
+import { mdiClose } from '@mdi/js';
+import menu from '@/core/menu.js';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import NavBar from '@/components/template/NavBar.vue';
+import AsideMenu from '@/components/template/AsideMenu.vue';
+import AsideRight from '@/components/template/AsideRight.vue';
+import FooterBar from '@/components/template/FooterBar.vue';
+import OverlayLayer from '@/components/template/OverlayLayer.vue';
+import SnackBar from '@/components/template/SnackBar.vue';
 
 const layoutStore = useLayoutStore();
 
@@ -36,10 +36,7 @@ const menuClick = (event, item) => {
   }
 
   if (item.menuSecondary) {
-    if (
-      secondaryMenuItem.value &&
-            item.key === secondaryMenuItem.value.key
-    ) {
+    if (secondaryMenuItem.value && item.key === secondaryMenuItem.value.key) {
       secondaryMenuClose();
     } else {
       layoutStore.secondaryMenu = item;
@@ -55,10 +52,10 @@ const overlayClick = () => {
   }
 };
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener('keydown', (e) => {
   if (
-    e.key === "Escape" &&
-        (secondaryMenuItem.value || !isAsideCompact.value)
+    e.key === 'Escape' &&
+    (secondaryMenuItem.value || !isAsideCompact.value)
   ) {
     overlayClick();
   }
@@ -69,8 +66,7 @@ window.addEventListener("keydown", (e) => {
   <div
     :class="{
       dark: styleStore.darkMode,
-      'overflow-hidden lg:overflow-visible':
-        layoutStore.isAsideMobileExpanded,
+      'overflow-hidden lg:overflow-visible': layoutStore.isAsideMobileExpanded,
     }"
   >
     <div
@@ -78,7 +74,7 @@ window.addEventListener("keydown", (e) => {
         'ml-64 lg:ml-0': layoutStore.isAsideMobileExpanded,
         '-ml-60 lg:ml-0': layoutStore.isAsideRightActive,
       }"
-      class="text-base bg-gray-50 dark:bg-slate-800 dark:text-gray-100 pt-14 lg:pl-22 w-screen transition-position lg:w-auto min-h-screen relative"
+      class="menu"
     >
       <NavBar
         :class="{
@@ -142,3 +138,10 @@ window.addEventListener("keydown", (e) => {
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.menu {
+  @apply text-base bg-gray-50 dark:bg-slate-800 dark:text-gray-100 pt-14
+  lg:pl-22 w-screen transition-position lg:w-auto min-h-screen relative;
+}
+</style>

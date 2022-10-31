@@ -1,43 +1,48 @@
 <script setup>
-import { mdiChevronRightCircleOutline, mdiChevronLeftCircleOutline } from '@mdi/js'
-import { computed } from 'vue'
-import { useLayoutStore } from '@/stores/layout.js'
-import { useStyleStore } from '@/stores/style.js'
-import AsideMenuList from '@/components/template/AsideMenuList.vue'
-import AsideMenuItem from '@/components/template/AsideMenuItem.vue'
+import {
+  mdiChevronRightCircleOutline,
+  mdiChevronLeftCircleOutline,
+} from '@mdi/js';
+import { computed } from 'vue';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
+import AsideMenuList from '@/components/template/AsideMenuList.vue';
+import AsideMenuItem from '@/components/template/AsideMenuItem.vue';
 
 const props = defineProps({
   menu: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   zIndex: {
     type: String,
-    default: 'z-50'
+    default: 'z-50',
   },
   compact: Boolean,
-  isSecondary: Boolean
-})
+  isSecondary: Boolean,
+});
 
-const emit = defineEmits(['menu-click'])
+const emit = defineEmits(['menu-click']);
 
-const layoutStore = useLayoutStore()
+const layoutStore = useLayoutStore();
 
-const styleStore = useStyleStore()
+const styleStore = useStyleStore();
 
 const expandCollapseItem = computed(() => ({
   label: props.compact ? 'Exapand' : 'Collapse',
-  icon: props.compact ? mdiChevronRightCircleOutline : mdiChevronLeftCircleOutline,
-  color: styleStore.asideExpandCollapseStyle
-}))
+  icon: props.compact
+    ? mdiChevronRightCircleOutline
+    : mdiChevronLeftCircleOutline,
+  color: styleStore.asideExpandCollapseStyle,
+}));
 
 const expandCollapseClick = () => {
-  layoutStore.asideCompactToggle()
-}
+  layoutStore.asideCompactToggle();
+};
 
 const menuClick = (event, item) => {
-  emit('menu-click', event, item)
-}
+  emit('menu-click', event, item);
+};
 </script>
 
 <template>
@@ -58,7 +63,7 @@ const menuClick = (event, item) => {
         <slot />
       </div>
       <div
-        :class="styleStore.asideScrollbarsStyle" 
+        :class="styleStore.asideScrollbarsStyle"
         class="flex-1 overflow-y-auto overflow-x-hidden"
       >
         <AsideMenuList
@@ -68,10 +73,7 @@ const menuClick = (event, item) => {
         />
       </div>
 
-      <ul
-        v-if="!isSecondary"
-        class="hidden lg:block"
-      >
+      <ul v-if="!isSecondary" class="hidden lg:block">
         <AsideMenuItem
           :item="expandCollapseItem"
           :compact="compact"

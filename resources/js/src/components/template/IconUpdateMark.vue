@@ -1,36 +1,33 @@
 <script setup>
-import { colorsBgLight } from '@/core/colors.js'
-import { computed, ref } from 'vue'
+import { colorsBgLight } from '@/core/colors.js';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
   color: {
     type: String,
-    default: null
+    default: null,
   },
   tr: {
     type: String,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const hasPing = ref(true)
+const hasPing = ref(true);
 
 setTimeout(() => {
-  hasPing.value = false
-}, 3000)
+  hasPing.value = false;
+}, 3000);
 
 const componentClass = computed(() => {
-  const base = [
-    props.tr ?? 'top-0 right-0',
-    colorsBgLight[props.color]
-  ]
+  const base = [props.tr ?? 'top-0 right-0', colorsBgLight[props.color]];
 
   if (hasPing.value) {
-    base.push('animate-ping')
+    base.push('animate-ping');
   }
 
-  return base
-})
+  return base;
+});
 </script>
 
 <template>

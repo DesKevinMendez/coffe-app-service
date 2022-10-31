@@ -1,74 +1,62 @@
 <script setup>
-import { computed } from 'vue'
-import { useLayoutStore } from '@/stores/layout.js'
-import CardBox from '@/components/template/CardBox.vue'
-import NumberDynamic from '@/components/template/NumberDynamic.vue'
-import BaseIcon from '@/components/template/BaseIcon.vue'
-import BaseLevel from '@/components/template/BaseLevel.vue'
-import CardBoxWidgetTrend from '@/components/template/CardBoxWidgetTrend.vue'
+import { computed } from 'vue';
+import { useLayoutStore } from '@/stores/layout.js';
+import CardBox from '@/components/template/CardBox.vue';
+import NumberDynamic from '@/components/template/NumberDynamic.vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import BaseLevel from '@/components/template/BaseLevel.vue';
+import CardBoxWidgetTrend from '@/components/template/CardBoxWidgetTrend.vue';
 
 defineProps({
   number: {
     type: Number,
-    default: 0
+    default: 0,
   },
   icon: {
     type: String,
-    default: null
+    default: null,
   },
   prefix: {
     type: String,
-    default: null
+    default: null,
   },
   suffix: {
     type: String,
-    default: null
+    default: null,
   },
   label: {
     type: String,
-    default: null
+    default: null,
   },
   color: {
     type: String,
-    default: null
+    default: null,
   },
   trend: {
     type: String,
-    default: null
+    default: null,
   },
   trendType: {
     type: String,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const layoutStore = useLayoutStore()
+const layoutStore = useLayoutStore();
 
-const smaller = computed(() => !layoutStore.isLg)
+const smaller = computed(() => !layoutStore.isLg);
 </script>
 
 <template>
-  <CardBox
-    v-bind="$attrs"
-    :smaller-padding="smaller"
-    class="mx-6 md:mx-0"
-  >
-    <CardBoxWidgetTrend
-      v-if="trend"
-      :trend="trend"
-      :trend-type="trendType"
-    />
+  <CardBox v-bind="$attrs" :smaller-padding="smaller" class="mx-6 md:mx-0">
+    <CardBoxWidgetTrend v-if="trend" :trend="trend" :trend-type="trendType" />
     <BaseLevel mobile>
       <div>
         <h3 class="text-lg leading-tight text-gray-500 dark:text-gray-400">
           {{ label }}
         </h3>
         <h1 class="text-3xl leading-tight font-semibold">
-          <NumberDynamic
-            :value="number"
-            :prefix="prefix"
-            :suffix="suffix"
-          />
+          <NumberDynamic :value="number" :prefix="prefix" :suffix="suffix" />
         </h1>
       </div>
       <BaseIcon

@@ -1,20 +1,20 @@
 <script setup>
-import AsideMenuItem from '@/components/template/AsideMenuItem.vue'
+import AsideMenuItem from '@/components/template/AsideMenuItem.vue';
 
 defineProps({
   isSubmenuList: Boolean,
   compact: Boolean,
   menu: {
     type: Array,
-    default: () => []
-  }
-})
+    default: () => [],
+  },
+});
 
-const emit = defineEmits(['menu-click'])
+const emit = defineEmits(['menu-click']);
 
 const menuClick = (event, item) => {
-  emit('menu-click', event, item)
-}
+  emit('menu-click', event, item);
+};
 </script>
 
 <template>

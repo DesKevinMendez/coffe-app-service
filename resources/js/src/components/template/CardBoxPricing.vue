@@ -1,28 +1,28 @@
 <script setup>
-import { mdiCheck } from '@mdi/js'
-import CardBox from '@/components/template/CardBox.vue'
-import BaseButtons from '@/components/template/BaseButtons.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
-import PillTag from '@/components/template/PillTag.vue'
-import BaseLevel from '@/components/template/BaseLevel.vue'
-import BaseIcon from '@/components/template/BaseIcon.vue'
+import { mdiCheck } from '@mdi/js';
+import CardBox from '@/components/template/CardBox.vue';
+import BaseButtons from '@/components/template/BaseButtons.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
+import PillTag from '@/components/template/PillTag.vue';
+import BaseLevel from '@/components/template/BaseLevel.vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
 
 defineProps({
   item: {
     type: Object,
     required: true,
-    validator: value => (value.title && value.subTitle)
+    validator: (value) => value.title && value.subTitle,
   },
   price: {
     type: [String, Number],
-    required: true
+    required: true,
   },
   period: {
     type: String,
-    required: true
+    required: true,
   },
-  main: Boolean
-})
+  main: Boolean,
+});
 </script>
 
 <template>
@@ -36,13 +36,8 @@ defineProps({
     <template #header="props">
       <BaseLevel mobile>
         <div>
-          <BaseLevel
-            type="justify-start"
-            mobile
-          >
-            <h3 class="text-4xl">
-              $
-            </h3>
+          <BaseLevel type="justify-start" mobile>
+            <h3 class="text-4xl">$</h3>
             <h1 class="text-5xl font-black">
               {{ price }}
             </h1>
@@ -85,13 +80,10 @@ defineProps({
         :key="index"
         class="flex items-center"
       >
-        <BaseIcon
-          :path="mdiCheck"
-          size="24"
-          w="w-8"
-          h="h-8"
-        />
-        <span class="text-lg ml-3"><b>{{ option.main }}</b> {{ option.sub }}</span>
+        <BaseIcon :path="mdiCheck" size="24" w="w-8" h="h-8" />
+        <span class="text-lg ml-3"
+        ><b>{{ option.main }}</b> {{ option.sub }}</span
+        >
       </div>
     </div>
 

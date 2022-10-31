@@ -1,7 +1,7 @@
 import { configure, defineRule } from 'vee-validate';
 import AllRules from '@vee-validate/rules';
 import { loadLocaleFromURL, localize } from '@vee-validate/i18n';
-Object.keys(AllRules).forEach(rule => {
+Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule]);
 });
 

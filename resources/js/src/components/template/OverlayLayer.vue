@@ -1,20 +1,20 @@
 <script setup>
-import { useStyleStore } from '@/stores/style.js'
+import { useStyleStore } from '@/stores/style.js';
 
 defineProps({
   zIndex: {
     type: String,
-    default: 'z-50'
-  }
-})
+    default: 'z-50',
+  },
+});
 
-const emit = defineEmits(['overlay-click'])
+const emit = defineEmits(['overlay-click']);
 
-const overlayClick = event => {
-  emit('overlay-click', event)
-}
+const overlayClick = (event) => {
+  emit('overlay-click', event);
+};
 
-const styleStore = useStyleStore()
+const styleStore = useStyleStore();
 </script>
 
 <template>

@@ -1,75 +1,73 @@
 <script setup>
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { computed } from 'vue'
-import { mdiChevronDown } from '@mdi/js'
-import BaseIcon from '@/components/template/BaseIcon.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import { computed } from 'vue';
+import { mdiChevronDown } from '@mdi/js';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
 
 const props = defineProps({
   icon: {
     type: String,
-    default: null
+    default: null,
   },
   iconRight: {
     type: String,
-    default: null
+    default: null,
   },
   label: {
     type: String,
-    default: null
+    default: null,
   },
   options: {
     type: Array,
-    required: true
+    required: true,
   },
   modelValue: {
     type: Object,
-    default: null
+    default: null,
   },
   left: Boolean,
   iconW: {
     type: String,
-    default: null
+    default: null,
   },
   iconH: {
     type: String,
-    default: null
+    default: null,
   },
   iconSize: {
     type: [String, Number],
-    default: null
+    default: null,
   },
   small: Boolean,
   color: {
     type: String,
-    default: 'white'
+    default: 'white',
   },
   outline: Boolean,
-  disabled: Boolean
-})
+  disabled: Boolean,
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
 computed({
   get: () => props.modelValue,
-  set: value => {
-    emit('update:modelValue', value)
-  }
-})
+  set: (value) => {
+    emit('update:modelValue', value);
+  },
+});
 
-const iconRightComputed = computed(() => props.label && !props.icon && !props.iconRight ? mdiChevronDown : props.iconRight)
+const iconRightComputed = computed(() =>
+  props.label && !props.icon && !props.iconRight
+    ? mdiChevronDown
+    : props.iconRight
+);
 </script>
 
 <template>
-  <Menu
-    as="div"
-    class="relative inline-block text-left"
-  >
+  <Menu as="div" class="relative inline-block text-left">
     <div>
-      <MenuButton
-        v-slot="{ open }"
-        :disabled="disabled"
-      >
+      <MenuButton v-slot="{ open }" :disabled="disabled">
         <BaseButton
           :label="label"
           :icon="icon"
@@ -96,8 +94,7 @@ const iconRightComputed = computed(() => props.label && !props.icon && !props.ic
     >
       <MenuItems
         :class="left ? 'left-0' : 'right-0'"
-        class="absolute z-50 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1
-        ring-black ring-opacity-5 focus:outline-none dark:bg-slate-800 dark:divide-gray-700"
+        class="menu-items-content"
       >
         <div
           v-for="(optionsGroup, index) in options"
@@ -110,13 +107,10 @@ const iconRightComputed = computed(() => props.label && !props.icon && !props.ic
             v-slot="{ active }"
           >
             <button
-              :class="{'bg-gray-100 dark:bg-slate-700': active}"
+              :class="{ 'bg-gray-100 dark:bg-slate-700': active }"
               class="group flex rounded-md items-center w-full px-2 py-2 text-sm"
             >
-              <BaseIcon
-                :path="option.icon"
-                class="mr-3"
-              />
+              <BaseIcon :path="option.icon" class="mr-3" />
               <span>{{ option.label }}</span>
             </button>
           </MenuItem>
@@ -125,3 +119,10 @@ const iconRightComputed = computed(() => props.label && !props.icon && !props.ic
     </transition>
   </Menu>
 </template>
+
+<style lang="scss">
+.menu-items-content {
+  @apply absolute z-50 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100
+  rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-800 dark:divide-gray-700;
+}
+</style>

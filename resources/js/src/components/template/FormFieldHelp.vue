@@ -1,37 +1,35 @@
 <script setup>
-import { controlTextColor } from '@/core/colors.js'
-import { computed } from 'vue'
+import { controlTextColor } from '@/core/colors.js';
+import { computed } from 'vue';
 
 const props = defineProps({
   help: {
     type: String,
-    default: null
+    default: null,
   },
   error: {
     type: [Boolean, String],
-    default: null
+    default: null,
   },
   success: {
     type: [Boolean, String],
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const computedHelp = computed(() => props.error && typeof props.error === 'string' ? props.error : props.help)
+const computedHelp = computed(() =>
+  props.error && typeof props.error === 'string' ? props.error : props.help
+);
 
 const textColor = computed(() => {
-  const color = controlTextColor(props.error, props.success)
+  const color = controlTextColor(props.error, props.success);
 
-  return color ?? 'text-gray-500 dark:text-gray-400'
-})
+  return color ?? 'text-gray-500 dark:text-gray-400';
+});
 </script>
 
 <template>
-  <div
-    v-if="computedHelp"
-    class="text-xs"
-    :class="[textColor]"
-  >
+  <div v-if="computedHelp" class="text-xs" :class="[textColor]">
     {{ computedHelp }}
   </div>
 </template>

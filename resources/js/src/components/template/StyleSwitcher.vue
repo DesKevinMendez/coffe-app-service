@@ -1,22 +1,22 @@
 <script setup>
-import { mdiCircleSlice8, mdiCheckboxBlankCircleOutline } from '@mdi/js'
-import { computed } from 'vue'
-import { useStyleStore } from '@/stores/style.js'
-import BaseButtons from '@/components/template/BaseButtons.vue'
-import BaseButton from '@/components/template/BaseButton.vue'
+import { mdiCircleSlice8, mdiCheckboxBlankCircleOutline } from '@mdi/js';
+import { computed } from 'vue';
+import { useStyleStore } from '@/stores/style.js';
+import BaseButtons from '@/components/template/BaseButtons.vue';
+import BaseButton from '@/components/template/BaseButton.vue';
 
 defineProps({
-  useLabel: Boolean
-})
+  useLabel: Boolean,
+});
 
-const styleStore = useStyleStore()
+const styleStore = useStyleStore();
 
-const currentStyle = computed(() => styleStore.style)
+const currentStyle = computed(() => styleStore.style);
 
-const setStyle = style => {
-  styleStore.setStyle(style)
-  styleStore.setDarkMode(false)
-}
+const setStyle = (style) => {
+  styleStore.setStyle(style);
+  styleStore.setDarkMode(false);
+};
 
 const styles = {
   white: 'white',
@@ -35,8 +35,8 @@ const styles = {
   purple: 'bg-purple-500 hover:bg-purple-600',
   fuchsia: 'bg-fuchsia-500 hover:bg-fuchsia-600',
   pink: 'bg-pink-500 hover:bg-pink-600',
-  rose: 'bg-rose-500 hover:bg-rose-600'
-}
+  rose: 'bg-rose-500 hover:bg-rose-600',
+};
 </script>
 
 <template>
@@ -46,7 +46,11 @@ const styles = {
         v-for="(styleBg, style) in styles"
         :key="style"
         :color="style === 'white' ? style : `${styleBg} text-white`"
-        :icon="style !== currentStyle ? mdiCheckboxBlankCircleOutline : mdiCircleSlice8"
+        :icon="
+          style !== currentStyle
+            ? mdiCheckboxBlankCircleOutline
+            : mdiCircleSlice8
+        "
         :label="useLabel ? style : null"
         class="capitalize"
         @click="setStyle(style)"

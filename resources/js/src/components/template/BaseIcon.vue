@@ -1,43 +1,43 @@
 <script setup>
-import { computed } from 'vue'
-import IconUpdateMark from '@/components/template/IconUpdateMark.vue'
+import { computed } from 'vue';
+import IconUpdateMark from '@/components/template/IconUpdateMark.vue';
 
 const props = defineProps({
   path: {
     type: String,
-    required: true
+    required: true,
   },
   w: {
     type: String,
-    default: 'w-6'
+    default: 'w-6',
   },
   h: {
     type: String,
-    default: 'h-6'
+    default: 'h-6',
   },
   size: {
     type: [String, Number],
-    default: 16
+    default: 16,
   },
   updateMark: {
     type: String,
-    default: null
+    default: null,
   },
   updateMarkTr: {
     type: String,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
 const svgSize = computed(() => {
-  return props.size ?? 16
-})
+  return props.size ?? 16;
+});
 </script>
 
 <template>
   <span
-    class="inline-flex justify-center items-center" 
-    :class="[w, h, {'relative': updateMark}]"
+    class="inline-flex justify-center items-center"
+    :class="[w, h, { relative: updateMark }]"
   >
     <svg
       viewBox="0 0 24 24"
@@ -45,14 +45,8 @@ const svgSize = computed(() => {
       :height="svgSize"
       class="inline-block"
     >
-      <path
-        fill="currentColor"
-        :d="path"
-      />
+      <path fill="currentColor" :d="path" />
     </svg>
-    <IconUpdateMark
-      :color="updateMark"
-      :tr="updateMarkTr"
-    />
+    <IconUpdateMark :color="updateMark" :tr="updateMarkTr" />
   </span>
 </template>

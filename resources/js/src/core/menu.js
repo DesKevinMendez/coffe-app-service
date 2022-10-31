@@ -2,36 +2,34 @@ import {
   mdiCart,
   mdiDesktopMac,
   mdiCoffeeMaker,
-  mdiBadminton,
   mdiBucketOutline,
-  mdiBaguette,
-  mdiAccountMultiple
-} from "@mdi/js";
+  mdiAccountMultiple,
+} from '@mdi/js';
 
 export default [
   {
-    to: "/",
+    to: '/',
     icon: mdiDesktopMac,
-    label: "Inicio",
+    label: 'Inicio',
   },
   {
-    to: "/orders",
-    label: "Ordenes",
+    to: '/orders',
+    label: 'Ordenes',
     icon: mdiCart,
   },
   {
-    to: "/sales",
-    label: "Ventas",
+    to: '/sales',
+    label: 'Ventas',
     icon: mdiBucketOutline,
   },
   {
-    to: "/products",
-    label: "Productos",
+    to: '/products',
+    label: 'Productos',
     icon: mdiCoffeeMaker,
   },
   {
-    to: "/users",
-    label: "Usuarios",
+    to: '/users',
+    label: 'Usuarios',
     icon: mdiAccountMultiple,
   },
 ];

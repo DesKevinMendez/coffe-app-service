@@ -1,8 +1,8 @@
 <script setup>
-import { computed, ref } from "vue";
-import { useMainStore } from "@/stores/main.js";
-import { useLayoutStore } from "@/stores/layout.js";
-import { useStyleStore } from "@/stores/style.js";
+import { computed, ref } from 'vue';
+import { useMainStore } from '@/stores/main.js';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
 import {
   mdiForwardburger,
   mdiBackburger,
@@ -14,16 +14,16 @@ import {
   mdiLogout,
   mdiBell,
   mdiThemeLightDark,
-} from "@mdi/js";
-import NavBarItemLabel from "@/components/template/NavBarItemLabel.vue";
-import NavBarMenu from "@/components/template/NavBarMenu.vue";
-import BaseDivider from "@/components/template/BaseDivider.vue";
-import UserAvatar from "@/components/template/UserAvatar.vue";
-import BaseIcon from "@/components/template/BaseIcon.vue";
-import NavBarSearch from "@/components/template/NavBarSearch.vue";
-import NavBarItem from "@/components/template/NavBarItem.vue";
-import { useRouter } from "vue-router";
-import { useAuth } from "@/stores/auth";
+} from '@mdi/js';
+import NavBarItemLabel from '@/components/template/NavBarItemLabel.vue';
+import NavBarMenu from '@/components/template/NavBarMenu.vue';
+import BaseDivider from '@/components/template/BaseDivider.vue';
+import UserAvatar from '@/components/template/UserAvatar.vue';
+import BaseIcon from '@/components/template/BaseIcon.vue';
+import NavBarSearch from '@/components/template/NavBarSearch.vue';
+import NavBarItem from '@/components/template/NavBarItem.vue';
+import { useRouter } from 'vue-router';
+import { useAuth } from '@/stores/auth';
 
 const layoutStore = useLayoutStore();
 
@@ -57,7 +57,7 @@ const updatesClicked = ref(false);
 const mainStore = useMainStore();
 
 const updatesUpdateMark = computed(() =>
-  !updatesClicked.value && mainStore.updatesStatus ? "warning" : null
+  !updatesClicked.value && mainStore.updatesStatus ? 'warning' : null
 );
 
 const toggleLightDark = () => {
@@ -67,20 +67,15 @@ const uRou = useRouter();
 const auth = useAuth();
 const logOut = () => {
   auth.logout();
-  uRou.push({ name: "login" });
+  uRou.push({ name: 'login' });
 };
 </script>
 
 <template>
-  <nav
-    class="lg:pl-22 fixed top-0 inset-x-0 bg-gray-50 dark:bg-slate-800 h-14 z-30 w-screen transition-position lg:transition-none lg:w-auto"
-  >
+  <nav class="nav-bar-content">
     <div class="lg:px-6 xl:max-w-7xl xl:mx-auto flex lg:items-stretch">
       <div class="flex-1 items-stretch flex h-14">
-        <NavBarItem
-          type="flex lg:hidden"
-          @click.prevent="menuToggleMobile"
-        >
+        <NavBarItem type="flex lg:hidden" @click.prevent="menuToggleMobile">
           <BaseIcon :path="menuToggleMobileIcon" size="24" />
         </NavBarItem>
         <NavBarItem type="hidden lg:flex" class="xl:-ml-3">
@@ -88,10 +83,7 @@ const logOut = () => {
         </NavBarItem>
       </div>
       <div class="flex-none items-stretch flex h-14 lg:hidden">
-        <NavBarItem
-          :active="isAsideRightActive"
-          @click="asideRightToggle"
-        >
+        <NavBarItem :active="isAsideRightActive" @click="asideRightToggle">
           <BaseIcon
             :path="mdiBell"
             :update-mark="updatesUpdateMark"
@@ -103,15 +95,13 @@ const logOut = () => {
         </NavBarItem>
       </div>
       <div
-        class="absolute w-screen top-14 left-0 bg-gray-50 shadow lg:w-auto lg:items-stretch lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none dark:bg-slate-800"
+        class="menu-nav-bar-active"
         :class="{
           hidden: !isMenuNavBarActive,
           block: isMenuNavBarActive,
         }"
       >
-        <div
-          class="max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto"
-        >
+        <div class="menu-nav-bar-active-children">
           <NavBarMenu>
             <UserAvatar class="w-6 h-6 mr-3 inline-flex" />
             <div>
@@ -120,36 +110,21 @@ const logOut = () => {
 
             <template #dropdown>
               <NavBarItem to="/profile">
-                <NavBarItemLabel
-                  :icon="mdiAccount"
-                  label="My Profile"
-                />
+                <NavBarItemLabel :icon="mdiAccount" label="My Profile" />
               </NavBarItem>
               <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiCogOutline"
-                  label="Settings"
-                />
+                <NavBarItemLabel :icon="mdiCogOutline" label="Settings" />
               </NavBarItem>
               <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiEmail"
-                  label="Messages"
-                />
+                <NavBarItemLabel :icon="mdiEmail" label="Messages" />
               </NavBarItem>
               <BaseDivider nav-bar />
               <NavBarItem @click="logOut">
-                <NavBarItemLabel
-                  :icon="mdiLogout"
-                  label="Log Out"
-                />
+                <NavBarItemLabel :icon="mdiLogout" label="Log Out" />
               </NavBarItem>
             </template>
           </NavBarMenu>
-          <NavBarItem
-            is-desktop-icon-only
-            @click.prevent="toggleLightDark"
-          >
+          <NavBarItem is-desktop-icon-only @click.prevent="toggleLightDark">
             <NavBarItemLabel
               :icon="mdiThemeLightDark"
               label="Light/Dark"
@@ -161,3 +136,17 @@ const logOut = () => {
     </div>
   </nav>
 </template>
+
+<style lang="scss">
+.nav-bar-content {
+  @apply lg:pl-22 fixed top-0 inset-x-0 bg-gray-50 dark:bg-slate-800 h-14 z-30 w-screen
+  transition-position lg:transition-none lg:w-auto;
+}
+.menu-nav-bar-active {
+  @apply absolute w-screen top-14 left-0 bg-gray-50 shadow lg:w-auto lg:items-stretch
+  lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none dark:bg-slate-800;
+  .menu-nav-bar-active-children {
+    @apply max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto;
+  }
+}
+</style>
