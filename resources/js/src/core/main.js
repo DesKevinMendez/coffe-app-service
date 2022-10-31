@@ -1,10 +1,11 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
-import App from '../App.vue';
+import App from './../App.vue';
 import router from '../router';
-import { useLayoutStore } from '@/stores/layout';
-import { useStyleStore } from '@/stores/style';
+import { useMainStore } from '@/stores/main.js';
+import { useLayoutStore } from '@/stores/layout.js';
+import { useStyleStore } from '@/stores/style.js';
 import { darkModeKey, styleKey } from '@/core/config.js';
 import './veeValidate';
 import './../../../css/app.css';
@@ -16,12 +17,19 @@ const pinia = createPinia();
 createApp(App).use(router).use(pinia).mount('#app');
 
 /* Init Pinia stores */
+const mainStore = useMainStore(pinia);
 const layoutStore = useLayoutStore(pinia);
 const styleStore = useStyleStore(pinia);
 
 /* Responsive layout control */
 layoutStore.responsiveLayoutControl();
 window.onresize = () => layoutStore.responsiveLayoutControl();
+
+/* Fetch sample data */
+mainStore.fetch('clients');
+mainStore.fetch('history');
+mainStore.fetch('products');
+mainStore.fetch('updates');
 
 /* App style */
 styleStore.setStyle(localStorage[styleKey] ?? 'white');

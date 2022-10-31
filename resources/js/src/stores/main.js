@@ -52,5 +52,9 @@ export const useMainStore = defineStore('main', {
     shiftMessage() {
       this.messages.shift();
     },
+
+    fetch(sampleDataKey) {
+      console.log(sampleDataKey);
+    },
   },
 });

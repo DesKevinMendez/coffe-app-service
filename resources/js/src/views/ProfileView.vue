@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue';
-import { useMainStore } from '@/stores/main';
+import { useMainStore } from '@/stores/main.js';
 import {
   mdiAccount,
   mdiAccountCircle,
@@ -9,7 +9,7 @@ import {
   mdiFormTextboxPassword,
   mdiLifebuoy,
 } from '@mdi/js';
-import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions';
+import { buttonMenuOptions } from '@/core/sampleButtonMenuOptions.js';
 import SectionMain from '@/components/template/SectionMain.vue';
 import CardBox from '@/components/template/CardBox.vue';
 import BaseDivider from '@/components/template/BaseDivider.vue';
