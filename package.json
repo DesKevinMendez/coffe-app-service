@@ -45,7 +45,6 @@
     "@vee-validate/rules": "^4.7.0",
     "@vuepic/vue-datepicker": "^3.5.0",
     "@vueuse/core": "^9.3.1",
-    "axios": "^0.27.2",
     "chart.js": "^3.8.0",
     "numeral": "^2.0.6",
     "pinia": "^2.0.14",
