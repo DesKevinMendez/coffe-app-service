@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { useLayoutStore } from '@/stores/layout.js';
+import { useLayoutStore } from '@/stores/layout';
 import CardBox from '@/components/template/CardBox.vue';
 import NumberDynamic from '@/components/template/NumberDynamic.vue';
 import BaseIcon from '@/components/template/BaseIcon.vue';

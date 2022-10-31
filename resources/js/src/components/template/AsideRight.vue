@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
-import { useMainStore } from '@/stores/main.js';
-import { useLayoutStore } from '@/stores/layout.js';
+import { useMainStore } from '@/stores/main';
+import { useLayoutStore } from '@/stores/layout';
 import AsideRightItem from '@/components/template/AsideRightItem.vue';
 
 const layoutStore = useLayoutStore();

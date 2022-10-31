@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import { useMainStore } from '@/stores/main.js';
+import { useMainStore } from '@/stores/main';
 
 const mainStore = useMainStore();
 const avatar =

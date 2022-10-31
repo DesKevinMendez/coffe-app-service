@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
-import { useMainStore } from '@/stores/main.js';
-import { useLayoutStore } from '@/stores/layout.js';
+import { useMainStore } from '@/stores/main';
+import { useLayoutStore } from '@/stores/layout';
 import {
   mdiAccountMultiple,
   mdiCartOutline,
@@ -9,7 +9,7 @@ import {
   mdiChartPie,
   mdiReload,
 } from '@mdi/js';
-import * as chartConfig from '@/components/template/Charts/chart.config.js';
+import * as chartConfig from '@/components/template/Charts/chart.config';
 import LineChart from '@/components/template/Charts/LineChart.vue';
 import SectionMain from '@/components/template/SectionMain.vue';
 import SectionTitleLineWithButton from '@/components/template/SectionTitleLineWithButton.vue';
