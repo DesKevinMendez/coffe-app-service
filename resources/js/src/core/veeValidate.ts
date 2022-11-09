@@ -6,12 +6,14 @@ Object.keys(AllRules).forEach((rule) => {
 });
 
 defineRule('passwordStrong', (value: string) => {
-  const strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$");
+  const strongRegex = new RegExp(
+    '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$'
+  );
   if (value.length < 8) {
-    return 'Password must be at least 8 characters'
+    return 'Password must be at least 8 characters';
   }
   if (!strongRegex.test(value)) {
-    return 'Password must contain at least one lowercase, one uppercase and, one special character.'
+    return 'Password must contain at least one lowercase, one uppercase and, one special character.';
   }
   return true;
 });

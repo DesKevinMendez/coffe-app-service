@@ -82,7 +82,7 @@ const routes: RouteRecordRaw[] = [
     },
     path: '/signup',
     name: 'signup',
-    component: () => import('@/views/SignupView.vue')
+    component: () => import('@/views/SignupView.vue'),
   },
 ];
 
