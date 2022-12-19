@@ -11,12 +11,13 @@ export default function useRequest() {
   };
 
   const post = async <T = unknown>(url: string, body: unknown) => {
-    const { data } = await useFetch<T>(url, {
+    const { data, error, statusCode, isFinished } = await useFetch<T>(url, {
       afterFetch(ctx) {
         return { ...ctx, data: JSON.parse(ctx.data) };
       },
     }).post(body);
-    return { data };
+
+    return { data, error, statusCode, isFinished };
   };
 
   return { get, post };

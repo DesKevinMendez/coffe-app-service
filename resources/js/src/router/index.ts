@@ -76,6 +76,14 @@ const routes: RouteRecordRaw[] = [
     name: 'error',
     component: () => import('@/views/ErrorView.vue'),
   },
+  {
+    meta: {
+      title: 'Sign up',
+    },
+    path: '/signup',
+    name: 'signup',
+    component: () => import('@/views/SignupView.vue'),
+  },
 ];
 
 const router = createRouter({

@@ -5,6 +5,19 @@ Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule]);
 });
 
+defineRule('passwordStrong', (value: string) => {
+  const strongRegex = new RegExp(
+    '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$'
+  );
+  if (value.length < 8) {
+    return 'Password must be at least 8 characters';
+  }
+  if (!strongRegex.test(value)) {
+    return 'Password must contain at least one lowercase, one uppercase and, one special character.';
+  }
+  return true;
+});
+
 loadLocaleFromURL(
   'https://unpkg.com/@vee-validate/i18n@4.1.0/dist/locale/es.json'
 );

@@ -7,6 +7,10 @@ import {
   sectionBgLoginDark,
   sectionBgError,
   sectionBgErrorDark,
+  sectionBgSignupDark,
+  sectionBgSignup,
+  sectionBgRemind,
+  sectionBgRemindDark,
 } from '@/core/colors';
 import KevinLogo from '@/components/template/KevinLogo.vue';
 import BaseButtons from '@/components/template/BaseButtons.vue';
@@ -30,6 +34,10 @@ const colorClass = computed(() => {
     return darkMode.value ? sectionBgLoginDark : sectionBgLogin;
   case 'error':
     return darkMode.value ? sectionBgErrorDark : sectionBgError;
+  case 'signup':
+    return darkMode.value ? sectionBgSignupDark : sectionBgSignup;
+  case 'remind':
+    return darkMode.value ? sectionBgRemindDark : sectionBgRemind;
   }
 
   return '';
@@ -41,6 +49,8 @@ const currentRouteName = route.name;
 
 const routes = {
   login: 'Login',
+  signup: 'Signup',
+  // remind: 'Remind',
   error: 'Error',
 };
 </script>
@@ -104,7 +114,6 @@ const routes = {
     </div>
   </section>
 </template>
-
 <style lang="scss">
 .section-screen-content {
   @apply flex flex-col items-center md:flex-row md:justify-around
