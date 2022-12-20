@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth\Permissions;
 
+use App\Models\SpatiePermissions;
 use App\Models\User;
 use App\Utils\Role;
 use Database\Seeders\PermissionsSeeder;
@@ -38,5 +39,30 @@ class PermissionsTest extends TestCase
             ->assertJsonCount($this->countPermissions, 'data')
             ->assertSeeText(['links'])
             ->assertSeeText(['meta']);
+    }
+
+    /**
+     * @test
+     */
+    public function can_save_permissions()
+    {
+        $params = SpatiePermissions::factory()->raw();
+        $response = $this->postJson(route('api.v1.permissions.store'), $params);
+        $response->assertStatus(201);
+
+        $this->assertDatabaseHas('permissions', [
+            'name' => $params['name']
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function name_must_be_requierd()
+    {
+        $response = $this->postJson(route('api.v1.permissions.store'), ['name' => '']);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors('name');
     }
 }

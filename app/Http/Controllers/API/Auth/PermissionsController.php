@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BaseResource;
+use App\Http\Requests\PermissionsRequest;
 use App\Http\Resources\CommonResource;
 use App\Models\SpatiePermissions;
 use Illuminate\Http\Request;
@@ -23,12 +23,12 @@ class PermissionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\PermissionsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermissionsRequest $request)
     {
-        //
+        return SpatiePermissions::create($request->safe()->toArray());
     }
 
     /**
