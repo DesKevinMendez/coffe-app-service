@@ -2,17 +2,17 @@
 
 namespace Tests\Feature\Auth\Permissions;
 
-use App\Models\SpatiePermissions;
-use App\Models\User;
+use App\Models\{SpatiePermissions, User};
 use App\Utils\Role;
 use Database\Seeders\PermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class PermissionsTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $countPermissions = 0;
 
     public function setUp(): void
@@ -61,7 +61,62 @@ class PermissionsTest extends TestCase
     public function name_must_be_required()
     {
         $response = $this->postJson(route('api.v1.permissions.store'), ['name' => '']);
-        $response->assertStatus(422)
+        $response->assertUnprocessable()
             ->assertJsonValidationErrors('name');
+    }
+
+    /**
+     * @test
+     */
+    public function can_get_permission_by_id()
+    {
+        $permission = SpatiePermissions::create(['name' => 'test']);
+        $response = $this->getJson(route('api.v1.permissions.show', $permission->id));
+        $response->assertOk()
+            ->assertSee('data');
+    }
+
+    /**
+     * @test
+     */
+    public function can_update_permission_by_id()
+    {
+        $permission = SpatiePermissions::create(['name' => 'test']);
+        $response = $this->putJson(route('api.v1.permissions.show', $permission->id), [
+            'name' => 'another-test-name'
+        ]);
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('permissions', ['name' => 'test']);
+        $this->assertDatabaseHas('permissions', ['name' => 'another-test-name']);
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_update_permission_by_id_if_name_is_empty()
+    {
+        $permission = SpatiePermissions::create(['name' => 'test']);
+        $response = $this->putJson(route('api.v1.permissions.update', $permission->id), [
+            'name' => ''
+        ]);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('name');
+    }
+
+    /**
+     * @test
+     */
+    public function can_delete_a_permission_as_a_soft_delete()
+    {
+        $permission = SpatiePermissions::create(['name' => 'test to delete']);
+        $response = $this->deleteJson(route('api.v1.permissions.destroy', $permission->id));
+
+        $response->assertNoContent();
+
+        $this->assertSoftDeleted('permissions', [
+            'name' => 'test to delete'
+        ]);
     }
 }

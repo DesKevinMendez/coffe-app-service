@@ -5,9 +5,7 @@ namespace App\Http\Controllers\API\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionsRequest;
 use App\Http\Resources\CommonResource;
-use App\Http\Resources\SigleResource;
 use App\Models\SpatiePermissions;
-use Illuminate\Http\Request;
 
 class PermissionsController extends Controller
 {
@@ -35,34 +33,37 @@ class PermissionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\SpatiePermissions  $permission
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SpatiePermissions $permission)
     {
-        //
+        return CommonResource::make($permission);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\PermissionsRequest  $request
+     * @param  App\Models\SpatiePermissions  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermissionsRequest $request, SpatiePermissions $permission)
     {
-        //
+        $permission->update($request->safe()->toArray());
+        return CommonResource::make($permission);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\SpatiePermissions  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SpatiePermissions $permission)
     {
-        //
+        $permission->delete();
+
+        return response()->noContent();
     }
 }
