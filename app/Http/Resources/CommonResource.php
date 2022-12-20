@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
-class CommonResource extends BaseResource
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class CommonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

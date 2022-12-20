@@ -58,10 +58,9 @@ class PermissionsTest extends TestCase
     /**
      * @test
      */
-    public function name_must_be_requierd()
+    public function name_must_be_required()
     {
         $response = $this->postJson(route('api.v1.permissions.store'), ['name' => '']);
-
         $response->assertStatus(422)
             ->assertJsonValidationErrors('name');
     }

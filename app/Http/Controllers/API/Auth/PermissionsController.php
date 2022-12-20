@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionsRequest;
 use App\Http\Resources\CommonResource;
+use App\Http\Resources\SigleResource;
 use App\Models\SpatiePermissions;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        return new CommonResource(SpatiePermissions::applyPaginate(request()));
+        return CommonResource::collection(SpatiePermissions::applyPaginate(request()));
     }
 
     /**
@@ -28,7 +29,7 @@ class PermissionsController extends Controller
      */
     public function store(PermissionsRequest $request)
     {
-        return SpatiePermissions::create($request->safe()->toArray());
+        return CommonResource::make(SpatiePermissions::create($request->safe()->toArray()));
     }
 
     /**
