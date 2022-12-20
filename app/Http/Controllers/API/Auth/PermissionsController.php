@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BaseResource;
+use App\Http\Resources\CommonResource;
 use App\Models\SpatiePermissions;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        return SpatiePermissions::applyPaginate(request());
+        return new CommonResource(SpatiePermissions::applyPaginate(request()));
     }
 
     /**

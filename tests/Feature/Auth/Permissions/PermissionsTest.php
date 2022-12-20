@@ -35,7 +35,8 @@ class PermissionsTest extends TestCase
     {
         $response = $this->getJson(route('api.v1.permissions.index'));
         $response->assertStatus(200)
-            ->assertJsonCount($this->countPermissions, 'data');
-        dd($response->json());
+            ->assertJsonCount($this->countPermissions, 'data')
+            ->assertSeeText(['links'])
+            ->assertSeeText(['meta']);
     }
 }

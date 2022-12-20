@@ -8,7 +8,7 @@ trait usePaginate
 {
     public function scopeApplyPaginate(Builder $builder, $request)
     {
-        return $builder->paginate(
+        return $builder->simplePaginate(
             $perPage = $request->per_page,
             $columns = ['*'],
             $pageName = 'page',
