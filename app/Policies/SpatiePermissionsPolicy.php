@@ -1,12 +1,12 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Policies;
 
+use App\Models\SpatiePermissions;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use {{ namespacedModel }};
-use {{ namespacedUserModel }};
 
-class {{ class }}
+class SpatiePermissionsPolicy
 {
     use HandlesAuthorization;
 
@@ -19,16 +19,16 @@ class {{ class }}
     */
     public function before(User $user, $ability)
     {
-        //
+        if ($user->hasRole('admin') || $user->hasRole('superadmin')) return true;
     }
 
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny({{ user }} $user)
+    public function viewAny(User $user)
     {
         //
     }
@@ -36,11 +36,11 @@ class {{ class }}
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\SpatiePermissions  $spatiePermissions
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function view(User $user, SpatiePermissions $spatiePermissions)
     {
         //
     }
@@ -48,10 +48,10 @@ class {{ class }}
     /**
      * Determine whether the user can create models.
      *
-     * @param  \{{ namespacedUserModel }}  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create({{ user }} $user)
+    public function create(User $user)
     {
         //
     }
@@ -59,11 +59,11 @@ class {{ class }}
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\SpatiePermissions  $spatiePermissions
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function update(User $user, SpatiePermissions $spatiePermissions)
     {
         //
     }
@@ -71,11 +71,11 @@ class {{ class }}
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\SpatiePermissions  $spatiePermissions
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function delete(User $user, SpatiePermissions $spatiePermissions)
     {
         //
     }
@@ -83,11 +83,11 @@ class {{ class }}
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\SpatiePermissions  $spatiePermissions
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function restore(User $user, SpatiePermissions $spatiePermissions)
     {
         //
     }
@@ -95,11 +95,11 @@ class {{ class }}
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \{{ namespacedUserModel }}  $user
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\SpatiePermissions  $spatiePermissions
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete({{ user }} $user, {{ model }} ${{ modelVariable }})
+    public function forceDelete(User $user, SpatiePermissions $spatiePermissions)
     {
         //
     }

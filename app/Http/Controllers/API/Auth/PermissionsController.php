@@ -16,6 +16,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', new SpatiePermissions());
         return CommonResource::collection(SpatiePermissions::applyPaginate(request()));
     }
 
@@ -27,6 +28,7 @@ class PermissionsController extends Controller
      */
     public function store(PermissionsRequest $request)
     {
+        $this->authorize('create', new SpatiePermissions());
         return CommonResource::make(SpatiePermissions::create($request->safe()->toArray()));
     }
 
@@ -38,6 +40,7 @@ class PermissionsController extends Controller
      */
     public function show(SpatiePermissions $permission)
     {
+        $this->authorize('view', new SpatiePermissions());
         return CommonResource::make($permission);
     }
 
@@ -50,6 +53,7 @@ class PermissionsController extends Controller
      */
     public function update(PermissionsRequest $request, SpatiePermissions $permission)
     {
+        $this->authorize('update', new SpatiePermissions());
         $permission->update($request->safe()->toArray());
         return CommonResource::make($permission);
     }
@@ -62,6 +66,7 @@ class PermissionsController extends Controller
      */
     public function destroy(SpatiePermissions $permission)
     {
+        $this->authorize('delete', new SpatiePermissions());
         $permission->delete();
 
         return response()->noContent();

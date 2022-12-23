@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth\Permissions;
 
 use App\Models\{SpatiePermissions, User};
 use App\Utils\Role;
-use Database\Seeders\PermissionsSeeder;
+use Database\Seeders\{PermissionsSeeder, RolesSeeder};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -22,11 +22,16 @@ class PermissionsTest extends TestCase
         $this->countPermissions = count($role->getPermissions());
 
         parent::setUp();
+
+        $this->seed(PermissionsSeeder::class);
+        $this->seed(RolesSeeder::class);
+
         $this->user = User::factory()->create();
+        $this->user->assignRole('superadmin');
+
         Sanctum::actingAs(
             $this->user
         );
-        $this->seed(PermissionsSeeder::class);
     }
 
     /**

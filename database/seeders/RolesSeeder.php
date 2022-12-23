@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Utils\Role as UtilsRole;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\{Permission};
+use Spatie\Permission\Models\Role;
 
-class PermissionsSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
         $role = new UtilsRole;
-        $permissions = $role->getPermissions();
+        $roles = $role->getRoles();
 
-        foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+        foreach ($roles as $role) {
+            Role::firstOrCreate(['name' => $role]);
         }
     }
 }
