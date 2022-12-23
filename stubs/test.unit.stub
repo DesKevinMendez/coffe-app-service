@@ -2,10 +2,28 @@
 
 namespace {{ namespace }};
 
+use Database\Seeders\RolesSeeder;
 use PHPUnit\Framework\TestCase;
+use Laravel\Sanctum\Sanctum;
+use App\Models\{User};
 
 class {{ class }} extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed(RolesSeeder::class);
+
+        $this->user = User::factory()->create();
+        $this->user->assignRole('superadmin');
+
+        Sanctum::actingAs(
+            $this->user
+        );
+    }
     /**
      * A basic unit test example.
      *

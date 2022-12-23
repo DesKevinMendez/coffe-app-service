@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\API\Auth\PermissionsController;
 use App\Http\Controllers\API\Auth\RegisterController;
+use App\Http\Controllers\API\Roles\RolesController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.v1.')->group(function () {
@@ -18,5 +19,8 @@ Route::name('api.v1.')->group(function () {
 Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'permissions' => PermissionsController::class,
+    ]);
+    Route::apiResources([
+        'roles' => RolesController::class,
     ]);
 });
