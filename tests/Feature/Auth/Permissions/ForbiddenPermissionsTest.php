@@ -17,7 +17,6 @@ class ForbiddenPermissionsTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(PermissionsSeeder::class);
         $this->seed(RolesSeeder::class);
 
         $this->user = User::factory()->create();
