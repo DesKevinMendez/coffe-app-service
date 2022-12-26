@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Roles;
 
+use App\Models\Roles;
+use App\Models\SpatiePermissions;
 use App\Models\User;
 use App\Utils\Role;
 use Database\Seeders\RolesSeeder;
@@ -26,6 +28,7 @@ class RolesTest extends TestCase
             $this->user
         );
     }
+
     /**
      * @test
      */
