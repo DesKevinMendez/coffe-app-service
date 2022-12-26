@@ -20,7 +20,5 @@ Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'permissions' => PermissionsController::class,
     ]);
-    Route::apiResources([
-        'roles' => RolesController::class,
-    ]);
+    Route::get('roles', [RolesController::class, 'index'])->name('roles.index');
 });
