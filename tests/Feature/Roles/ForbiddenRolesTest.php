@@ -1,13 +1,14 @@
 <?php
 
-namespace {{ namespace }};
+namespace Tests\Feature\Roles;
 
 use Database\Seeders\RolesSeeder;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use App\Models\{User};
+use Tests\TestCase;
 
-class {{ class }} extends TestCase
+class ForbiddenRolesTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,7 +19,7 @@ class {{ class }} extends TestCase
         $this->seed(RolesSeeder::class);
 
         $this->user = User::factory()->create();
-        $this->user->assignRole('superadmin');
+        $this->user->assignRole('casher');
 
         Sanctum::actingAs(
             $this->user
@@ -26,12 +27,11 @@ class {{ class }} extends TestCase
     }
 
     /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    * @test
+    */
+    public function cannot_get_roles_if_user_has_role_casher()
     {
-        $this->assertTrue(true);
+        $response = $this->getJson(route('api.v1.roles.index'));
+        $response->assertForbidden();
     }
 }
