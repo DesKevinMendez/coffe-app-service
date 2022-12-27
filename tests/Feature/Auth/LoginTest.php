@@ -3,7 +3,10 @@
 namespace Tests\Feature\Auth;
 
 // use App\Models\Permission;
+
+use App\Models\SpatiePermissions;
 use App\Models\User;
+use Database\Seeders\RolesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
@@ -32,6 +35,43 @@ class LoginTest extends TestCase
     );
 
     // $this->assertTrue($dbToken->can(''));
+  }
+
+  /**
+   * @test
+   */
+  public function can_view_user_loged_with_their_role()
+  {
+    $this->seed(RolesSeeder::class);
+
+    $user = User::factory()->create([]);
+    $permissions = SpatiePermissions::factory()->count(5)->create();
+
+    $user->assignRole(['admin', 'superadmin']);
+
+    $role = $user->roles[0];
+    $role2 = $user->roles[1];
+    
+    $role->givePermissionTo($permissions[0]->name);
+    $role->givePermissionTo($permissions[1]->name);
+    $role->givePermissionTo($permissions[2]->name);
+    $role->givePermissionTo($permissions[3]->name);
+    $role2->givePermissionTo($permissions[4]->name);
+
+
+    $response = $this->postJson(route('api.v1.login'), [
+      'email' => $user->email,
+      'password' => 'password',
+      'device_name' => 'iPhone of ' . $user->name
+    ]);
+
+    $response->assertSee($user->name)
+    ->assertSee($user->email)
+    ->assertJsonCount(2, 'user.roles')
+    ->assertOk();
+
+    $this->assertEquals(count($response->json()['user']['roles'][0]['permissions']), 4);
+    $this->assertEquals(count($response->json()['user']['roles'][1]['permissions']), 1);
   }
 
   /**
