@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Responses\TokenResponse;
+use App\Http\Responses\LoginResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +32,7 @@ class LoginController extends Controller
       ]);
     }
 
-    return new TokenResponse($user);
+    return new LoginResponse($user);
   }
 
   function logout(Request $request){

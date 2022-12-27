@@ -5,7 +5,7 @@ namespace App\Http\Responses;
 use App\Models\User;
 use Illuminate\Contracts\Support\Responsable;
 
-class TokenResponse implements Responsable
+class LoginResponse implements Responsable
 {
   private $user;
 
@@ -16,12 +16,18 @@ class TokenResponse implements Responsable
 
   public function toResponse($request)
   {
+    $this->user->load('roles', 'roles.permissions');
+
     return response()->json([
       'token' => $this->user->createToken(
         $request->device_name,
         []
-        // $this->user->permissions->pluck('name')->toArray()
-      )->plainTextToken
+      )->plainTextToken,
+      'user' => [
+        'name' => $this->user->name,
+        'email' => $this->user->email,
+        'roles' => $this->user->roles
+      ]
     ]);
   }
 }

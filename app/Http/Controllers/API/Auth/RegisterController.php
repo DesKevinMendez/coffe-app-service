@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Responses\TokenResponse;
+use App\Http\Responses\LoginResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +31,6 @@ class RegisterController extends Controller
         'password' => Hash::make($request->password),
       ]);
   
-      return new TokenResponse($user);
+      return new LoginResponse($user);
     }
 }
