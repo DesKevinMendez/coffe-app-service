@@ -69,6 +69,9 @@ class LoginTest extends TestCase
     ->assertSee($user->email)
     ->assertJsonCount(2, 'user.roles')
     ->assertOk();
+
+    $this->assertEquals(count($response->json()['user']['roles'][0]['permissions']), 4);
+    $this->assertEquals(count($response->json()['user']['roles'][1]['permissions']), 1);
   }
 
   /**
