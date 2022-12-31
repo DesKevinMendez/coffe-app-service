@@ -27,8 +27,11 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $product = new Product();
+        $this->authorize('create', $product);
+
         return CommonResource::make(
-            Product::create($request->safe()->toArray())
+            $product::create($request->safe()->toArray())
         );
     }
 
@@ -52,6 +55,8 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        $this->authorize('update', $product);
+
         $product->update($request->safe()->toArray());
         return CommonResource::make($product);
     }
@@ -64,6 +69,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product);
+
         $product->delete();
         return response()->noContent();
     }
