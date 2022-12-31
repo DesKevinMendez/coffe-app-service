@@ -39,4 +39,13 @@ class UnauthorizePruductTest extends TestCase
         $response = $this->postJson(route('api.v1.products.store'), []);
         $response->assertUnauthorized();
     }
+
+    /**
+     * @test
+     */
+    public function cannot_update_product_if_user_arenot_authenticated()
+    {
+        $response = $this->putJson(route('api.v1.products.update', 1), []);
+        $response->assertUnauthorized();
+    }
 }

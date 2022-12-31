@@ -52,7 +52,8 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->safe()->toArray());
+        return CommonResource::make($product);
     }
 
     /**

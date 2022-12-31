@@ -219,4 +219,30 @@ class PruductTest extends TestCase
         $response->assertUnprocessable()
             ->assertJsonValidationErrors('isTemporary');
     }
+
+    /**
+     * @test
+     */
+    public function can_update_a_product()
+    {
+
+        $productRaw = Product::factory()->raw();
+        $product = Product::factory()->create([
+            'name' => 'only-for-test'
+        ]);
+
+        $response = $this->putJson(
+            route('api.v1.products.update', $product->id), $productRaw
+        );
+
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('products', [
+            'name' => 'only-for-test'
+        ]);
+
+        $this->assertDatabaseHas('products', [
+            'name' => $productRaw['name']
+        ]);
+    }
 }
