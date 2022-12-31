@@ -245,4 +245,19 @@ class PruductTest extends TestCase
             'name' => $productRaw['name']
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function can_delete_a_product_as_a_soft_delete()
+    {
+        $product = Product::factory()->create(['name' => 'test to delete']);
+        $response = $this->deleteJson(route('api.v1.products.destroy', $product->id));
+
+        $response->assertNoContent();
+
+        $this->assertSoftDeleted('products', [
+            'name' => 'test to delete'
+        ]);
+    }
 }

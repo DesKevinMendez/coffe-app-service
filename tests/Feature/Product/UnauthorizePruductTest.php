@@ -48,4 +48,13 @@ class UnauthorizePruductTest extends TestCase
         $response = $this->putJson(route('api.v1.products.update', 1), []);
         $response->assertUnauthorized();
     }
+
+    /**
+     * @test
+     */
+    public function cannot_delete_product_if_user_arenot_authenticated()
+    {
+        $response = $this->deleteJson(route('api.v1.products.destroy', 1));
+        $response->assertUnauthorized();
+    }
 }
