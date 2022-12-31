@@ -10,4 +10,11 @@ use App\Traits\usePaginate;
 class {{ class }} extends Model
 {
     use HasFactory, usePaginate, SoftDeletes;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
 }
