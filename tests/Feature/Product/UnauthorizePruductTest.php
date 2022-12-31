@@ -21,4 +21,13 @@ class UnauthorizePruductTest extends TestCase
         $response = $this->getJson(route('api.v1.products.index'));
         $response->assertUnauthorized();
     }
+
+    /**
+     * @test
+     */
+    public function cannot_get_product_if_user_arenot_authenticated()
+    {
+        $response = $this->getJson(route('api.v1.products.show', 1));
+        $response->assertUnauthorized();
+    }
 }

@@ -21,8 +21,6 @@ Route::name('api.v1.')->group(function () {
 Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'permissions' => PermissionsController::class,
-    ]);
-    Route::apiResources([
         'products' => ProductController::class,
     ]);
     Route::get('roles/{role}/permissions', RolesWithPermissionsController::class)->name('roles.permissions');

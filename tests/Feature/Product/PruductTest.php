@@ -40,4 +40,19 @@ class PruductTest extends TestCase
             ->assertSeeText(['links'])
             ->assertSeeText(['meta']);
     }
+
+    /**
+     * @test
+     */
+    public function can_get_only_one_product()
+    {
+        $product = Product::factory()->create();
+        $response = $this->getJson(route('api.v1.products.show', $product->id));
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => $product->name,
+                'uuid' => $product->uuid,
+            ]);
+    }
 }
