@@ -17,7 +17,7 @@ class {{ class }} extends TestCase
 
         $this->seed(RolesSeeder::class);
 
-        $this->setUp();
+        $this->signUp();
     }
 
     /**
@@ -27,6 +27,9 @@ class {{ class }} extends TestCase
     {
         $response = $this->getJson(route('api.v1.'));
 
-        $response->assertStatus(200);
+        $response->assertOk()
+            ->assertJsonCount(1, 'data')
+            ->assertSeeText(['links'])
+            ->assertSeeText(['meta']);
     }
 }
