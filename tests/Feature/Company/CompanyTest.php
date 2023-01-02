@@ -136,4 +136,19 @@ class CompanyTest extends TestCase
             'name' => $companyRaw['name']
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function can_delete_a_company_as_a_soft_delete()
+    {
+        $company = Company::factory()->create(['name' => 'test to delete']);
+        $response = $this->deleteJson(route('api.v1.companies.destroy', $company->id));
+
+        $response->assertNoContent();
+
+        $this->assertSoftDeleted('companies', [
+            'name' => 'test to delete'
+        ]);
+    }
 }

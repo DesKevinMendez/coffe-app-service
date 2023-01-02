@@ -41,4 +41,13 @@ class UnauthorizeCompanyTest extends TestCase
         $response = $this->putJson(route('api.v1.companies.update', 1), []);
         $response->assertUnauthorized();
     }
+
+    /**
+     * @test
+     */
+    public function cannot_delete_company_if_user_arenot_authenticated()
+    {
+        $response = $this->deleteJson(route('api.v1.companies.destroy', 1));
+        $response->assertUnauthorized();
+    }
 }
