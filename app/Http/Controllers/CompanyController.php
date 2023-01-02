@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Resources\CommonResource;
 use App\Models\Company;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -16,6 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', new Company());
         return CommonResource::collection(
             Company::isActive()->applyPaginate(request())
         );
@@ -30,6 +30,7 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $company = new Company();
+        $this->authorize('create', $company);
 
         return CommonResource::make(
             $company::create($request->safe()->toArray())
@@ -44,6 +45,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
+        $this->authorize('view', $company);
         return CommonResource::make($company);
     }
 
@@ -56,6 +58,7 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $company)
     {
+        $this->authorize('update', $company);
         $company->update($request->safe()->toArray());
         return CommonResource::make($company);
     }
@@ -68,6 +71,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        $this->authorize('delete', $company);
         $company->delete();
         return response()->noContent();
     }
