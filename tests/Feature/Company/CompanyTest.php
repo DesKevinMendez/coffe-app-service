@@ -99,4 +99,17 @@ class CompanyTest extends TestCase
         $response->assertUnprocessable()
             ->assertJsonValidationErrors('address');
     }
+
+    /**
+     * @test
+     */
+    public function can_get_only_one_company()
+    {
+        $company = Company::factory()->create();
+        $response = $this->getJson(route('api.v1.companies.show', $company->id));
+
+        $response->assertOk()
+            ->assertSee($company->name)
+            ->assertSee($company->description);
+    }
 }
