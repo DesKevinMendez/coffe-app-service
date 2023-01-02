@@ -3,10 +3,10 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\API\Auth\PermissionsController;
 use App\Http\Controllers\API\Auth\RegisterController;
+use App\Http\Controllers\API\Company\CompanyController;
 use App\Http\Controllers\API\Roles\RolesController;
 use App\Http\Controllers\API\Roles\RolesWithPermissionsController;
 use App\Http\Controllers\API\Product\ProductController;
-use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.v1.')->group(function () {
