@@ -21,8 +21,8 @@ class CompanyTest extends TestCase
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_get_all_companies()
     {
         Company::factory()->count(10)->create(['isActive' => true]);
@@ -35,8 +35,8 @@ class CompanyTest extends TestCase
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function can_see_only_active_companies()
     {
         Company::factory()->count(2)->create(['isActive' => false]);
@@ -47,5 +47,56 @@ class CompanyTest extends TestCase
             ->assertJsonCount(8, 'data')
             ->assertSeeText(['links'])
             ->assertSeeText(['meta']);
+    }
+
+    /**
+     * @test
+     */
+    public function can_save_a_company()
+    {
+        $company = Company::factory()->raw();
+        $response = $this->postJson(route('api.v1.companies.store'), $company);
+
+        $response->assertCreated();
+
+        $this->assertDatabaseHas('companies', [
+            'name' => $company['name'],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function name_must_be_required()
+    {
+        $company = Company::factory()->raw(['name' => '']);
+        $response = $this->postJson(route('api.v1.companies.store'), $company);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('name');
+    }
+
+    /**
+     * @test
+     */
+    public function description_must_be_required()
+    {
+        $company = Company::factory()->raw(['description' => '']);
+        $response = $this->postJson(route('api.v1.companies.store'), $company);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('description');
+    }
+
+    /**
+     * @test
+     */
+    public function address_must_be_required()
+    {
+        $company = Company::factory()->raw(['address' => '']);
+        $response = $this->postJson(route('api.v1.companies.store'), $company);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('address');
     }
 }

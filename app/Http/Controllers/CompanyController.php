@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
 use App\Http\Resources\CommonResource;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -26,9 +27,13 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        $company = new Company();
+
+        return CommonResource::make(
+            $company::create($request->safe()->toArray())
+        );
     }
 
     /**

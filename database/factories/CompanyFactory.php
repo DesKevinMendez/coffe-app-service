@@ -17,11 +17,9 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            'uuid' => $this->faker->uuid(),
             'name' => $this->faker->name(),
             'description' => $this->faker->paragraph(),
-            'address' => $this->faker->address(),
-            'isActive' => $this->faker->boolean(),
+            'address' => $this->faker->address()
         ];
     }
 }
