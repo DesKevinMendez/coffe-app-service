@@ -112,4 +112,28 @@ class CompanyTest extends TestCase
             ->assertSee($company->name)
             ->assertSee($company->description);
     }
+
+    /**
+     * @test
+     */
+    public function can_update_company()
+    {
+        $company = Company::factory()->create([
+            'name' => 'Just for test'
+        ]);
+        $companyRaw = Company::factory()->raw();
+        $response = $this->putJson(route('api.v1.companies.show', $company->id), $companyRaw);
+
+        $response->assertOk()
+            ->assertSee($companyRaw['name'])
+            ->assertSee($companyRaw['description']);
+
+        $this->assertDatabaseMissing('companies', [
+            'name' => $company->name
+        ]);
+
+        $this->assertDatabaseHas('companies', [
+            'name' => $companyRaw['name']
+        ]);
+    }
 }

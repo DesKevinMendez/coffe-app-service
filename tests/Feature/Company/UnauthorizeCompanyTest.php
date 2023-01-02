@@ -32,4 +32,13 @@ class UnauthorizeCompanyTest extends TestCase
         $response = $this->getJson(route('api.v1.companies.show', 1));
         $response->assertUnauthorized();
     }
+
+    /**
+     * @test
+     */
+    public function cannot_update_company_if_user_arenot_authenticated()
+    {
+        $response = $this->putJson(route('api.v1.companies.update', 1), []);
+        $response->assertUnauthorized();
+    }
 }
