@@ -13,8 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description');
+            $table->text('address');
+            $table->boolean('isActive')
+                ->default(false);
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::dropIfExists('companies');
     }
 };
