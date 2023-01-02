@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\usePaginate;
+use App\Traits\{useIsActive, usePaginate};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +10,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Company extends Model
 {
-    use HasFactory, usePaginate, SoftDeletes, Sluggable;
+    use HasFactory,
+        usePaginate,
+        SoftDeletes,
+        Sluggable,
+        useIsActive;
 
     /**
      * The attributes that aren't mass assignable.
@@ -32,6 +36,4 @@ class Company extends Model
             ]
         ];
     }
-
-
 }

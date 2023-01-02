@@ -16,7 +16,7 @@ class CompanyController extends Controller
     public function index()
     {
         return CommonResource::collection(
-            Company::where('isActive', true)->applyPaginate(request())
+            Company::isActive()->applyPaginate(request())
         );
     }
 
