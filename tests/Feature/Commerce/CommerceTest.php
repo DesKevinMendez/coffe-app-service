@@ -103,6 +103,30 @@ class CommerceTest extends TestCase
     /**
      * @test
      */
+    public function company_id_must_be_required()
+    {
+        $company = Commerce::factory()->raw(['company_id' => '']);
+        $response = $this->postJson(route('api.v1.commerces.store'), $company);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('company_id');
+    }
+
+    /**
+     * @test
+     */
+    public function company_id_must_be_number_greater_than_0()
+    {
+        $company = Commerce::factory()->raw(['company_id' => -1]);
+        $response = $this->postJson(route('api.v1.commerces.store'), $company);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('company_id');
+    }
+
+    /**
+     * @test
+     */
     public function can_get_only_one_company()
     {
         $company = Commerce::factory()->create();
