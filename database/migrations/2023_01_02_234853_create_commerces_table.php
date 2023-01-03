@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('address');
             $table->boolean('isActive')
                 ->default(false);
+            $table->foreignId('company_id')->on('companies');
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
             $table->softDeletes();

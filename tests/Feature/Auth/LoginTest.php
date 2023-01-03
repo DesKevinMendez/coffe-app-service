@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 // use App\Models\Permission;
 
+use App\Models\Company;
 use App\Models\SpatiePermissions;
 use App\Models\User;
 use Database\Seeders\RolesSeeder;
@@ -51,7 +52,7 @@ class LoginTest extends TestCase
 
     $role = $user->roles[0];
     $role2 = $user->roles[1];
-    
+
     $role->givePermissionTo($permissions[0]->name);
     $role->givePermissionTo($permissions[1]->name);
     $role->givePermissionTo($permissions[2]->name);
@@ -72,6 +73,31 @@ class LoginTest extends TestCase
 
     $this->assertEquals(count($response->json()['user']['roles'][0]['permissions']), 4);
     $this->assertEquals(count($response->json()['user']['roles'][1]['permissions']), 1);
+  }
+
+  /**
+   * @test
+   */
+  public function can_view_user_loged_with_their_company()
+  {
+    $this->seed(RolesSeeder::class);
+    $company = Company::factory()->create();
+
+    $user = User::factory()->create([
+      'company_id' => $company->id,
+    ]);
+
+    $response = $this->postJson(route('api.v1.login'), [
+      'email' => $user->email,
+      'password' => 'password',
+      'device_name' => 'iPhone of ' . $user->name
+    ]);
+
+    $response->assertSee($company->name)
+    ->assertSee($company->description)
+    ->assertOk();
+
+    $this->assertArrayHasKey('company', $response->json());
   }
 
   /**

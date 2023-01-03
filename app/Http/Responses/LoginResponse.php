@@ -27,7 +27,8 @@ class LoginResponse implements Responsable
         'name' => $this->user->name,
         'email' => $this->user->email,
         'roles' => $this->user->roles
-      ]
+      ],
+      'company' => $this->user->company,
     ]);
   }
 }

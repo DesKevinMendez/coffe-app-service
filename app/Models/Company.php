@@ -23,6 +23,10 @@ class Company extends Model
      */
     protected $guarded = ['id'];
 
+    public function commerces() {
+        return $this->hasMany(Commerce::class);
+    }
+
     public static function boot()
     {
         parent::boot();

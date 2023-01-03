@@ -47,6 +47,8 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         $this->authorize('view', $company);
+
+        $company->load('commerces');
         return CommonResource::make($company);
     }
 
