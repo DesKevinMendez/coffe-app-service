@@ -28,6 +28,8 @@ class LoginTest extends TestCase
       'device_name' => 'iPhone of ' . $user->name
     ]);
 
+    dd($response->json());
+
     $token = $response->json('token');
     $this->assertNotNull(
       $dbToken = PersonalAccessToken::findToken($token),
@@ -51,7 +53,7 @@ class LoginTest extends TestCase
 
     $role = $user->roles[0];
     $role2 = $user->roles[1];
-    
+
     $role->givePermissionTo($permissions[0]->name);
     $role->givePermissionTo($permissions[1]->name);
     $role->givePermissionTo($permissions[2]->name);

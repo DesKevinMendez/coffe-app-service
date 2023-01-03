@@ -18,4 +18,13 @@ abstract class TestCase extends BaseTestCase
             $this->user
         );
     }
+
+    protected function assertClassUsesTrait($class, $trait)
+    {
+        $this->assertArrayHasKey(
+            $trait,
+            class_uses($class),
+            "{$class} must use {$trait} trait"
+        );
+    }
 }

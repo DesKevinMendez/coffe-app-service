@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class CommerceFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->paragraph(),
-            'address' => $this->faker->address()
+            'address' => $this->faker->address(),
+            'company_id' => Company::factory()->create()->id,
         ];
     }
 }
