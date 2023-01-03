@@ -27,6 +27,7 @@ class CommerceRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'address' => 'required',
+            'company_id' => 'required|numeric|min:0',
         ];
     }
 }
