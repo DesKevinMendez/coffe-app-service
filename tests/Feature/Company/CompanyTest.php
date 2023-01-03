@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Company;
 
+use App\Models\Commerce;
 use App\Models\Company;
 use Database\Seeders\RolesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -111,6 +112,21 @@ class CompanyTest extends TestCase
         $response->assertOk()
             ->assertSee($company->name)
             ->assertSee($company->description);
+    }
+
+    /**
+     * @test
+     */
+    public function can_get_only_one_company_with_commerces()
+    {
+        $company = Company::factory()
+            ->has(Commerce::factory())
+            ->create();
+
+        $response = $this->getJson(route('api.v1.companies.show', $company->id));
+
+        $response->assertOk()
+            ->assertSee('commerces');
     }
 
     /**
