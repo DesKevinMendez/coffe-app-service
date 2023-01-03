@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\{
     PermissionsController,
     RegisterController
 };
+use App\Http\Controllers\API\Commerce\CommerceController;
 use App\Http\Controllers\API\Company\CompanyController;
 use App\Http\Controllers\API\Roles\{
     RolesController,
@@ -28,6 +29,7 @@ Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
         'permissions' => PermissionsController::class,
         'products' => ProductController::class,
         'companies' => CompanyController::class,
+        'commerces' => CommerceController::class,
     ]);
     Route::get('roles/{role}/permissions', RolesWithPermissionsController::class)->name('roles.permissions');
 
