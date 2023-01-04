@@ -47,6 +47,7 @@ class CommerceController extends Controller
     public function show(Commerce $commerce)
     {
         $this->authorize('view', $commerce);
+        $commerce->load('products');
         return CommonResource::make($commerce);
     }
 
