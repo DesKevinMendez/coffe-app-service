@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('isActive');
             $table->boolean('isTemporary');
             $table->foreignId('user_id')->on('users');
+            $table->foreignId('commerce_id')->on('commerces');
             $table->softDeletes();
             $table->timestamps();
         });

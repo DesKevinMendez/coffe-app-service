@@ -30,6 +30,7 @@ class ProductRequest extends FormRequest
             'isUnit' => 'required|boolean',
             'isActive' => 'required|boolean',
             'isTemporary' => 'required|boolean',
+            'commerce_id' => 'required|numeric|min:0|exists:commerces,id',
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\{Commerce, User};
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,7 +25,8 @@ class ProductFactory extends Factory
             'isUnit' => $this->faker->boolean(),
             'isActive' => $this->faker->boolean(),
             'isTemporary' => $this->faker->boolean(),
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
+            'commerce_id' => Commerce::factory()->create()
         ];
     }
 }
