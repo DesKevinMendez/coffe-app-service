@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use App\Traits\usePaginate;
+use App\Traits\useSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use HasFactory, usePaginate, SoftDeletes;
+    use HasFactory, usePaginate, SoftDeletes, useSlug;
 
     /**
      * The attributes that aren't mass assignable.
@@ -36,7 +36,6 @@ class Product extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string) Str::uuid();
             $model->user_id = Auth::user()->id;
         });
     }

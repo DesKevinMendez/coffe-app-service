@@ -52,7 +52,7 @@ class PruductTest extends TestCase
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => $product->name,
-                'uuid' => $product->uuid,
+                'slug' => $product->slug,
             ]);
     }
 
