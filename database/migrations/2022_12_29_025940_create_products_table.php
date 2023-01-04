@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->uuid('uuid')->unique();
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->double('price');
             $table->boolean('isUnit');
             $table->boolean('isActive');
             $table->boolean('isTemporary');
             $table->foreignId('user_id')->on('users');
+            $table->foreignId('commerce_id')->on('commerces');
             $table->softDeletes();
             $table->timestamps();
         });

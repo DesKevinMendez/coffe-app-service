@@ -52,7 +52,7 @@ class PruductTest extends TestCase
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => $product->name,
-                'uuid' => $product->uuid,
+                'slug' => $product->slug,
             ]);
     }
 
@@ -218,6 +218,45 @@ class PruductTest extends TestCase
 
         $response->assertUnprocessable()
             ->assertJsonValidationErrors('isTemporary');
+    }
+
+    /**
+     * @test
+     */
+    public function product_commerce_id_must_be_required()
+    {
+        $product = Product::factory()->raw(['commerce_id' => '']);
+
+        $response = $this->postJson(route('api.v1.products.store'), $product);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('commerce_id');
+    }
+
+    /**
+     * @test
+     */
+    public function product_commerce_id_must_be_integer_greather_than_0()
+    {
+        $product = Product::factory()->raw(['commerce_id' => -1]);
+
+        $response = $this->postJson(route('api.v1.products.store'), $product);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('commerce_id');
+    }
+
+    /**
+     * @test
+     */
+    public function product_commerce_id_must_exist_in_commerces_table()
+    {
+        $product = Product::factory()->raw(['commerce_id' => 1]);
+
+        $response = $this->postJson(route('api.v1.products.store'), $product);
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('commerce_id');
     }
 
     /**

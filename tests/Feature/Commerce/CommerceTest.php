@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Commerce;
 
-use App\Models\{Commerce};
+use App\Models\{Commerce, Product};
 use Database\Seeders\RolesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -135,6 +135,24 @@ class CommerceTest extends TestCase
         $response->assertOk()
             ->assertSee($company->name)
             ->assertSee($company->description);
+    }
+
+    /**
+     * @test
+     */
+    public function can_get_only_one_company_with_products()
+    {
+        $company = Commerce::factory()
+            ->has(Product::factory()->count(5))
+            ->create();
+        $response = $this->getJson(route('api.v1.commerces.show', $company->id));
+
+        $response->assertOk()
+            ->assertSee($company->name)
+            ->assertSee('products')
+            ->assertSee($company->description);
+
+        $this->assertEquals(5, count($response->json('data.products')));
     }
 
     /**
