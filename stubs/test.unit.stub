@@ -2,17 +2,21 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\{usePaginate};
+use App\Models\{Model};
 use Tests\TestCase;
 
 class {{ class }} extends TestCase
 {
     /**
-     * A basic unit test example.
-     *
-     * @return void
+     * @test
      */
-    public function test_example()
+    public function must_have_traits()
     {
-        $this->assertTrue(true);
+        $this->assertClassUsesTrait(Model::class, HasFactory::class);
+        $this->assertClassUsesTrait(Model::class, usePaginate::class);
+        $this->assertClassUsesTrait(Model::class, SoftDeletes::class);
     }
 }

@@ -5,7 +5,7 @@ namespace Tests\Unit\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\usePaginate;
-use App\Models\{Commerce, Product,};
+use App\Models\{Commerce, Order, Product,};
 use App\Traits\{useSlug, useIsActive};
 use Database\Seeders\RolesSeeder;
 use Tests\TestCase;
@@ -39,5 +39,23 @@ class CommerceTest extends TestCase
 
         $this->assertTrue($model->products[0] instanceof Product);
         $this->assertCount($commerceCount, $model->products);
+    }
+
+
+    /**
+     * @test
+     */
+    public function model_must_have_orders_relation_with_hasMany()
+    {
+        $this->seed(RolesSeeder::class);
+        $this->signUp();
+        $commerceCount = 5;
+
+        $model = Commerce::factory()
+            ->has(Order::factory()->count($commerceCount))
+            ->create();
+
+        $this->assertTrue($model->orders[0] instanceof Order);
+        $this->assertCount($commerceCount, $model->orders);
     }
 }

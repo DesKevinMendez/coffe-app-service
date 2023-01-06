@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use App\Traits\{useIsActive, usePaginate, useSlug};
+use App\Traits\{usePaginate};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class Commerce extends Model
+class Order extends Model
 {
-    use HasFactory,
-        usePaginate,
-        SoftDeletes,
-        useSlug,
-        useIsActive;
+    use HasFactory, usePaginate, SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.
@@ -28,14 +26,7 @@ class Commerce extends Model
 
         self::creating(function ($model) {
             $model->uuid = (string) Str::uuid();
+            $model->user_id = Auth::user()->id;
         });
-    }
-
-    public function products() {
-        return $this->hasMany(Product::class);
-    }
-
-    public function orders() {
-        return $this->hasMany(Order::class);
     }
 }
