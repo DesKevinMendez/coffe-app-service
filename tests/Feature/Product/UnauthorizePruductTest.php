@@ -2,11 +2,7 @@
 
 namespace Tests\Feature\Product;
 
-use Database\Seeders\RolesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Laravel\Sanctum\Sanctum;
-use App\Models\{User};
 use Tests\TestCase;
 
 class UnauthorizePruductTest extends TestCase

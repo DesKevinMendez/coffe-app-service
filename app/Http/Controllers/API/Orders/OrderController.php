@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\Orders;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
 use App\Http\Resources\CommonResource;
+use App\Models\Commerce;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -24,12 +26,23 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  App\Models\Commerce  $commerce
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Commerce $commerce, OrderRequest $request)
     {
-        //
+        $lastOrder = Order::whereDay('created_at', now()->day)
+            ->latest()->where('commerce_id', $commerce->id)->first();
+
+        $newOrder = [
+            'commerce_id' => $commerce->id,
+            'order' => $lastOrder ? $lastOrder->order + 1 : 1
+        ];
+
+        $order = Order::create($newOrder);
+
+        return CommonResource::make($order);
     }
 
     /**

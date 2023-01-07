@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->integer('order')
                 ->comment('Must save the order number by day');
-            $table->integer('total')->comment('Must save total in cents');
+            $table->integer('total')->nullable()->comment('Must save total in cents');
             $table->foreignId('commerce_id')->on('commerces');
             $table->foreignId('user_id')->on('users');
             $table->softDeletes();
