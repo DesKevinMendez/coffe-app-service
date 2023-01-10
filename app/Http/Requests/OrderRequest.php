@@ -24,7 +24,8 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'commerce_id' => 'numeric|min:0|exists:commerces,id',
+            'products' => 'array|required',
+            'products.*' => 'int|distinct|exists:products,id',
         ];
     }
 }

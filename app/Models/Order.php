@@ -29,4 +29,9 @@ class Order extends Model
             $model->user_id = Auth::user()->id;
         });
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

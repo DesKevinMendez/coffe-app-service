@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Orders;
 
-use App\Models\{Commerce, Order};
+use App\Models\{Commerce, Order, Product};
 use Carbon\Carbon;
 use Database\Seeders\RolesSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -44,12 +44,18 @@ class OrderTest extends TestCase
      */
     public function can_save_a_new_order()
     {
+        $product = Product::factory()->create();
         $commerce = Commerce::factory()
             ->create();
 
         $orderRaw = Order::factory()->raw();
 
-        $response = $this->postJson(route('api.v1.commerces.order.store', $commerce->id), $orderRaw);
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [$product->id]
+            ])
+        );
 
         $response->assertCreated();
 
@@ -66,11 +72,17 @@ class OrderTest extends TestCase
     {
         $commerce = Commerce::factory()
             ->create();
+        $product = Product::factory()->create();
 
-        $order = Order::factory()->create(['order' => 1]);
+        Order::factory()->create(['order' => 1]);
         $orderRaw = Order::factory()->raw();
 
-        $response = $this->postJson(route('api.v1.commerces.order.store', $commerce->id), $orderRaw);
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [$product->id]
+            ])
+        );
 
         $response->assertCreated();
 
@@ -80,7 +92,10 @@ class OrderTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $response = $this->postJson(route('api.v1.commerces.order.store', $commerce->id), $orderRaw);
+        $product = Product::factory()->create();
+        $response = $this->postJson(route('api.v1.commerces.order.store', $commerce->id), [
+            ...$orderRaw, 'products' => [$product->id]
+        ]);
 
         $this->assertDatabaseHas('orders', [
             'commerce_id' => $commerce->id,
@@ -114,8 +129,12 @@ class OrderTest extends TestCase
         );
         $orderRaw = Order::factory()->raw();
 
+        $product = Product::factory()->create();
         $response = $this->postJson(
-            route('api.v1.commerces.order.store', $commerce->id), $orderRaw
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [$product->id]
+            ])
         );
 
         $response->assertCreated();
@@ -127,7 +146,10 @@ class OrderTest extends TestCase
         ]);
 
         $response = $this->postJson(
-            route('api.v1.commerces.order.store', $commerce->id), $orderRaw
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => []
+            ])
         );
 
         $this->assertDatabaseHas('orders', [
@@ -138,7 +160,14 @@ class OrderTest extends TestCase
 
         $newCommerce = Commerce::factory()
             ->create();
-        $response = $this->postJson(route('api.v1.commerces.order.store', $newCommerce->id), $orderRaw);
+        $product = Product::factory()->create();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $newCommerce->id),
+            array_merge($orderRaw, [
+                'products' => [$product->id]
+            ])
+        );
 
         $this->assertDatabaseHas('orders', [
             'commerce_id' => $newCommerce->id,
@@ -155,9 +184,116 @@ class OrderTest extends TestCase
         $orderRaw = Order::factory()->raw();
 
         $response = $this->postJson(
-            route('api.v1.commerces.order.store', 10), $orderRaw
+            route('api.v1.commerces.order.store', 10),
+            array_merge($orderRaw, [
+                'products' => []
+            ])
         );
 
         $response->assertNotFound();
+    }
+
+    /**
+     * @test
+     */
+    public function can_save_a_new_order_with_products()
+    {
+        $products = Product::factory()->count(3)->create();
+        $orderRaw = Order::factory()->raw();
+        $commerce = Commerce::factory()
+            ->create();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [...$products->pluck('id')->toArray(),]
+            ])
+        );
+
+        $response->assertCreated();
+
+        $this->assertDatabaseHas(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $products[0]->id,
+            ]
+        );
+
+        $this->assertDatabaseHas(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $products[1]->id,
+            ]
+        );
+
+        $this->assertDatabaseHas(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $products[2]->id,
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_save_a_new_order_if_producst_doesnt_array()
+    {
+        $orderRaw = Order::factory()->raw();
+        $commerce = Commerce::factory()
+            ->create();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => 1
+            ])
+        );
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('products');
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_save_a_new_order_if_products_array_is_empty()
+    {
+        $orderRaw = Order::factory()->raw();
+        $commerce = Commerce::factory()
+            ->create();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => []
+            ])
+        );
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('products');
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_save_a_new_order_if_products_array_have_unknow_id_for_products()
+    {
+        $orderRaw = Order::factory()->raw();
+        $commerce = Commerce::factory()
+            ->create();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [100]
+            ])
+        );
+
+        $response->assertUnprocessable()
+            ->assertJsonValidationErrors('products.0');
     }
 }

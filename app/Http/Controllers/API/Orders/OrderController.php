@@ -32,6 +32,7 @@ class OrderController extends Controller
      */
     public function store(Commerce $commerce, OrderRequest $request)
     {
+        $productsIds = $request->safe()->toArray();
         $lastOrder = Order::whereDay('created_at', now()->day)
             ->latest()->where('commerce_id', $commerce->id)->first();
 
@@ -41,6 +42,8 @@ class OrderController extends Controller
         ];
 
         $order = Order::create($newOrder);
+
+        $order->products()->attach([...$productsIds['products']]);
 
         return CommonResource::make($order);
     }
