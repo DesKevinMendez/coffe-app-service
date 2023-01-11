@@ -5,10 +5,7 @@ namespace App\Http\Controllers\API\Orders;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\CommonResource;
-use App\Models\Commerce;
-use App\Models\Order;
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\{Commerce, Order, Product};
 
 class OrderController extends Controller
 {
@@ -88,9 +85,12 @@ class OrderController extends Controller
         $productsIds = $request->safe()->toArray();
 
         $orderToUpdate = Order::where('commerce_id', $commerce)->find($order);
+
         if (is_null($orderToUpdate)) {
             abort(404);
         }
+
+        $this->authorize('update', $orderToUpdate);
 
         $sumOfPrice = Product::select('price')
             ->whereIn('id', $productsIds['products'])->get()
