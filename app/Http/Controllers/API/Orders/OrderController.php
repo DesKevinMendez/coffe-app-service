@@ -104,15 +104,4 @@ class OrderController extends Controller
 
         return CommonResource::make($orderToUpdate);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
-    }
 }

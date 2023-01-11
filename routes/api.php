@@ -31,8 +31,8 @@ Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
         'products' => ProductController::class,
         'companies' => CompanyController::class,
         'commerces' => CommerceController::class,
-        'commerces.order' =>  OrderController::class
     ]);
+    Route::apiResource('commerces.order', OrderController::class)->except('destroy');
     Route::get('roles/{role}/permissions', RolesWithPermissionsController::class)->name('roles.permissions');
 
     Route::get('roles', [RolesController::class, 'index'])->name('roles.index');
