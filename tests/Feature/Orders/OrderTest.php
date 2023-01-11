@@ -296,4 +296,130 @@ class OrderTest extends TestCase
         $response->assertUnprocessable()
             ->assertJsonValidationErrors('products.0');
     }
+
+    /**
+     * @test
+     */
+    public function can_get_a_single_order_with_their_products()
+    {
+        $commerce = Commerce::factory()
+            ->create();
+        $products = Product::factory()->count(3)->create();
+        $order = Order::factory()->create([
+            'commerce_id' => $commerce->id
+        ]);
+        $order->products()->attach($products->pluck('id'));
+
+        $response = $this->getJson(
+            route('api.v1.commerces.order.show', [$commerce->id, $order->id]),
+        );
+
+        $response->assertOk();
+
+        $this->assertEquals($commerce->id, $response->json('data')['commerce_id']);
+        $this->assertEquals($commerce->id, $response->json('data')['commerce_id']);
+        $this->assertEquals(3, count($response->json('data')['products']));
+    }
+
+    /**
+     * @test
+     */
+    public function can_get_404_if_commerce_or_order_id_doesnt_exists()
+    {
+        $response = $this->getJson(
+            route('api.v1.commerces.order.show', [1, 1]),
+        );
+
+        $response->assertNotFound();
+    }
+
+
+    /**
+     * @test
+     */
+    public function can_update_an_order_with_products()
+    {
+        $commerce = Commerce::factory()
+            ->create();
+        $products = Product::factory()->count(2)->create([
+            'commerce_id' => $commerce->id
+        ]);
+        $product = Product::factory()->create([
+            'commerce_id' => $commerce->id
+        ]);
+
+        $orderRaw = Order::factory()->raw();
+
+        $order = Order::factory()->create(
+            ['commerce_id' => $commerce->id]
+        );
+        $order->products()->attach($product->id);
+
+        $total = $products->pluck('price')->sum();
+
+        $response = $this->putJson(
+            route('api.v1.commerces.order.update', [$commerce->id, $order->id]),
+            array_merge($orderRaw, [
+                'products' => [...$products->pluck('id')->toArray(),]
+            ])
+        );
+
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('orders', [
+            'uuid' => $order->uuid,
+            'total' => $order->total
+        ]);
+        $this->assertDatabaseHas('orders', [
+            'uuid' => $order->uuid,
+            'total' => $total
+        ]);
+
+        $this->assertDatabaseMissing(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $product->id,
+            ]
+        );
+
+        $this->assertDatabaseHas(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $products[0]->id,
+            ]
+        );
+
+        $this->assertDatabaseHas(
+            'order_product',
+            [
+                'order_id' => $response->json('data')['id'],
+                'product_id' => $products[1]->id,
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function can_get_404_if_commerce_or_order_id_doesnt_exists_when_update()
+    {
+        $commerce = Commerce::factory()
+            ->create();
+        $products = Product::factory()->count(2)->create([
+            'commerce_id' => $commerce->id
+        ]);
+
+        $orderRaw = Order::factory()->raw();
+
+        $response = $this->putJson(
+            route('api.v1.commerces.order.update', [1,1]),
+            array_merge($orderRaw, [
+                'products' => [...$products->pluck('id')->toArray(),]
+            ])
+        );
+
+        $response->assertNotFound();
+    }
 }

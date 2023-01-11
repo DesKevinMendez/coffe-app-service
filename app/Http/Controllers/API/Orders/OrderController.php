@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Resources\CommonResource;
 use App\Models\Commerce;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -51,24 +52,50 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  int  $commerce
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($commerce, $order)
     {
-        //
+        $orderToLoad = Order::with('products')
+            ->where('commerce_id', $commerce)->find($order);
+
+        if (is_null($orderToLoad)) {
+            abort(404, 'not found');
+        }
+
+        return CommonResource::make($orderToLoad);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  int $commerce
+     * @param  int $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, $commerce, $order)
     {
-        //
+        $productsIds = $request->safe()->toArray();
+
+        $orderToUpdate = Order::where('commerce_id', $commerce)->find($order);
+        if (is_null($orderToUpdate)) {
+            abort(404);
+        }
+
+        $sumOrPrice = Product::select('price')
+            ->whereIn('id', $productsIds['products'])->get()
+            ->pluck('price')->sum();
+
+        $orderToUpdate->total = $sumOrPrice;
+        $orderToUpdate->update();
+        $orderToUpdate->products()->sync($productsIds['products']);
+
+        $orderToUpdate->load('products');
+
+        return CommonResource::make($orderToUpdate);
     }
 
     /**
