@@ -10,6 +10,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    public User $user;
     public function signUp($role = 'superadmin') {
         $this->user = User::factory()->create();
         $this->user->assignRole($role);

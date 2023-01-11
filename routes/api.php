@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Auth\{
 };
 use App\Http\Controllers\API\Commerce\CommerceController;
 use App\Http\Controllers\API\Company\CompanyController;
+use App\Http\Controllers\API\Orders\OrderController;
 use App\Http\Controllers\API\Roles\{
     RolesController,
     RolesWithPermissionsController
@@ -31,6 +32,7 @@ Route::name('api.v1.')->middleware('auth:sanctum')->group(function () {
         'companies' => CompanyController::class,
         'commerces' => CommerceController::class,
     ]);
+    Route::apiResource('commerces.order', OrderController::class)->except('destroy');
     Route::get('roles/{role}/permissions', RolesWithPermissionsController::class)->name('roles.permissions');
 
     Route::get('roles', [RolesController::class, 'index'])->name('roles.index');
