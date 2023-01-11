@@ -37,9 +37,16 @@ class OrderController extends Controller
         $lastOrder = Order::whereDay('created_at', now()->day)
             ->latest()->where('commerce_id', $commerce->id)->first();
 
+        $sumOfPrice = Product::select('price')
+            ->where('commerce_id', $commerce->id)
+            ->whereIn('id', $productsIds['products'])
+            ->get()
+            ->pluck('price')->sum();
+
         $newOrder = [
             'commerce_id' => $commerce->id,
-            'order' => $lastOrder ? $lastOrder->order + 1 : 1
+            'order' => $lastOrder ? $lastOrder->order + 1 : 1,
+            'total' => $sumOfPrice
         ];
 
         $order = Order::create($newOrder);
@@ -85,11 +92,11 @@ class OrderController extends Controller
             abort(404);
         }
 
-        $sumOrPrice = Product::select('price')
+        $sumOfPrice = Product::select('price')
             ->whereIn('id', $productsIds['products'])->get()
             ->pluck('price')->sum();
 
-        $orderToUpdate->total = $sumOrPrice;
+        $orderToUpdate->total = $sumOfPrice;
         $orderToUpdate->update();
         $orderToUpdate->products()->sync($productsIds['products']);
 

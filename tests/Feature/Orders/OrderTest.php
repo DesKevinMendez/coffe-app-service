@@ -68,6 +68,36 @@ class OrderTest extends TestCase
     /**
      * @test
      */
+    public function can_save_a_new_order_and_total_must_be_the_sum_of_the_prices_of_products()
+    {
+        $commerce = Commerce::factory()
+        ->create();
+        $products = Product::factory()->count(2)->create([
+            'commerce_id' => $commerce->id,
+        ]);
+
+        $orderRaw = Order::factory()->raw();
+        $total = $products->pluck('price')->sum();
+
+        $response = $this->postJson(
+            route('api.v1.commerces.order.store', $commerce->id),
+            array_merge($orderRaw, [
+                'products' => [...$products->pluck('id')->toArray()]
+            ])
+        );
+
+        $response->assertCreated();
+
+        $this->assertDatabaseHas('orders', [
+            'commerce_id' => $commerce->id,
+            'user_id' => $this->user->id,
+            'total' => $total,
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function can_save_a_new_order_and_order_must_be_sequence_of_order()
     {
         $commerce = Commerce::factory()
