@@ -65,7 +65,7 @@ class OrderPolicy
      */
     public function update(User $user, Order $order)
     {
-        if ($user->hasRole('admin') && $user->id === $order->user_id) return true;
+        if ($user->id === $order->user_id) return true;
     }
 
     /**

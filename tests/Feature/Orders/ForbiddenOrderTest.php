@@ -80,4 +80,38 @@ class ForbiddenOrderTest extends TestCase
 
         $response->assertForbidden();
     }
+
+
+    /**
+    * @test
+    */
+    public function can_update_an_order_if_the_user_has_role_casher()
+    {
+        $this->signUp('casher');
+
+        $commerce = Commerce::factory()
+            ->create();
+        $products = Product::factory()->count(2)->create([
+            'commerce_id' => $commerce->id
+        ]);
+        $product = Product::factory()->create([
+            'commerce_id' => $commerce->id
+        ]);
+
+        $orderRaw = Order::factory()->raw();
+
+        $order = Order::factory()->create(
+            ['commerce_id' => $commerce->id]
+        );
+        $order->products()->attach($product->id);
+
+        $response = $this->putJson(
+            route('api.v1.commerces.order.update', [$commerce->id, $order->id]),
+            array_merge($orderRaw, [
+                'products' => [...$products->pluck('id')->toArray(),]
+            ])
+        );
+
+        $response->assertOk();
+    }
 }
